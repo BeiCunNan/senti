@@ -20,6 +20,9 @@ class Instructor:
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             base_model = AutoModel.from_pretrained('roberta-base')
+        elif args.model_name == 'roberta-large':
+            self.tokenizer = AutoTokenizer.from_pretrained('roberta-large', add_prefix_space=True)
+            base_model = AutoModel.from_pretrained('roberta-large')
         elif args.mdoel_name == 'wsp-large':
             self.tokenizer = AutoTokenizer.from_pretrained("shuaifan/SentiWSP")
             base_model = AutoModelForSequenceClassification.from_pretrained("shuaifan/SentiWSP")

@@ -15,7 +15,7 @@ def get_config():
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--dataset', type=str, default='sst2', choices=num_classes.keys())
     parser.add_argument('--model_name', type=str, default='roberta',
-                        choices=['bert', 'roberta', 'wsp-base', 'wsp-large'])
+                        choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='cls',
                         choices=['cls', 'label', 'text'])
 
@@ -37,8 +37,8 @@ def get_config():
     args.device = torch.device(args.device)
 
     '''logger'''
-    args.log_name = '{}_{}_{}.log'.format(args.model_name, args.method_name,
-                                          datetime.now().strftime('%Y-%m-%d_%H-%M-%S')[2:])
+    args.log_name = '{}_{}_{}_{}.log'.format(args.model_name, args.method_name, args.dataset,
+                                             datetime.now().strftime('%Y-%m-%d_%H-%M-%S')[2:])
     if not os.path.exists('logs'):
         os.mkdir('logs')
     logger = logging.getLogger()
