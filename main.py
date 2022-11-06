@@ -8,7 +8,6 @@ from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 
 
-# 1
 class Instructor:
 
     def __init__(self, args, logger):

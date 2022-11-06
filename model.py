@@ -8,7 +8,9 @@ class Transformer_CLS(nn.Module):
         self.num_classes = num_classes
         self.block = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear(base_model.config.hidden_size, num_classes),
+            nn.Linear(base_model.config.hidden_size, 192),
+            nn.Linear(192, 24),
+            nn.Linear(24, num_classes),
             nn.Softmax(dim=1)
         )
         for param in base_model.parameters():
