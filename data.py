@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
         label_list = list(label_dict.keys())
-        sep_token = ['[SEP]'] if model_name == 'bert' else ['</s>']
+        sep_token = ['[SEP]']
         dataset = list()
         for data in raw_data:
             tokens = data['text'].lower().split(' ')
