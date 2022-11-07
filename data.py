@@ -31,6 +31,7 @@ def my_collate(batch, tokenizer, num_classes):
     text_ids = tokenizer(tokens,
                          padding=True,
                          truncation=True,
+                         hidden_size=1024,
                          is_split_into_words=True,
                          add_special_tokens=True,
                          return_tensors='pt')

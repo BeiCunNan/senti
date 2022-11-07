@@ -14,7 +14,7 @@ def get_config():
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
-    parser.add_argument('--model_name', type=str, default='wsp-large',
+    parser.add_argument('--model_name', type=str, default='wsp-base',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='cls',
                         choices=['cls', 'label', 'text'])

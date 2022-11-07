@@ -24,10 +24,10 @@ class Instructor:
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-large', add_prefix_space=True)
             base_model = AutoModel.from_pretrained('roberta-large')
         elif args.model_name == 'wsp-large':
-            self.tokenizer = AutoTokenizer.from_pretrained("shuaifan/SentiWSP")
-            base_model = AutoModelForSequenceClassification.from_pretrained("shuaifan/SentiWSP")
+            self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
+            base_model =  AutoModelForSequenceClassification.from_pretrained("shuaifan/SentiWSP")
         elif args.model_name == 'wsp-base':
-            self.tokenizer = AutoTokenizer.from_pretrained("shuaifan/SentiWSP-base")
+            self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             base_model = AutoModelForSequenceClassification.from_pretrained("shuaifan/SentiWSP-base")
         else:
             raise ValueError('unknown model')
