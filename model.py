@@ -21,3 +21,12 @@ class Transformer_CLS(nn.Module):
         cls_feats = raw_outputs.last_hidden_state[:, 0, :]
         predicts = self.block(cls_feats)
         return predicts
+
+
+class Capsule_Network(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, inputs):
+        raw_outputs = self.base_model(**inputs)
+        label_feats = raw_outputs.last_hidden_state[:, 1:self.num_classes + 1, :]

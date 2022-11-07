@@ -5,6 +5,7 @@ from functools import partial
 import torch
 from torch.utils.data import Dataset, DataLoader
 
+
 # Make MyDataset
 class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
@@ -56,7 +57,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     trainset = MyDataset(train_data, label_dict, tokenizer, model_name)
     testset = MyDataset(test_data, label_dict, tokenizer, model_name)
 
-    collate_fn = partial(my_collate, tokenizer=tokenizer,  num_classes=len(label_dict))
+    collate_fn = partial(my_collate, tokenizer=tokenizer, num_classes=len(label_dict))
     train_dataloader = DataLoader(trainset, train_batch_size, shuffle=True, num_workers=workers, collate_fn=collate_fn,
                                   pin_memory=True)
     test_dataloader = DataLoader(testset, test_batch_size, shuffle=False, num_workers=workers, collate_fn=collate_fn,
