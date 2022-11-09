@@ -31,7 +31,6 @@ def my_collate(batch, tokenizer, num_classes):
     text_ids = tokenizer(tokens,
                          padding=True,
                          truncation=True,
-                         hidden_size=1024,
                          is_split_into_words=True,
                          add_special_tokens=True,
                          return_tensors='pt')
@@ -40,7 +39,6 @@ def my_collate(batch, tokenizer, num_classes):
     text_ids['position_ids'] = positions
 
     return text_ids, torch.tensor(label_ids)
-
 
 # Load dataset
 def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, model_name, workers):

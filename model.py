@@ -19,8 +19,18 @@ class Transformer_CLS(nn.Module):
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
         cls_feats = raw_outputs.last_hidden_state[:, 0, :]
+        print(cls_feats.size())
         predicts = self.block(cls_feats)
         return predicts
+
+
+# One method
+#         input_ids1 = inputs['input_ids']
+#         token_type_ids1 = inputs['token_type_ids'][0]
+#         attention_mask1 = inputs['attention_mask']
+#         raw_outputs = self.base_model(input_ids=input_ids1,
+#                                       token_type_ids=token_type_ids1,
+#                                       attention_mask=attention_mask1)
 
 
 class Capsule_Network(nn.Module):
