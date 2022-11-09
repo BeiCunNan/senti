@@ -19,7 +19,6 @@ class Transformer_CLS(nn.Module):
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
         cls_feats = raw_outputs.last_hidden_state[:, 0, :]
-        print(cls_feats.size())
         predicts = self.block(cls_feats)
         return predicts
 
