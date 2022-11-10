@@ -49,7 +49,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'sst5':
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST5_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'one': 0, 'two': 1, 'three': 2, 'four': 3, 'five': 4}
+        label_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4}
     else:
         raise ValueError('unknown dataset')
 
