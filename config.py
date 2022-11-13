@@ -13,15 +13,15 @@ def get_config():
     num_classes = {'sst2': 2, 'sst5': 5}
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='sst2', choices=num_classes.keys())
-    parser.add_argument('--model_name', type=str, default='wsp-large',
+    parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
+    parser.add_argument('--model_name', type=str, default='wsp-base',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
-    parser.add_argument('--method_name', type=str, default='cls',
-                        choices=['cls', 'label', 'text'])
+    parser.add_argument('--method_name', type=str, default='cls_extend_lstm',
+                        choices=['cls', 'cls_extend_lstm', 'cls_extend_bilstm', 'label', 'text'])
 
     '''Optimization'''
-    parser.add_argument('--train_batch_size', type=int, default=16)
-    parser.add_argument('--test_batch_size', type=int, default=64)
+    parser.add_argument('--train_batch_size', type=int, default=8)
+    parser.add_argument('--test_batch_size', type=int, default=32)
     parser.add_argument('--num_epoch', type=int, default=50)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)

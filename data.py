@@ -30,6 +30,7 @@ def my_collate(batch, tokenizer, num_classes):
     tokens, label_ids = map(list, zip(*batch))
     text_ids = tokenizer(tokens,
                          padding=True,
+                         max_length=512,
                          truncation=True,
                          is_split_into_words=True,
                          add_special_tokens=True,

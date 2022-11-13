@@ -3,7 +3,7 @@ from torch import nn
 from tqdm import tqdm
 
 from data import load_data
-from model import Transformer_CLS
+from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 
@@ -25,7 +25,7 @@ class Instructor:
             base_model = AutoModel.from_pretrained('roberta-large')
         elif args.model_name == 'wsp-large':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            self.tokenizer.hidden_size = 1024
+            # self.tokenizer.hidden_size = 1024
             base_model = AutoModel.from_pretrained("shuaifan/SentiWSP")
         elif args.model_name == 'wsp-base':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
@@ -35,6 +35,10 @@ class Instructor:
 
         if args.method_name == 'cls':
             self.model = Transformer_CLS(base_model, args.num_classes)
+        elif args.method_name == 'cls_extend_lstm':
+            self.model = Transformer_Extend_LSTM(base_model, args.num_classes)
+        elif args.method_name == 'cls_extend_bilstm':
+            self.model = Transformer_Extend_BILSTM(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
@@ -95,10 +99,10 @@ class Instructor:
                                                       model_name=self.args.model_name,
                                                       workers=0)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
-        if self.args.method_name == 'cls':
+        if self.args.method_name != 'dualcl':
             criterion = nn.CrossEntropyLoss()
         else:
-            raise ValueError('unknown method')
+            raise ValueError('unknown criterion')
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay)
         best_loss, best_acc = 0, 0
 
