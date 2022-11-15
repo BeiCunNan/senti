@@ -51,6 +51,14 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST5_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4}
+    elif dataset == 'cr':
+        train_data = json.load(open(os.path.join(data_dir, 'CR_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'CR_Test.json'), 'r', encoding='utf-8'))
+        label_dict = {'positive': 0, 'negative': 1}
+    elif dataset == 'subj':
+        train_data = json.load(open(os.path.join(data_dir, 'SUBJ_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'SUBJ_Test.json'), 'r', encoding='utf-8'))
+        label_dict = {'subjective': 0, 'objective': 1}
     else:
         raise ValueError('unknown dataset')
 

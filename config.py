@@ -10,7 +10,7 @@ from datetime import datetime
 
 def get_config():
     parser = argparse.ArgumentParser()
-    num_classes = {'sst2': 2, 'sst5': 5}
+    num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2}
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
