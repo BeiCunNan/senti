@@ -3,7 +3,8 @@ from torch import nn
 from tqdm import tqdm
 
 from data import load_data
-from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM
+from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
+    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 
@@ -25,7 +26,6 @@ class Instructor:
             base_model = AutoModel.from_pretrained('roberta-large')
         elif args.model_name == 'wsp-large':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            # self.tokenizer.hidden_size = 1024
             base_model = AutoModel.from_pretrained("shuaifan/SentiWSP")
         elif args.model_name == 'wsp-base':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
@@ -39,6 +39,10 @@ class Instructor:
             self.model = Transformer_Extend_LSTM(base_model, args.num_classes)
         elif args.method_name == 'cls_extend_bilstm':
             self.model = Transformer_Extend_BILSTM(base_model, args.num_classes)
+        elif args.method_name == 'text_last_hidden':
+            self.model = Transformer_Text_Last_Hidden(base_model, args.num_classes)
+        elif args.method_name == 'text_hiddens':
+            self.model = Transformer_Text_Hiddens(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
