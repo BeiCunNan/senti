@@ -13,10 +13,10 @@ def get_config():
     num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2}
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='cr', choices=num_classes.keys())
-    parser.add_argument('--model_name', type=str, default='bert',
+    parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
+    parser.add_argument('--model_name', type=str, default='wsp-base',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
-    parser.add_argument('--method_name', type=str, default='text_hiddens',
+    parser.add_argument('--method_name', type=str, default='text_last_hidden',
                         choices=['cls', 'cls_extend_lstm', 'cls_extend_bilstm', 'label', 'text_last_hidden',
                                  'text_hiddens', 'textcnn'])
 

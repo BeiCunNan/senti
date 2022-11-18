@@ -96,14 +96,20 @@ class Capsule_Network(nn.Module):
 class TextCnnModel(nn.Module):
     def __init__(self, base_model, num_classes):
         super(TextCnnModel, self).__init__()
+
+        # Define the hyperparameters
         self.num_classes = num_classes
         self.base_model = base_model
         self.filter_sizes = [2, 3, 4]
         self.num_filters = 2
         self.encode_layer = 12
-        self.num_filter_total = self.num_filters * len(self.filter_sizes)
-        self.Weight = nn.Linear(self.num_filter_total, self.num_classes, bias=False)
-        self.bias = nn.Parameter(torch.ones([self.num_classes]))
+
+        # Define some network parameters
+        self.num_filter_total = self.num_filters * len(self.filter_sizes)  # 总共6个filters
+        self.Weight = nn.Linear(self.num_filter_total, self.num_classes, bias=False)  # 线性分类器
+        self.bias = nn.Parameter(torch.ones([self.num_classes]))  # tensor([1.,1.]) 随机初始化bias
+
+        # 定义了inchannels=1,outchannels=2,卷积核为[2,768]、[3,768]、[4,768]的卷积
         self.filter_list = nn.ModuleList([
             nn.Conv2d(1, self.num_filters, kernel_size=(size, self.base_model.config.hidden_size)) for size in
             self.filter_sizes
@@ -111,22 +117,27 @@ class TextCnnModel(nn.Module):
 
     def forward(self, x):
         # x: [batch_size, 12, hidden]
-        x = x.unsqueeze(1)  # [batch_size, channel=1, 12, hidden]
+        x = x.unsqueeze(1)  # [batch_size, channel=1, 12, hidden] -> [8,1,12,768]
 
         pooled_outputs = []
         for i, conv in enumerate(self.filter_list):
-            out = F.relu(conv(x))  # [batch_size, channel=2, 12-kernel_size[0]+1, 1]
+            out = F.relu(
+                conv(x))  # [batch_size, channel=2, 12-kernel_size[0]+1, 1]  ->[8, 2, 11, 1]、[8, 2, 10, 1]、[8, 2, 9, 1]
             maxPool = nn.MaxPool2d(
                 kernel_size=(self.encode_layer - self.filter_sizes[i] + 1, 1)
             )
-            # maxPool: [batch_size, channel=2, 1, 1]
+            # maxPool(out): [batch_size, channel=2, 1, 1] -> [8, 2, 1, 1]
+            # pooled : [8, 1, 1, 2]
             pooled = maxPool(out).permute(0, 3, 2, 1)  # [batch_size, h=1, w=1, channel=2]
             pooled_outputs.append(pooled)
 
+        # 根据第3维对Tensor进行拼接
         h_pool = torch.cat(pooled_outputs, len(self.filter_sizes))  # [batch_size, h=1, w=1, channel=2 * 3]
+
         h_pool_flat = torch.reshape(h_pool, [-1, self.num_filter_total])  # [batch_size, 6]
 
-        output = self.Weight(h_pool_flat) + self.bias  # [batch_size, class_num]
+        # output = self.Weight(h_pool_flat) + self.bias  # [batch_size, class_num]
+        output = h_pool_flat
 
         return output
 
@@ -138,6 +149,8 @@ class Transformer_Text_Last_Hidden(nn.Module):
         self.num_classes = num_classes
         for param in base_model.parameters():
             param.requires_grad = (True)
+
+        # Define the hyperparameters
         self.filter_sizes = [2, 3, 4]
         self.num_filters = 2
         self.encode_layer = 12
@@ -145,28 +158,30 @@ class Transformer_Text_Last_Hidden(nn.Module):
         # TextCNN
         self.convs = nn.ModuleList(
             [nn.Conv2d(in_channels=1, out_channels=self.num_filters,
-                       kernel_size=(k, self.base_model.config.hidden_size), ) for k in self.filter_sizes]
+                       kernel_size=(K, self.base_model.config.hidden_size)) for K in self.filter_sizes]
         )
-        self.dropout = nn.Dropout(0.5)
-        self.fc = nn.Linear(self.num_filters * len(self.filter_sizes), self.num_classes)
+        self.block = nn.Sequential(
+            nn.Dropout(0.5),
+            nn.Linear(self.num_filters * len(self.filter_sizes), self.num_classes),
+            nn.Softmax(dim=1)
+        )
 
-    def conv_pool(self, x, conv):
-        x = conv(x)  # shape [batch_size, out_channels, x.shape[1] - conv.kernel_size[0] + 1, 1]
-        x = F.relu(x)
-        x = x.squeeze(3)  # shape [batch_size, out_channels, x.shape[1] - conv.kernel_size[0] + 1]
-        size = x.size(2)
-        x = F.max_pool1d(x, size)  # shape[batch+size, out_channels, 1]
-        x = x.squeeze(2)  # shape[batch+size, out_channels]
-        return x
+    def conv_pool(self, tokens, conv):
+        # x -> [batch,1,text_length,768]
+        tokens = conv(tokens)  # shape [batch_size, out_channels, x.shape[2] - conv.kernel_size[0] + 1, 1]
+        tokens = F.relu(tokens)
+        tokens = tokens.squeeze(3)  # shape [batch_size, out_channels, x.shape[2] - conv.kernel_size[0] + 1]
+        tokens = F.max_pool1d(tokens, tokens.size(2))  # shape[batch, out_channels, 1]
+        out = tokens.squeeze(2)  # shape[batch, out_channels]
+        return out
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
-        out = raw_outputs.last_hidden_state.unsqueeze(1)  # shape [batch_size, 1, max_len, hidden_size]
-        out = torch.cat([self.conv_pool(out, conv) for conv in self.convs],
+        tokens = raw_outputs.last_hidden_state.unsqueeze(1)  # shape [batch_size, 1, max_len, hidden_size]
+        out = torch.cat([self.conv_pool(tokens, conv) for conv in self.convs],
                         1)  # shape  [batch_size, self.num_filters * len(self.filter_sizes]
-        out = self.dropout(out)
-        out = self.fc(out)
-        return out
+        predicts = self.block(out)
+        return predicts
 
 
 class Transformer_Text_Hiddens(nn.Module):
@@ -179,8 +194,13 @@ class Transformer_Text_Hiddens(nn.Module):
         self.filter_sizes = [2, 3, 4]
         self.num_filters = 2
         self.encode_layer = 12
-        self.linear = nn.Linear(self.base_model.config.hidden_size, self.num_classes)
         self.textCnn = TextCnnModel(self.base_model, self.num_classes)
+
+        self.block = nn.Sequential(
+            nn.Dropout(0.5),
+            nn.Linear(6, self.num_classes),
+            nn.Softmax(dim=1)
+        )
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs, output_hidden_states=True)
@@ -192,4 +212,5 @@ class Transformer_Text_Hiddens(nn.Module):
             cls_embeddings = torch.cat((cls_embeddings, hidden_states[i][:, 0, :].unsqueeze(1)), dim=1)
         # cls_embeddings: [batch_size, 12, hidden]
         pred = self.textCnn(cls_embeddings)
+        pred = self.block(pred)
         return pred
