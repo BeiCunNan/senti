@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 from data import load_data
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
-    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens
+    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 import matplotlib.pyplot as plt
@@ -44,6 +44,8 @@ class Instructor:
             self.model = Transformer_Text_Last_Hidden(base_model, args.num_classes)
         elif args.method_name == 'text_hiddens':
             self.model = Transformer_Text_Hiddens(base_model, args.num_classes)
+        elif args.method_name == 'cnn+rnn':
+            self.model = Transformer_CNN_RNN(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
