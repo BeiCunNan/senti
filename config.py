@@ -16,7 +16,7 @@ def get_config():
     parser.add_argument('--dataset', type=str, default='cr', choices=num_classes.keys())
     parser.add_argument('--model_name', type=str, default='wsp-base',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
-    parser.add_argument('--method_name', type=str, default='cnn+rnn',
+    parser.add_argument('--method_name', type=str, default='cls',
                         choices=['cls', 'cls_extend_lstm', 'cls_extend_bilstm', 'label', 'text_last_hidden',
                                  'text_hiddens', 'textcnn','cnn+rnn'])
 

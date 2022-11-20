@@ -215,6 +215,7 @@ class Transformer_Text_Hiddens(nn.Module):
         pred = self.block(pred)
         return pred
 
+
 class Transformer_CNN_RNN(nn.Module):
     def __init__(self, base_model, num_classes):
         super().__init__()
@@ -234,7 +235,7 @@ class Transformer_CNN_RNN(nn.Module):
                        kernel_size=(K, self.base_model.config.hidden_size)) for K in self.filter_sizes]
         )
 
-        #LSTM
+        # LSTM
         self.lstm = nn.LSTM(input_size=self.base_model.config.hidden_size,
                             hidden_size=512,
                             num_layers=1,
@@ -261,12 +262,32 @@ class Transformer_CNN_RNN(nn.Module):
         raw_outputs = self.base_model(**inputs)
         cnn_tokens = raw_outputs.last_hidden_state.unsqueeze(1)  # shape [batch_size, 1, max_len, hidden_size]
         cnn_out = torch.cat([self.conv_pool(cnn_tokens, conv) for conv in self.convs],
-                        1)  # shape  [batch_size, self.num_filters * len(self.filter_sizes]
+                            1)  # shape  [batch_size, self.num_filters * len(self.filter_sizes]
         rnn_tokens = raw_outputs.last_hidden_state
         rnn_outputs, _ = self.lstm(rnn_tokens)
         rnn_out = rnn_outputs[:, -1, :]
         # cnn_out --> [batch,6]
         # rnn_out --> [batch,512]
-        out=torch.cat((cnn_out,rnn_out),1)
+        out = torch.cat((cnn_out, rnn_out), 1)
         predicts = self.block(out)
         return predicts
+
+
+class Gate_Residual_CNN(nn.Module):
+    def __init__(self, base_model, num_classes):
+        super().__init__()
+        self.base_model = base_model
+        self.num_classes = num_classes
+        #self.conv1d = nn.Conv2d(in_channels=1, out_channels=2, kernel_size=(3, self.base_model.config.hidden_size),dilation=(,1))
+
+        for param in base_model.parameters():
+            param.requires_grad = (True)
+
+    def conf_pool(self):
+        pass
+
+    def gate(self):
+        pass
+
+    def forward(self, inputs):
+        raw_outputs = self.base_model(**inputs)
