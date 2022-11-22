@@ -315,8 +315,8 @@ class ExplainableModel(nn.Module):
         span_masks = inputs['span_masks']
 
         # intermediate layer
-        hidden_states, first_token = self.base_model(input_ids,
-                                                     attention_mask=attention_mask)  # output.shape = (bs, length, hidden_size)
+        raw_outputs = self.base_model(input_ids,attention_mask=attention_mask)  # output.shape = (bs, length, hidden_size)
+        hidden_states=raw_outputs.last_hidden_state
         # span info collecting layer(SIC)
         h_ij = self.span_info_collect(hidden_states, start_indexs, end_indexs)
         # interpretation layer
