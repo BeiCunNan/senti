@@ -3,8 +3,9 @@ from torch import nn
 from tqdm import tqdm
 
 from data import load_data
+from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
-    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN
+    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 import matplotlib.pyplot as plt
@@ -18,7 +19,7 @@ class Instructor:
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            base_model = AutoModel.from_pretrained('bert-base-uncased')
+            base_model = AutoModel.from_pretrained('bert-base-uncased', return_dict=False)
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             base_model = AutoModel.from_pretrained('roberta-base')
@@ -46,6 +47,8 @@ class Instructor:
             self.model = Transformer_Text_Hiddens(base_model, args.num_classes)
         elif args.method_name == 'cnn+rnn':
             self.model = Transformer_CNN_RNN(base_model, args.num_classes)
+        elif args.method_name == 'cls_explain':
+            self.model = ExplainableModel(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
@@ -66,9 +69,12 @@ class Instructor:
         for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             targets = targets.to(self.args.device)
-            predicts = self.model(inputs)
-            loss = criterion(predicts, targets)
-
+            if (self.args.method_name == 'cls_explain'):
+                predicts, a_ij = self.model(inputs)
+                loss = criterion(a_ij, predicts, targets)
+            else:
+                predicts = self.model(inputs)
+                loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -87,10 +93,12 @@ class Instructor:
             for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 targets = targets.to(self.args.device)
-                predicts = self.model(inputs)
-
-                loss = criterion(predicts, targets)
-
+                if (self.args.method_name == 'cls_explain'):
+                    predicts, a_ij = self.model(inputs)
+                    loss = criterion(a_ij, predicts, targets)
+                else:
+                    predicts = self.model(inputs)
+                    loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
                 n_test += targets.size(0)
@@ -104,12 +112,15 @@ class Instructor:
                                                       train_batch_size=self.args.train_batch_size,
                                                       test_batch_size=self.args.test_batch_size,
                                                       model_name=self.args.model_name,
+                                                      method_name=self.args.method_name,
                                                       workers=0)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
-        if self.args.method_name != 'dualcl':
-            criterion = nn.CrossEntropyLoss()
+        # Define the criterion
+        if self.args.method_name == 'cls_explain':
+            criterion = SELoss()
         else:
-            raise ValueError('unknown criterion')
+            criterion = CELoss()
+            # raise ValueError('unknown criterion')
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay)
         best_loss, best_acc = 0, 0
 
@@ -131,6 +142,7 @@ class Instructor:
         plt.xlabel('epoch')
         plt.savefig('image.png')
         plt.show()
+
 
 if __name__ == '__main__':
     logging.set_verbosity_error()
