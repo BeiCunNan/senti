@@ -315,8 +315,9 @@ class ExplainableModel(nn.Module):
         span_masks = inputs['span_masks']
 
         # intermediate layer
-        raw_outputs = self.base_model(input_ids,attention_mask=attention_mask)  # output.shape = (bs, length, hidden_size)
-        hidden_states=raw_outputs.last_hidden_state
+        raw_outputs = self.base_model(input_ids,
+                                      attention_mask=attention_mask)  # output.shape = (bs, length, hidden_size)
+        hidden_states = raw_outputs.last_hidden_state
         # span info collecting layer(SIC)
         h_ij = self.span_info_collect(hidden_states, start_indexs, end_indexs)
         # interpretation layer
@@ -324,6 +325,7 @@ class ExplainableModel(nn.Module):
         # output layer
         out = self.output(H.float())
         return out, a_ij
+
 
 class SICModel(nn.Module):
     def __init__(self, hidden_size):
@@ -360,11 +362,24 @@ class InterpretationModel(nn.Module):
         self.h_t = nn.Linear(hidden_size, 1)
 
     def forward(self, h_ij, span_masks):
-        o_ij = self.h_t(h_ij).squeeze(-1)  # (ba, span_num)
+        # h_ij --> []
+        print(h_ij.shape)
+        o_ij = self.h_t(h_ij).squeeze(-1)  # (ba, span_num) [8,406]
+        # print(1, o_ij)
+        # print(2, o_ij.shape)
         # mask illegal span
-        o_ij = o_ij - span_masks
+        # print(7,span_masks[0][:50])
+        # print(8,span_masks.shape)
+        # span_mask -->  []
+        o_ij = o_ij - span_masks  # [8,406]
+        # print(3, o_ij)
+        # print(4, o_ij.shape)
         # normalize all a_ij, a_ij sum = 1
         a_ij = nn.functional.softmax(o_ij, dim=1)
+        # print(5, a_ij)
+        # print(6, a_ij.shape) # [8,406]
         # weight average span representation to get H
-        H = (a_ij.unsqueeze(-1) * h_ij).sum(dim=1)  # (bs, hidden_size)
+        H = (a_ij.unsqueeze(-1) * h_ij).sum(dim=1)  # (bs, hidden_size) [8,768]
+        # print(H)
+        # print(H.shape)
         return H, a_ij

@@ -17,7 +17,7 @@ import torch
 
 
 def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, fill_values: List[float] = None) -> \
-        List[torch.Tensor]:
+    List[torch.Tensor]:
     """
     pad to maximum length of this batch
     Args:
@@ -62,12 +62,12 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
     for input_ids, label, length in batch:
         span_mask = []
         middle_index = input_ids.tolist().index(2)
+        print(middle_index)
+        print(length.item())
+
         for start_index, end_index in zip(start_indexs, end_indexs):
-
-            print('oo', length.item() - 2)
-
             if 1 <= start_index <= length.item() - 2 and 1 <= end_index <= length.item() - 2 and (
-                    start_index > middle_index or end_index < middle_index):
+                start_index > middle_index or end_index < middle_index):
                 span_mask.append(0)
             else:
                 span_mask.append(1e6)
@@ -80,11 +80,11 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
 
 
 def unit_test():
-    input_id_1 = torch.LongTensor([0, 3, 5, 6, 5, 2])
-    input_id_2 = torch.LongTensor([0, 3, 4, 4, 2])
+    input_id_1 = torch.LongTensor([0, 3, 2, 5, 6, 2])
+    input_id_2 = torch.LongTensor([0, 3, 2, 4, 2])
     input_id_3 = torch.LongTensor([0, 3, 2])
     batch = [(input_id_1, torch.LongTensor([1]), torch.LongTensor([6])),
-             (input_id_2, torch.LongTensor([0]), torch.LongTensor([5])),
+             (input_id_2, torch.LongTensor([1]), torch.LongTensor([5])),
              (input_id_3, torch.LongTensor([1]), torch.LongTensor([3]))]
 
     output = collate_to_max_length(batch=batch, fill_values=[1, 0, 0])

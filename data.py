@@ -62,11 +62,12 @@ def my_collate(batch, tokenizer, num_classes, method_name):
         # 102 means [SEP]
         for index in range(len(batch)):
             span_mask = []
-            #print(text_ids['input_ids'][index])
+            # print(text_ids['input_ids'][index])
             sep_token_first = text_ids['input_ids'][index].tolist().index(102)
             sep_token = text_ids['input_ids'][index].tolist().index(102, sep_token_first + 1)
             for start_index, end_index in zip(start_indexs, end_indexs):
-                if 1+num_classes <= start_index <= lengths[index] - 2 and 1+num_classes <= end_index <= lengths[index] - 2 and (
+                if 2 + num_classes <= start_index <= lengths[index] - 2 and 2 + num_classes <= end_index <= lengths[
+                    index] - 2 and (
                         start_index > sep_token or end_index < sep_token):
                     span_mask.append(0)
                 else:
@@ -77,7 +78,7 @@ def my_collate(batch, tokenizer, num_classes, method_name):
         text_ids['start_indexs'] = torch.tensor(np.array(start_indexs))
         text_ids['end_indexs'] = torch.tensor(np.array(end_indexs))
         text_ids['span_masks'] = torch.tensor(np.array(span_masks))
-        #print('kk', text_ids['lengths'], text_ids['start_indexs'], text_ids['end_indexs'], text_ids['span_masks'])
+        # print('kk', text_ids['lengths'], text_ids['start_indexs'], text_ids['end_indexs'], text_ids['span_masks'])
     return text_ids, torch.tensor(label_ids)
 
 
