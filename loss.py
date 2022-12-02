@@ -22,4 +22,4 @@ class SELoss(nn.Module):
     def forward(self, a_ij, predicts, targets):
         ce_loss = self.xent_loss(predicts, targets)
         reg_loss = self.lamb * a_ij.pow(2).sum(dim=1).mean()
-        return ce_loss - reg_loss
+        return ce_loss + reg_loss

@@ -151,9 +151,8 @@ class Transformer_Text_Last_Hidden(nn.Module):
             param.requires_grad = (True)
 
         # Define the hyperparameters
-        self.filter_sizes = [2, 3, 4]
-        self.num_filters = 2
-        self.encode_layer = 12
+        self.filter_sizes = [3, 4, 5]
+        self.num_filters = 100
 
         # TextCNN
         self.convs = nn.ModuleList(
@@ -225,9 +224,8 @@ class Transformer_CNN_RNN(nn.Module):
             param.requires_grad = (True)
 
         # Define the hyperparameters
-        self.filter_sizes = [2, 3, 4]
-        self.num_filters = 2
-        self.encode_layer = 12
+        self.filter_sizes = [3, 4, 5]
+        self.num_filters = 100
 
         # TextCNN
         self.convs = nn.ModuleList(
@@ -243,7 +241,7 @@ class Transformer_CNN_RNN(nn.Module):
 
         self.block = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear(518, 128),
+            nn.Linear(812, 128),
             nn.Linear(128, 16),
             nn.Linear(16, num_classes),
             nn.Softmax(dim=1)
@@ -266,7 +264,7 @@ class Transformer_CNN_RNN(nn.Module):
         rnn_tokens = raw_outputs.last_hidden_state
         rnn_outputs, _ = self.lstm(rnn_tokens)
         rnn_out = rnn_outputs[:, -1, :]
-        # cnn_out --> [batch,6]
+        # cnn_out --> [batch,300]
         # rnn_out --> [batch,512]
         out = torch.cat((cnn_out, rnn_out), 1)
         predicts = self.block(out)
@@ -362,9 +360,10 @@ class InterpretationModel(nn.Module):
         self.h_t = nn.Linear(hidden_size, 1)
 
     def forward(self, h_ij, span_masks):
+        # Span mask 就是去掉那些不是本句子的内容,即去掉[CLS]、[SEP]和超出本句子长度的内容
         # h_ij --> []
-        print(h_ij.shape)
         o_ij = self.h_t(h_ij).squeeze(-1)  # (ba, span_num) [8,406]
+        print(1, o_ij[0][:50])
         # print(1, o_ij)
         # print(2, o_ij.shape)
         # mask illegal span
@@ -372,12 +371,12 @@ class InterpretationModel(nn.Module):
         # print(8,span_masks.shape)
         # span_mask -->  []
         o_ij = o_ij - span_masks  # [8,406]
-        # print(3, o_ij)
+        print(2, o_ij[0][:50])
         # print(4, o_ij.shape)
         # normalize all a_ij, a_ij sum = 1
         a_ij = nn.functional.softmax(o_ij, dim=1)
-        # print(5, a_ij)
         # print(6, a_ij.shape) # [8,406]
+        print(3, a_ij[0][:50])
         # weight average span representation to get H
         H = (a_ij.unsqueeze(-1) * h_ij).sum(dim=1)  # (bs, hidden_size) [8,768]
         # print(H)
