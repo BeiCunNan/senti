@@ -5,7 +5,7 @@ from tqdm import tqdm
 from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
-    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel
+    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 import matplotlib.pyplot as plt
@@ -19,7 +19,7 @@ class Instructor:
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            base_model = AutoModel.from_pretrained('bert-base-uncased', return_dict=False)
+            base_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             base_model = AutoModel.from_pretrained('roberta-base')
@@ -49,6 +49,8 @@ class Instructor:
             self.model = Transformer_CNN_RNN(base_model, args.num_classes)
         elif args.method_name == 'cls_explain':
             self.model = ExplainableModel(base_model, args.num_classes)
+        elif args.method_name == 'self_attention':
+            self.model = Self_Attention(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 

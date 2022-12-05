@@ -14,11 +14,11 @@ def get_config():
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--dataset', type=str, default='cr', choices=num_classes.keys())
-    parser.add_argument('--model_name', type=str, default='wsp-base',
+    parser.add_argument('--model_name', type=str, default='bert',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
-    parser.add_argument('--method_name', type=str, default='cnn+rnn',
+    parser.add_argument('--method_name', type=str, default='self_attention',
                         choices=['cls', 'cls_extend_lstm', 'cls_extend_bilstm', 'label', 'text_last_hidden',
-                                 'text_hiddens','cnn+rnn', 'cls_explain'])
+                                 'text_hiddens','cnn+rnn', 'cls_explain','self_attention'])
 
     '''Optimization'''
     parser.add_argument('--train_batch_size', type=int, default=8)
