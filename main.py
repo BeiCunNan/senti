@@ -5,9 +5,10 @@ from tqdm import tqdm
 from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
-    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention
+    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
+    Self_Attention_New
 from config import get_config
-from transformers import logging, AutoTokenizer, AutoModel, AutoModelForSequenceClassification
+from transformers import logging, AutoTokenizer, AutoModel
 import matplotlib.pyplot as plt
 
 
@@ -51,6 +52,8 @@ class Instructor:
             self.model = ExplainableModel(base_model, args.num_classes)
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(base_model, args.num_classes)
+        elif args.method_name == 'san':
+            self.model = Self_Attention_New(base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
