@@ -74,7 +74,7 @@ class Instructor:
         for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             targets = targets.to(self.args.device)
-            if (self.args.method_name == 'cls_explain'):
+            if (self.args.method_name in ['cls_explain', 'san']):
                 predicts, a_ij = self.model(inputs)
                 loss = criterion(a_ij, predicts, targets)
             else:
@@ -98,7 +98,7 @@ class Instructor:
             for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 targets = targets.to(self.args.device)
-                if (self.args.method_name == 'cls_explain'):
+                if (self.args.method_name in ['cls_explain', 'san']):
                     predicts, a_ij = self.model(inputs)
                     loss = criterion(a_ij, predicts, targets)
                 else:
@@ -121,7 +121,7 @@ class Instructor:
                                                       workers=0)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
         # Define the criterion
-        if self.args.method_name == 'cls_explain':
+        if self.args.method_name in ['cls_explain', 'san']:
             criterion = SELoss()
         else:
             criterion = CELoss()
@@ -136,6 +136,7 @@ class Instructor:
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
                 best_acc, best_loss = test_acc, test_loss
+                # torch.save(self.model.state_dict(),'./model.pkl')
             self.logger.info(
                 '{}/{} - {:.2f}%'.format(epoch + 1, self.args.num_epoch, 100 * (epoch + 1) / self.args.num_epoch))
             self.logger.info('[train] loss: {:.4f}, acc: {:.2f}'.format(train_loss, train_acc * 100))

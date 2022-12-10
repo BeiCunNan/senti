@@ -16,7 +16,9 @@ class MyDataset(Dataset):
         for data in raw_data:
             tokens = data['text'].lower().split(' ')
             label_id = label_dict[data['label']]
-            dataset.append((label_list + sep_token + tokens, label_id))
+            # 1 No label
+            # dataset.append((label_list + sep_token + tokens, label_id))
+            dataset.append((tokens ,label_id))
         self._dataset = dataset
 
     def __getitem__(self, index):
@@ -40,11 +42,15 @@ def my_collate(batch, tokenizer, num_classes, method_name):
 
     # the text_ids includes input_ids,token_type_ids,attention_mask
     positions = torch.zeros_like(text_ids['input_ids'])
-    positions[:, num_classes:] = torch.arange(0, text_ids['input_ids'].size(1) - num_classes)
-    text_ids['position_ids'] = positions
+    # 2 No label
+    # positions[:, num_classes:] = torch.arange(0, text_ids['input_ids'].size(1) - num_classes)
+    # positions[:]=torch.arange(0, text_ids['input_ids'].size(1))
+    # text_ids['position_ids'] = positions
+
+    # print(2,text_ids['attention_mask'])
+    # print(3,text_ids['input_ids'])
 
     if (method_name == 'cls_explain'):
-
         start_indexs = []
         end_indexs = []
         lengths = []

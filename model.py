@@ -4,6 +4,8 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
+from pooling import MaxPooling
+
 
 class Transformer_CLS(nn.Module):
     def __init__(self, base_model, num_classes):
@@ -407,7 +409,7 @@ class Self_Attention(nn.Module):
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
-        attention = nn.Softmax(dim=-1)(torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
         output = torch.bmm(attention, V)
         output = torch.sum(output, dim=1)
         predicts = self.fnn(output)
@@ -429,14 +431,32 @@ class Self_Attention_New(nn.Module):
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
         self.fnn = nn.Linear(self.base_model.config.hidden_size, num_classes)
 
+        self.maxpooling=MaxPooling()
+
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
         tokens = raw_outputs.last_hidden_state
+
+        attention_mask = inputs['attention_mask']
+        # print(1,inputs['attention_mask'].unsqueeze(-1).shape)
+        # print(2,inputs['attention_mask'].unsqueeze(-1).expand(tokens.size()).float().shape)
+        # print(3,inputs['attention_mask'].unsqueeze(-1).expand(tokens.size()).float())
+        # print(1,tokens.shape)
+        # print(tokens[0][0])
+
+
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
-        attention = nn.Softmax(dim=-1)(torch.bmm(Q.permute(0, 2, 1), K)) * self._norm_fact
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q.permute(0, 2, 1), K)) * self._norm_fact)
+
+        all_ij = attention.view(tokens.shape[0], 1, -1)
+        all_ij = torch.squeeze(all_ij, 1)
+
         output = torch.bmm(attention, V.permute(0, 2, 1))
         output = torch.sum(output, dim=2)
         predicts = self.fnn(output)
-        return predicts
+
+        return predicts, all_ij
+
+
