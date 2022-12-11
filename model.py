@@ -416,7 +416,7 @@ class Self_Attention(nn.Module):
         return predicts
 
 
-class Self_Attention_New(nn.Module):
+class Self_Attention_Loss(nn.Module):
     def __init__(self, base_model, num_classes):
         super().__init__()
         self.base_model = base_model
@@ -458,5 +458,30 @@ class Self_Attention_New(nn.Module):
         predicts = self.fnn(output)
 
         return predicts, all_ij
+class Self_Attention_New(nn.Module):
+    def __init__(self, base_model, num_classes):
+        super().__init__()
+        self.base_model = base_model
+        self.num_classes = num_classes
 
+        for param in base_model.parameters():
+            param.requires_grad = (True)
+
+        self.key_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+        self.fnn = nn.Linear(self.base_model.config.hidden_size, num_classes)
+
+    def forward(self, inputs):
+        raw_outputs = self.base_model(**inputs)
+        tokens = raw_outputs.last_hidden_state
+        K = self.key_layer(tokens)
+        Q = self.query_layer(tokens)
+        V = self.value_layer(tokens)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
+        output = torch.bmm(attention, V)
+        output = torch.sum(output, dim=1)
+        predicts = self.fnn(output)
+        return predicts
 
