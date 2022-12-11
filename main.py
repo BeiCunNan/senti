@@ -74,7 +74,7 @@ class Instructor:
         for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             targets = targets.to(self.args.device)
-            if (self.args.method_name in ['cls_explain', 'san']):
+            if (self.args.method_name in ['cls_explain', 'sanl']):
                 predicts, a_ij = self.model(inputs)
                 loss = criterion(a_ij, predicts, targets)
             else:
@@ -98,7 +98,7 @@ class Instructor:
             for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 targets = targets.to(self.args.device)
-                if (self.args.method_name in ['cls_explain', 'san']):
+                if (self.args.method_name in ['cls_explain', 'sanl']):
                     predicts, a_ij = self.model(inputs)
                     loss = criterion(a_ij, predicts, targets)
                 else:
@@ -121,7 +121,7 @@ class Instructor:
                                                       workers=0)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
         # Define the criterion
-        if self.args.method_name in ['cls_explain', 'san']:
+        if self.args.method_name in ['cls_explain', 'sanl']:
             criterion = SELoss()
         else:
             criterion = CELoss()

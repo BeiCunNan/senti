@@ -4,6 +4,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
+
 class MeanPooling(nn.Module):
     def __init__(self):
         super(MeanPooling, self).__init__()
@@ -50,13 +51,13 @@ class WeightedLayerPooling(nn.Module):
 
 
 class AttentionPooling(nn.Module):
-    def __init__(self, in_dim):
+    def __init__(self):
         super().__init__()
         self.attention = nn.Sequential(
-            nn.Linear(in_dim, in_dim),
-            nn.LayerNorm(in_dim),
+            nn.Linear(768, 768),
+            nn.LayerNorm(768),
             nn.GELU(),
-            nn.Linear(in_dim, 1),
+            nn.Linear(768, 1),
         )
 
     def forward(self, last_hidden_state, attention_mask):
@@ -65,3 +66,21 @@ class AttentionPooling(nn.Module):
         w = torch.softmax(w, 1)
         attention_embeddings = torch.sum(w * last_hidden_state, dim=1)
         return attention_embeddings
+
+
+class Max_KMeanPooling(nn.Module):
+    def __init__(self):
+        super(Max_KMeanPooling, self).__init__()
+
+    def forward(self, last_hidden_state, attention_mask):
+        input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
+        sum_embeddings = torch.sum(last_hidden_state * input_mask_expanded, 1)
+        sum_mask = input_mask_expanded.sum(1)
+        sum_mask = torch.clamp(sum_mask, min=1e-9)
+        mean_embeddings = sum_embeddings / sum_mask
+
+        embeddings = last_hidden_state.clone()
+        embeddings[input_mask_expanded == 0] = -1e4
+        max_embeddings, _ = torch.max(embeddings, dim=1)
+        Max_KMeanPooling = torch.cat((mean_embeddings, max_embeddings), dim=1)
+        return Max_KMeanPooling

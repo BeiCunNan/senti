@@ -4,7 +4,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from pooling import MaxPooling
+from pooling import MaxPooling, MeanPooling, WeightedLayerPooling, AttentionPooling, Max_KMeanPooling
 
 
 class Transformer_CLS(nn.Module):
@@ -431,7 +431,7 @@ class Self_Attention_Loss(nn.Module):
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
         self.fnn = nn.Linear(self.base_model.config.hidden_size, num_classes)
 
-        self.maxpooling=MaxPooling()
+        self.maxpooling = MaxPooling()
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
@@ -443,7 +443,6 @@ class Self_Attention_Loss(nn.Module):
         # print(3,inputs['attention_mask'].unsqueeze(-1).expand(tokens.size()).float())
         # print(1,tokens.shape)
         # print(tokens[0][0])
-
 
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
@@ -458,6 +457,8 @@ class Self_Attention_Loss(nn.Module):
         predicts = self.fnn(output)
 
         return predicts, all_ij
+
+
 class Self_Attention_New(nn.Module):
     def __init__(self, base_model, num_classes):
         super().__init__()
@@ -471,17 +472,18 @@ class Self_Attention_New(nn.Module):
         self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
-        self.fnn = nn.Linear(self.base_model.config.hidden_size, num_classes)
+        self.fnn = nn.Linear(self.base_model.config.hidden_size*2, num_classes)
+        self.mean = Max_KMeanPooling()
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
+        attention_mask=inputs['attention_mask']
         tokens = raw_outputs.last_hidden_state
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
-        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
-        output = torch.bmm(attention, V)
-        output = torch.sum(output, dim=1)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q.permute(0, 2, 1), K) * self._norm_fact))
+        output = torch.bmm(V, attention)
+        output =self.mean(output, attention_mask)
         predicts = self.fnn(output)
         return predicts
-
