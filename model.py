@@ -493,7 +493,7 @@ class Self_Attention_New(nn.Module):
         output = torch.bmm(attention, V)
 
         # Batch_Normalizaton
-        norm = nn.LayerNorm([output.shape[1], output.shape[2]]).cuda()
+        norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-05).cuda()
         output = norm(output)
 
         # NSA
