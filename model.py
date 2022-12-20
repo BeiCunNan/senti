@@ -478,8 +478,7 @@ class Self_Attention_New(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.fnn = nn.Linear(self.base_model.config.hidden_size , num_classes)
-
+        self.fnn = nn.Linear(self.base_model.config.hidden_size, num_classes)
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
@@ -492,12 +491,16 @@ class Self_Attention_New(nn.Module):
         attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
         output = torch.bmm(attention, V)
 
+        # batch_normalizaton
+        norm = nn.LayerNorm([output.shape[1], output.shape[2]]).cuda()
+        output = norm(output)
+
         # NSA
         K_N = self.key_layer(output)
         Q_N = self.query_layer(output)
         V_N = self.value_layer(output)
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
         output = torch.bmm(V_N, attention_N)
-        output = torch.mean(output,dim=1)
+        output = torch.mean(output, dim=1)
         predicts = self.fnn(output)
         return predicts
