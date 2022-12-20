@@ -84,3 +84,15 @@ class Max_KMeanPooling(nn.Module):
         max_embeddings, _ = torch.max(embeddings, dim=1)
         Max_KMeanPooling = torch.cat((mean_embeddings, max_embeddings), dim=1)
         return Max_KMeanPooling
+
+
+class ConcatenationPooling(nn.Module):
+    def __init__(self):
+        super(ConcatenationPooling, self).__init__()
+
+    def forward(self, last_hidden_state, attention_mask):
+        input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
+        filterEmbedding = last_hidden_state * input_mask_expanded
+        print(0,filterEmbedding)
+        
+        return mean_embeddings

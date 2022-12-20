@@ -468,22 +468,36 @@ class Self_Attention_New(nn.Module):
         for param in base_model.parameters():
             param.requires_grad = (True)
 
+        self.nsakey_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsaquery_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsavalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsa_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+
         self.key_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
-        self.fnn = nn.Linear(self.base_model.config.hidden_size*2, num_classes)
-        self.mean = Max_KMeanPooling()
+
+        self.fnn = nn.Linear(self.base_model.config.hidden_size , num_classes)
+
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
-        attention_mask=inputs['attention_mask']
+        attention_mask = inputs['attention_mask']
         tokens = raw_outputs.last_hidden_state
+        # SA
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
-        attention = nn.Softmax(dim=-1)((torch.bmm(Q.permute(0, 2, 1), K) * self._norm_fact))
-        output = torch.bmm(V, attention)
-        output =self.mean(output, attention_mask)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
+        output = torch.bmm(attention, V)
+
+        # NSA
+        K_N = self.key_layer(output)
+        Q_N = self.query_layer(output)
+        V_N = self.value_layer(output)
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
+        output = torch.bmm(V_N, attention_N)
+        output = torch.mean(output,dim=1)
         predicts = self.fnn(output)
         return predicts
