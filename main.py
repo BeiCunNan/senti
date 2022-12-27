@@ -85,6 +85,8 @@ class Instructor:
             optimizer.step()
 
             train_loss += loss.item() * targets.size(0)
+            # print(predicts)
+            # print(torch.argmax(predicts, dim=1))
             n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
             n_train += targets.size(0)
 
