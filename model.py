@@ -479,10 +479,10 @@ class Self_Attention_New(nn.Module):
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
         self.fnn = nn.Linear(self.base_model.config.hidden_size * 4, num_classes)
+        self.sgsa = nn.Linear(self.base_model.config.hidden_size*2, 1)
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
-        attention_mask = inputs['attention_mask']
         tokens = raw_outputs.last_hidden_state
 
         # SA
@@ -492,23 +492,30 @@ class Self_Attention_New(nn.Module):
         attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
         output = torch.bmm(attention, V)
 
-        # Batch_Normalizaton
+        # Layer_Normalizaton
         norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-05).cuda()
-        output_BN = norm(output)
+        output_LN = norm(output)
 
         # NSA
-        K_N = self.key_layer(output_BN)
-        Q_N = self.query_layer(output_BN)
-        V_N = self.value_layer(output_BN)
+        K_N = self.key_layer(output_LN)
+        Q_N = self.query_layer(output_LN)
+        V_N = self.value_layer(output_LN)
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
         output_N = torch.bmm(V_N, attention_N)
 
         # Add
-        output_N = torch.cat((output, output_N), 2)
+        output_N = torch.cat((tokens, output_N), 2)
+
+        # Layer_Normalization
+        norm = nn.LayerNorm([output_N.shape[1], output_N.shape[2]], eps=1e-05).cuda()
+        output_LN = norm(output_N)
+
+        # SGSA
+        output_SGSA=self.sgsa(output_LN)*output_LN
 
         # Pooling
-        output_A = torch.mean(output_N, dim=1)
-        output_B, _ = torch.max(output_N, dim=1)
+        output_A = torch.mean(output_SGSA, dim=1)
+        output_B, _ = torch.max(output_SGSA, dim=1)
 
         predicts = self.fnn(torch.cat((output_A, output_B), 1))
         return predicts

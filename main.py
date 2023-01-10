@@ -20,40 +20,40 @@ class Instructor:
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            base_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.base_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
-            base_model = AutoModel.from_pretrained('roberta-base')
+            self.base_model = AutoModel.from_pretrained('roberta-base')
         elif args.model_name == 'roberta-large':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-large', add_prefix_space=True)
-            base_model = AutoModel.from_pretrained('roberta-large')
+            self.base_model = AutoModel.from_pretrained('roberta-large')
         elif args.model_name == 'wsp-large':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            base_model = AutoModel.from_pretrained("shuaifan/SentiWSP")
+            self.base_model = AutoModel.from_pretrained("shuaifan/SentiWSP")
         elif args.model_name == 'wsp-base':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            base_model = AutoModel.from_pretrained("shuaifan/SentiWSP-base")
+            self.base_model = AutoModel.from_pretrained("shuaifan/SentiWSP-base")
         else:
             raise ValueError('unknown model')
 
         if args.method_name == 'cls':
-            self.model = Transformer_CLS(base_model, args.num_classes)
+            self.model = Transformer_CLS(self.base_model, args.num_classes)
         elif args.method_name == 'cls_extend_lstm':
-            self.model = Transformer_Extend_LSTM(base_model, args.num_classes)
+            self.model = Transformer_Extend_LSTM(self.base_model, args.num_classes)
         elif args.method_name == 'cls_extend_bilstm':
-            self.model = Transformer_Extend_BILSTM(base_model, args.num_classes)
+            self.model = Transformer_Extend_BILSTM(self.base_model, args.num_classes)
         elif args.method_name == 'text_last_hidden':
-            self.model = Transformer_Text_Last_Hidden(base_model, args.num_classes)
+            self.model = Transformer_Text_Last_Hidden(self.base_model, args.num_classes)
         elif args.method_name == 'text_hiddens':
-            self.model = Transformer_Text_Hiddens(base_model, args.num_classes)
+            self.model = Transformer_Text_Hiddens(self.base_model, args.num_classes)
         elif args.method_name == 'cnn+rnn':
-            self.model = Transformer_CNN_RNN(base_model, args.num_classes)
+            self.model = Transformer_CNN_RNN(self.base_model, args.num_classes)
         elif args.method_name == 'cls_explain':
-            self.model = ExplainableModel(base_model, args.num_classes)
+            self.model = ExplainableModel(self.base_model, args.num_classes)
         elif args.method_name == 'self_attention':
-            self.model = Self_Attention(base_model, args.num_classes)
+            self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = Self_Attention_New(base_model, args.num_classes)
+            self.model = Self_Attention_New(self.base_model, args.num_classes)
         else:
             raise ValueError('unknown method')
 
@@ -128,7 +128,7 @@ class Instructor:
         else:
             criterion = CELoss()
             # raise ValueError('unknown criterion')
-        optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay)
+        optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay,eps=self.args.eps)
         best_loss, best_acc = 0, 0
 
         l_acc, l_epo = [], []
@@ -138,13 +138,16 @@ class Instructor:
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
                 best_acc, best_loss = test_acc, test_loss
-                # torch.save(self.model.state_dict(),'./model.pkl')
+                # Save model
+                torch.save(self.model.state_dict(), './model.pkl')
             self.logger.info(
                 '{}/{} - {:.2f}%'.format(epoch + 1, self.args.num_epoch, 100 * (epoch + 1) / self.args.num_epoch))
             self.logger.info('[train] loss: {:.4f}, acc: {:.2f}'.format(train_loss, train_acc * 100))
             self.logger.info('[test] loss: {:.4f}, acc: {:.2f}'.format(test_loss, test_acc * 100))
         self.logger.info('best loss: {:.4f}, best acc: {:.2f}'.format(best_loss, best_acc * 100))
         self.logger.info('log saved: {}'.format(self.args.log_name))
+        # new_model=Self_Attention_New(self.base_model, args.num_classes)
+        # new_model.load_state_dict(torch.load('./model.pkl'))
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')

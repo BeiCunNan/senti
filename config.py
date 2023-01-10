@@ -18,14 +18,15 @@ def get_config():
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',
                         choices=['cls', 'cls_extend_lstm', 'cls_extend_bilstm', 'label', 'text_last_hidden',
-                                 'text_hiddens','cnn+rnn', 'cls_explain','self_attention','san'])
+                                 'text_hiddens', 'cnn+rnn', 'cls_explain', 'self_attention', 'san'])
 
     '''Optimization'''
-    parser.add_argument('--train_batch_size', type=int, default=8)
-    parser.add_argument('--test_batch_size', type=int, default=32)
+    parser.add_argument('--train_batch_size', type=int, default=32)
+    parser.add_argument('--test_batch_size', type=int, default=64)
     parser.add_argument('--num_epoch', type=int, default=50)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)
+    parser.add_argument('--eps', type=float, default=1e-8)
 
     '''Environment'''
     parser.add_argument('--device', type=str, default='cuda')
