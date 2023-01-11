@@ -507,15 +507,15 @@ class Self_Attention_New(nn.Module):
         output_N = torch.cat((tokens, output_N), 2)
 
         # SGSA
-        output_SGSA=self.sgsa(output_N)*output_N
+        # output_SGSA=self.sgsa(output_N)*output_N
 
         # Layer_Normalization
-        # norm = nn.LayerNorm([output_SGSA.shape[1], output_SGSA.shape[2]], eps=1e-05).cuda()
-        # output_LN = norm(output_SGSA)
+        norm = nn.LayerNorm([output_N.shape[1], output_N.shape[2]], eps=1e-05).cuda()
+        output_LN = norm(output_N)
 
         # Pooling
-        output_A = torch.mean(output_SGSA, dim=1)
-        output_B, _ = torch.max(output_SGSA, dim=1)
+        output_A = torch.mean(output_LN, dim=1)
+        output_B, _ = torch.max(output_LN, dim=1)
 
         predicts = self.fnn(torch.cat((output_A, output_B), 1))
         return predicts
