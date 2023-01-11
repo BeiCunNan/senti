@@ -503,12 +503,14 @@ class Self_Attention_New(nn.Module):
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
         output_N = torch.bmm(V_N, attention_N)
 
-        # Add
-        # output_N = torch.cat((tokens, output_N), 2)
-        output_N = torch.add(tokens,output_N)
-
         # SGSA
-        # output_SGSA=self.sgsa(output_N)*output_N
+        output_SGSA=self.sgsa(output_N)*output_N
+
+        # Add
+        output_N = torch.cat((tokens,output_SGSA), 2)
+        # output_N = torch.add(tokens,output_N)
+
+
 
         # Layer_Normalization
         # norm = nn.LayerNorm([output_N.shape[1], output_N.shape[2]], eps=1e-05).cuda()
