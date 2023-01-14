@@ -8,7 +8,7 @@ from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_B
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
     Self_Attention_New
 from config import get_config
-from transformers import logging, AutoTokenizer, AutoModel
+from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
 import matplotlib.pyplot as plt
 
 
@@ -67,7 +67,7 @@ class Instructor:
         for arg in vars(self.args):
             self.logger.info(f">>> {arg}: {getattr(self.args, arg)}")
 
-    def _train(self, dataloader, criterion, optimizer):
+    def _train(self, dataloader, criterion, optimizer,scheduler):
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
@@ -83,6 +83,7 @@ class Instructor:
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            scheduler.step()
 
             train_loss += loss.item() * targets.size(0)
             # print(predicts)
@@ -129,11 +130,18 @@ class Instructor:
             criterion = CELoss()
             # raise ValueError('unknown criterion')
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay,eps=self.args.eps)
+        # Warm up
+        total_steps = len(train_dataloader) * self.args.num_epoch
+        warmup_steps = 0.1 * len(train_dataloader)
+        scheduler = get_linear_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=warmup_steps,  # Default value in run_glue.py
+                                                    num_training_steps=total_steps)
+
         best_loss, best_acc = 0, 0
 
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
-            train_loss, train_acc = self._train(train_dataloader, criterion, optimizer)
+            train_loss, train_acc = self._train(train_dataloader, criterion, optimizer,scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
