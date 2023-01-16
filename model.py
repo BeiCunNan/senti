@@ -478,8 +478,8 @@ class Self_Attention_New(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.fnn = nn.Linear(self.base_model.config.hidden_size * 2, num_classes)
-        self.sgsa = nn.Linear(self.base_model.config.hidden_size * 2, 1)
+        self.fnn = nn.Linear(self.base_model.config.hidden_size * 4, num_classes)
+        self.sgsa = nn.Linear(self.base_model.config.hidden_size , 1)
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
@@ -504,15 +504,15 @@ class Self_Attention_New(nn.Module):
         output_N = torch.bmm(V_N, attention_N)
 
         # SGSA
-        # output_SGSA = self.sgsa(output_N) * output_N
-
-        # Add
-        # output_N = torch.cat((tokens, output_N), 2)
-        output_N = torch.add(tokens,output_N)
+        output_SGSA = self.sgsa(output_N) * output_N
 
         # Layer_Normalization
-        # norm = nn.LayerNorm([output_SGSA.shape[1], output_SGSA.shape[2]], eps=1e-8).cuda()
-        # output_LN = norm(output_SGSA)
+        norm = nn.LayerNorm([output_SGSA.shape[1], output_SGSA.shape[2]], eps=1e-8).cuda()
+        output_LN = norm(output_SGSA)
+
+        # Add
+        output_N = torch.cat((tokens, output_LN), 2)
+        # output_N = torch.add(tokens,output_N)
 
         # Pooling
         output_A = torch.mean(output_N, dim=1)
