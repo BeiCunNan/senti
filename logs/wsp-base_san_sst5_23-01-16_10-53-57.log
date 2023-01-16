@@ -1,0 +1,19 @@
+> creating model wsp-base
+> cuda memory allocated: 450950144
+> training arguments:
+>>> data_dir: data
+>>> dataset: sst5
+>>> model_name: wsp-base
+>>> method_name: san
+>>> train_batch_size: 32
+>>> test_batch_size: 64
+>>> num_epoch: 50
+>>> lr: 1e-05
+>>> decay: 0.01
+>>> eps: 1e-08
+>>> device: cuda
+>>> backend: False
+>>> workers: 0
+>>> timestamp: 1673837638106
+>>> num_classes: 5
+>>> log_name: wsp-base_san_sst5_23-01-16_10-53-57.log

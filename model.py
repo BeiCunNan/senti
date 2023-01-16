@@ -478,7 +478,7 @@ class Self_Attention_New(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.fnn = nn.Linear(self.base_model.config.hidden_size * 4, num_classes)
+        self.fnn = nn.Linear(self.base_model.config.hidden_size * 2, num_classes)
         self.sgsa = nn.Linear(self.base_model.config.hidden_size , 1)
 
     def forward(self, inputs):
@@ -486,28 +486,28 @@ class Self_Attention_New(nn.Module):
         tokens = raw_outputs.last_hidden_state
 
         # SA
-        K = self.key_layer(tokens)
-        Q = self.query_layer(tokens)
-        V = self.value_layer(tokens)
-        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
-        output = torch.bmm(attention, V)
+        # K = self.key_layer(tokens)
+        # Q = self.query_layer(tokens)
+        # V = self.value_layer(tokens)
+        # attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
+        # output = torch.bmm(attention, V)
 
         # Layer_Normalizaton
-        norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-8).cuda()
-        output_LN = norm(output)
+        # norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-8).cuda()
+        # output_LN = norm(output)
 
         # NSA
-        K_N = self.key_layer(output_LN)
-        Q_N = self.query_layer(output_LN)
-        V_N = self.value_layer(output_LN)
+        K_N = self.key_layer(tokens)
+        Q_N = self.query_layer(tokens)
+        V_N = self.value_layer(tokens)
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
         output_N = torch.bmm(V_N, attention_N)
 
         # SGSA
-        output_SGSA = self.sgsa(output_N) * output_N
+        # output_SGSA = self.sgsa(output_N) * output_N
 
         # Add
-        output_N = torch.cat((tokens, output_SGSA), 2)
+        # output_N = torch.cat((tokens, output_SGSA), 2)
         # output_N = torch.add(tokens,output_SGSA)
 
         # Layer_Normalization
