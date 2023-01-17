@@ -504,14 +504,14 @@ class Self_Attention_New(nn.Module):
         output_N = torch.bmm(V_N, attention_N)
 
         # SGSA
-        output_SGSA = self.sgsa(output_N) * output_N
+        # output_SGSA = self.sgsa(output_N) * output_N
 
         # Layer_Normalization
         # norm = nn.LayerNorm([output_SGSA.shape[1], output_SGSA.shape[2]], eps=1e-8).cuda()
         # output_LN = norm(output_SGSA)
 
         # Add
-        output_N = torch.cat((tokens, output_SGSA), 2)
+        output_N = torch.cat((tokens, output_N), 2)
         # output_N = torch.add(tokens,output_N)
 
         # Pooling
