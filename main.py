@@ -9,7 +9,7 @@ from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_B
     Self_Attention_New
 from config import get_config
 from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup, \
-    get_constant_schedule_with_warmup
+    get_constant_schedule_with_warmup, get_polynomial_decay_schedule_with_warmup
 import matplotlib.pyplot as plt
 
 
@@ -134,7 +134,7 @@ class Instructor:
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
         warmup_steps = 0.1 * len(train_dataloader)
-        scheduler = get_constant_schedule_with_warmup(optimizer,
+        scheduler = get_polynomial_decay_schedule_with_warmup(optimizer,
                                                     num_warmup_steps=warmup_steps,  # Default value in run_glue.py
                                                     num_training_steps=total_steps)
 
