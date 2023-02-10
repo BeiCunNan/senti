@@ -169,15 +169,14 @@ class Instructor:
 
 
 if __name__ == '__main__':
-    logging.set_verbosity_error()
-
-    # 预设参数获取
-    args, logger = get_config()
-
-    # 将参数输入到模型中
-    ins = Instructor(args, logger)
-
-    # 模型训练评估
-    # Temp
     for i in range(20):
+        logging.set_verbosity_error()
+
+        # 预设参数获取
+        args, logger = get_config()
+
+        # 将参数输入到模型中
+        ins = Instructor(args, logger)
+
+        # 模型训练评估
         ins.run()
