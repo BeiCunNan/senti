@@ -142,13 +142,17 @@ class Instructor:
 
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
+            # Temp
+            if (epoch==5):
+                break
+
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer,scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
                 best_acc, best_loss = test_acc, test_loss
                 # Save model
-                torch.save(self.model.state_dict(), './model.pkl')
+                # torch.save(self.model.state_dict(), './model.pkl')
             self.logger.info(
                 '{}/{} - {:.2f}%'.format(epoch + 1, self.args.num_epoch, 100 * (epoch + 1) / self.args.num_epoch))
             self.logger.info('[train] loss: {:.4f}, acc: {:.2f}'.format(train_loss, train_acc * 100))
@@ -157,11 +161,11 @@ class Instructor:
         self.logger.info('log saved: {}'.format(self.args.log_name))
         # new_model=Self_Attention_New(self.base_model, args.num_classes)
         # new_model.load_state_dict(torch.load('./model.pkl'))
-        plt.plot(l_epo, l_acc)
-        plt.ylabel('accuracy')
-        plt.xlabel('epoch')
-        plt.savefig('image.png')
-        plt.show()
+        # plt.plot(l_epo, l_acc)
+        # plt.ylabel('accuracy')
+        # plt.xlabel('epoch')
+        # plt.savefig('image.png')
+        # plt.show()
 
 
 if __name__ == '__main__':
@@ -174,4 +178,6 @@ if __name__ == '__main__':
     ins = Instructor(args, logger)
 
     # 模型训练评估
-    ins.run()
+    # Temp
+    for i in range(20):
+        ins.run()
