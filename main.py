@@ -133,7 +133,7 @@ class Instructor:
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay,eps=self.args.eps)
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
-        warmup_steps = 0.2 * len(train_dataloader)
+        warmup_steps = 0.6 * len(train_dataloader)
         scheduler =get_linear_schedule_with_warmup(optimizer,
                                                     num_warmup_steps=warmup_steps,  # Default value in run_glue.py
                                                     num_training_steps=total_steps)
