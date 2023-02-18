@@ -131,7 +131,6 @@ class Instructor:
             criterion = CELoss()
             # raise ValueError('unknown criterion')
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay,eps=self.args.eps)
-
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
         warmup_steps = 0.6 * len(train_dataloader)
