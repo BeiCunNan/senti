@@ -10,10 +10,10 @@ from datetime import datetime
 
 def get_config():
     parser = argparse.ArgumentParser()
-    num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2,'pc':2}
+    num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2,'pc':2,'mr':2}
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='pc', choices=num_classes.keys())
+    parser.add_argument('--dataset', type=str, default='mr', choices=num_classes.keys())
     parser.add_argument('--model_name', type=str, default='wsp-base',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',
@@ -23,7 +23,7 @@ def get_config():
     '''Optimization'''
     parser.add_argument('--train_batch_size', type=int, default=10)
     parser.add_argument('--test_batch_size', type=int, default=64)
-    parser.add_argument('--num_epoch', type=int, default=10)
+    parser.add_argument('--num_epoch', type=int, default=50)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)
     parser.add_argument('--eps', type=float, default=1e-8)
