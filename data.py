@@ -91,8 +91,8 @@ def my_collate(batch, tokenizer, num_classes, method_name):
 # Load dataset
 def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, model_name, method_name, workers):
     if dataset == 'sst2':
-        train_data = json.load(open(os.path.join(data_dir, 'SST2_Train.json'), 'r', encoding='utf-8'))
-        test_data = json.load(open(os.path.join(data_dir, 'SST2_Test.json'), 'r', encoding='utf-8'))
+        train_data = json.load(open(os.path.join(data_dir, 'SST2_全球公认_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'SST2_全球公认_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'positive': 0, 'negative': 1}
     elif dataset == 'sst5':
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
