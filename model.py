@@ -480,7 +480,11 @@ class Self_Attention_New(nn.Module):
 
         self.fnn = nn.Linear(self.base_model.config.hidden_size , num_classes)
 
-        self.sgsa = nn.Linear(self.base_model.config.hidden_size , 1)
+        self.sgsa = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, 1),
+            nn.ReLU(inplace=True)
+        )
+
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
