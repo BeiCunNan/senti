@@ -15,9 +15,10 @@ import matplotlib.pyplot as plt
 
 class Instructor:
 
-    def __init__(self, args, logger):
+    def __init__(self, args, logger,index):
         self.args = args
         self.logger = logger
+        self.index=index
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
@@ -161,10 +162,10 @@ class Instructor:
         self.logger.info('log saved: {}'.format(self.args.log_name))
         # new_model=Self_Attention_New(self.base_model, args.num_classes)
         # new_model.load_state_dict(torch.load('./model.pkl'))
-        # plt.plot(l_epo, l_acc)
-        # plt.ylabel('accuracy')
-        # plt.xlabel('epoch')
-        # plt.savefig('image.png')
+        plt.plot(l_epo, l_acc)
+        plt.ylabel('accuracy')
+        plt.xlabel('epoch')
+        plt.savefig(str(self.index)+'image.png')
         # plt.show()
 
 
@@ -176,7 +177,7 @@ if __name__ == '__main__':
         args, logger = get_config()
 
         # 将参数输入到模型中
-        ins = Instructor(args, logger)
+        ins = Instructor(args, logger,i)
 
         # 模型训练评估
         ins.run()
