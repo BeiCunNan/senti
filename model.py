@@ -520,7 +520,7 @@ class Self_Attention_New(nn.Module):
         # output_N = torch.add(tokens,output_N)
 
         # Pooling
-        output_A = torch.mean(output, dim=1)
+        output_A = torch.mean(output_SGSA, dim=1)
         # output_B, _ = torch.max(output_N, dim=1)
 
         # predicts = self.fnn(torch.cat((output_A, output_B), 1))
