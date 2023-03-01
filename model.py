@@ -478,7 +478,7 @@ class Self_Attention_New(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.fnn = nn.Linear(self.base_model.config.hidden_size , num_classes)
+        self.fnn = nn.Linear(self.base_model.config.hidden_size*2 , num_classes)
 
         self.sgsa = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, 1),
@@ -495,7 +495,7 @@ class Self_Attention_New(nn.Module):
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
         attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
-        output = torch.bmm(attention, V)
+        output_SA = torch.bmm(attention, V)
 
         # Layer_Normalizaton
         # norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-8).cuda()
@@ -506,7 +506,7 @@ class Self_Attention_New(nn.Module):
         Q_N = self.query_layer(tokens)
         V_N = self.value_layer(tokens)
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
-        output_N = torch.bmm(V_N, attention_N)
+        output_NSA = torch.bmm(V_N, attention_N)
 
         # SGSA
         output_SGSA = self.sgsa(tokens) * tokens
@@ -516,11 +516,11 @@ class Self_Attention_New(nn.Module):
         # output_LN = norm(output_SGSA)
 
         # Add
-        # output_N = torch.cat((tokens, output_SGSA), 2)
+        output_ALL = torch.cat((output_SA, output_SGSA), 2)
         # output_N = torch.add(tokens,output_N)
 
         # Pooling
-        output_A = torch.mean(output_SGSA, dim=1)
+        output_A = torch.mean(output_ALL, dim=1)
         # output_B, _ = torch.max(output_N, dim=1)
 
         # predicts = self.fnn(torch.cat((output_A, output_B), 1))

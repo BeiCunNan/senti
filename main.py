@@ -144,8 +144,8 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Temp
-            if (epoch==5):
-                break
+            #if (epoch==4):
+            #    break
 
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer,scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
@@ -170,7 +170,7 @@ class Instructor:
 
 
 if __name__ == '__main__':
-    for i in range(20):
+    for i in range(4):
         logging.set_verbosity_error()
 
         # 预设参数获取
