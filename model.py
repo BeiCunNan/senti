@@ -1,10 +1,10 @@
 import math
 
 import torch
-from torch import nn
 import torch.nn.functional as F
+from torch import nn
 
-from pooling import MaxPooling, MeanPooling, WeightedLayerPooling, AttentionPooling, Max_KMeanPooling
+from pooling import MaxPooling
 
 
 class Transformer_CLS(nn.Module):
@@ -478,13 +478,21 @@ class Self_Attention_New(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.fnn = nn.Linear(self.base_model.config.hidden_size*2 , num_classes)
+        self.fnn = nn.Sequential(
+            nn.Dropout(0.5),
+            nn.Linear(self.base_model.config.hidden_size * 3, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size , num_classes)
+        )
 
-        self.sgsa = nn.Sequential(
+        self.sgsaSA = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, 1),
             nn.ReLU(inplace=True)
         )
 
+        self.sgsaNSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, 1),
+            nn.ReLU(inplace=True)
+        )
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
@@ -498,8 +506,10 @@ class Self_Attention_New(nn.Module):
         output_SA = torch.bmm(attention, V)
 
         # Layer_Normalizaton
-        # norm = nn.LayerNorm([output.shape[1], output.shape[2]], eps=1e-8).cuda()
-        # output_LN = norm(output)
+        norm = nn.LayerNorm([output_SA.shape[1], output_SA.shape[2]], eps=1e-8).cuda()
+        output_SA = norm(output_SA)
+
+        output_SA = self.sgsaSA(output_SA) * output_SA
 
         # NSA
         K_N = self.key_layer(tokens)
@@ -508,21 +518,19 @@ class Self_Attention_New(nn.Module):
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
         output_NSA = torch.bmm(V_N, attention_N)
 
-        # SGSA
-        output_SGSA = self.sgsa(tokens) * tokens
-
         # Layer_Normalization
-        # norm = nn.LayerNorm([output_SGSA.shape[1], output_SGSA.shape[2]], eps=1e-8).cuda()
-        # output_LN = norm(output_SGSA)
+        norm = nn.LayerNorm([output_NSA.shape[1], output_NSA.shape[2]], eps=1e-8).cuda()
+        output_NSA = norm(output_NSA)
+
+        output_NSA = self.sgsaNSA(output_NSA) * output_NSA
 
         # Add
-        output_ALL = torch.cat((output_SA, output_SGSA), 2)
-        # output_N = torch.add(tokens,output_N)
+        output_ALL = torch.cat((tokens, output_SA, output_NSA), 2)
 
         # Pooling
-        output_A = torch.mean(output_ALL, dim=1)
+        output_ALL = torch.mean(output_ALL, dim=1)
         # output_B, _ = torch.max(output_N, dim=1)
 
         # predicts = self.fnn(torch.cat((output_A, output_B), 1))
-        predicts=self.fnn(output_A)
+        predicts = self.fnn(output_ALL)
         return predicts
