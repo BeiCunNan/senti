@@ -19,6 +19,7 @@ class Instructor:
         self.args = args
         self.logger = logger
         self.index=index
+        self.max_lengths=args.max_lengths
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
@@ -55,7 +56,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = Self_Attention_New(self.base_model, args.num_classes)
+            self.model = Self_Attention_New(self.base_model, args.num_classes,args.max_lengths)
         else:
             raise ValueError('unknown method')
 

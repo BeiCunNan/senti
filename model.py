@@ -460,10 +460,11 @@ class Self_Attention_Loss(nn.Module):
 
 
 class Self_Attention_New(nn.Module):
-    def __init__(self, base_model, num_classes):
+    def __init__(self, base_model, num_classes, max_length):
         super().__init__()
         self.base_model = base_model
         self.num_classes = num_classes
+        self.max_lengths = max_length
 
         for param in base_model.parameters():
             param.requires_grad = (True)
@@ -480,52 +481,77 @@ class Self_Attention_New(nn.Module):
 
         self.fnn = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 3, self.base_model.config.hidden_size),
-            nn.Linear(self.base_model.config.hidden_size , num_classes)
+            nn.Linear(self.base_model.config.hidden_size * 7, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
-        self.sgsaSA = nn.Sequential(
+        self.FSGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, 1),
+            nn.ReLU(inplace=True)
+        )
+
+        self.TSGSA = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, 1),
             nn.ReLU(inplace=True)
         )
 
-        self.sgsaNSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size, 1),
-            nn.ReLU(inplace=True)
+        self.FGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, self.max_lengths),
+            nn.Sigmoid()
+        )
+
+        self.TGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
+            nn.Sigmoid()
         )
 
     def forward(self, inputs):
         raw_outputs = self.base_model(**inputs)
         tokens = raw_outputs.last_hidden_state
 
-        # SA
+        # TSA && FSA
         K = self.key_layer(tokens)
         Q = self.query_layer(tokens)
         V = self.value_layer(tokens)
         attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
-        output_SA = torch.bmm(attention, V)
+        TSA = torch.bmm(attention, V)
 
-        # Layer_Normalizaton
-        norm = nn.LayerNorm([output_SA.shape[1], output_SA.shape[2]], eps=1e-8).cuda()
-        output_SA = norm(output_SA)
-
-        output_SA = self.sgsaSA(output_SA) * output_SA
-
-        # NSA
         K_N = self.key_layer(tokens)
         Q_N = self.query_layer(tokens)
         V_N = self.value_layer(tokens)
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
-        output_NSA = torch.bmm(V_N, attention_N)
+        FSA = torch.bmm(V_N, attention_N)
 
-        # Layer_Normalization
-        norm = nn.LayerNorm([output_NSA.shape[1], output_NSA.shape[2]], eps=1e-8).cuda()
-        output_NSA = norm(output_NSA)
+        # TSGSA && FSGSA
+        TSGSA = self.TSGSA(tokens) * tokens
 
-        output_NSA = self.sgsaNSA(output_NSA) * output_NSA
+        FSGSA = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant', value=0)
+        FSGSA = (self.FSGSA(FSGSA) * tokens.permute(0, 2, 1)).permute(0, 2, 1)
+
+        # TGSA && FGSA
+        TGSA = self.TGSA(tokens) * tokens
+
+        FGSA = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant', value=0)
+        FGSA = (self.FSGSA(FGSA) * tokens.permute(0, 2, 1)).permute(0, 2, 1)
+
+        # Layer Normalization
+        norm_TSA = nn.LayerNorm([TSA.shape[1], TSA.shape[2]], eps=1e-8).cuda()
+        norm_FSA = nn.LayerNorm([FSA.shape[1], FSA.shape[2]], eps=1e-8).cuda()
+        norm_TGSA = nn.LayerNorm([TGSA.shape[1], TGSA.shape[2]], eps=1e-8).cuda()
+        norm_FGSA = nn.LayerNorm([FGSA.shape[1], FGSA.shape[2]], eps=1e-8).cuda()
+        norm_TSGSA = nn.LayerNorm([TSGSA.shape[1], TSGSA.shape[2]], eps=1e-8).cuda()
+        norm_FSGSA = nn.LayerNorm([FSGSA.shape[1], FSGSA.shape[2]], eps=1e-8).cuda()
+
+        output_TSA = norm_TSA(TSA)
+        output_FSA = norm_FSA(FSA)
+        output_TGSA = norm_TGSA(TGSA)
+        output_FGSA = norm_FGSA(FGSA)
+        output_TSGSA = norm_TSGSA(TSGSA)
+        output_FSGSA = norm_FSGSA(FSGSA)
 
         # Add
-        output_ALL = torch.cat((tokens, output_SA, output_NSA), 2)
+        output_ALL = torch.cat((tokens, output_TSA, output_FSA, output_TGSA, output_FGSA, output_TSGSA, output_FSGSA),
+                               2)
 
         # Pooling
         output_ALL = torch.mean(output_ALL, dim=1)
