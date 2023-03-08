@@ -1,25 +1,23 @@
+import matplotlib.pyplot as plt
 import torch
-from torch import nn
 from tqdm import tqdm
+from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
 
+from config import get_config
 from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
     Self_Attention_New
-from config import get_config
-from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup, \
-    get_constant_schedule_with_warmup, get_polynomial_decay_schedule_with_warmup, get_cosine_schedule_with_warmup
-import matplotlib.pyplot as plt
 
 
 class Instructor:
 
-    def __init__(self, args, logger,index):
+    def __init__(self, args, logger, index):
         self.args = args
         self.logger = logger
-        self.index=index
-        self.max_lengths=args.max_lengths
+        self.index = index
+        self.max_lengths = args.max_lengths
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
@@ -56,7 +54,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = Self_Attention_New(self.base_model, args.num_classes,args.max_lengths)
+            self.model = Self_Attention_New(self.base_model, args.num_classes, args.max_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -70,7 +68,7 @@ class Instructor:
         for arg in vars(self.args):
             self.logger.info(f">>> {arg}: {getattr(self.args, arg)}")
 
-    def _train(self, dataloader, criterion, optimizer,scheduler):
+    def _train(self, dataloader, criterion, optimizer, scheduler):
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
@@ -132,11 +130,11 @@ class Instructor:
         else:
             criterion = CELoss()
             # raise ValueError('unknown criterion')
-        optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay,eps=self.args.eps)
+        optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay, eps=self.args.eps)
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
         warmup_steps = 0.6 * len(train_dataloader)
-        scheduler =get_linear_schedule_with_warmup(optimizer,
+        scheduler = get_linear_schedule_with_warmup(optimizer,
                                                     num_warmup_steps=warmup_steps,  # Default value in run_glue.py
                                                     num_training_steps=total_steps)
 
@@ -145,10 +143,10 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Temp
-            #if (epoch==4):
+            # if (epoch==4):
             #    break
 
-            train_loss, train_acc = self._train(train_dataloader, criterion, optimizer,scheduler)
+            train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
@@ -166,7 +164,7 @@ class Instructor:
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
-        plt.savefig(str(self.index)+'image.png')
+        plt.savefig(str(self.index) + 'image.png')
         # plt.show()
 
 
@@ -178,7 +176,7 @@ if __name__ == '__main__':
         args, logger = get_config()
 
         # 将参数输入到模型中
-        ins = Instructor(args, logger,i)
+        ins = Instructor(args, logger, i)
 
         # 模型训练评估
         ins.run()
