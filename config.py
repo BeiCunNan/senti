@@ -15,7 +15,7 @@ def get_config():
     max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'pc': 2, 'mr': 53, 'trec': 33}
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
+    parser.add_argument('--dataset', type=str, default='subj', choices=num_classes.keys())
     parser.add_argument('--max_lengths', type=str, default='sst5', choices=max_lengths.keys())
 
     parser.add_argument('--model_name', type=str, default='bert',

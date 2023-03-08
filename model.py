@@ -611,7 +611,8 @@ class Self_Attention_New(nn.Module):
 
     def forward(self, inputs):
         def f(x):
-            return torch.add(torch.exp(x) / (torch.exp(x) + 1), 0.5)
+            # return torch.add(torch.exp(x) / (torch.exp(x) + 1), 0.5)
+            return torch.exp(-1/(x**2)) + 1
 
         raw_outputs = self.base_model(**inputs)
         tokens = raw_outputs.last_hidden_state
