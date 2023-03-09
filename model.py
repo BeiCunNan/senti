@@ -601,18 +601,29 @@ class Self_Attention_New(nn.Module):
 
         self.FGSA = nn.Sequential(
             nn.Linear(self.max_lengths, self.max_lengths),
-            nn.Sigmoid()
         )
 
         self.TGSA = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
-            nn.Sigmoid()
         )
+
+        self.TFSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
+
+        self.TFGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
+
+        self.TFSGSA = nn.Sequential()
 
     def forward(self, inputs):
         def f(x):
-            # return torch.add(torch.exp(x) / (torch.exp(x) + 1), 0.5)
-            return torch.exp(-1/(x**2)) + 1
+            return torch.add(torch.exp(torch.abs(x)) / (torch.exp(torch.abs(x)) + 1), 0.5)
 
         raw_outputs = self.base_model(**inputs)
         tokens = raw_outputs.last_hidden_state
@@ -660,6 +671,133 @@ class Self_Attention_New(nn.Module):
                                2)
         # Pooling
         output_ALL = torch.mean(output_ALL, dim=1)
+        # output_B, _ = torch.max(output_N, dim=1)
+
+        # predicts = self.fnn(torch.cat((output_A, output_B), 1))
+        predicts = self.fnn(output_ALL)
+
+        return predicts
+
+
+class Self_Attention_New2(nn.Module):
+    def __init__(self, base_model, num_classes, max_length):
+        super().__init__()
+        self.base_model = base_model
+        self.num_classes = num_classes
+        self.max_lengths = max_length
+
+        for param in base_model.parameters():
+            param.requires_grad = (True)
+
+        self.nsakey_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsaquery_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsavalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.nsa_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+
+        self.key_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+
+        self.fnn = nn.Sequential(
+            # nn.Dropout(0.5),
+            nn.Linear(self.base_model.config.hidden_size * 4, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size, num_classes)
+        )
+
+        self.FSGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, 1),
+            nn.ReLU(inplace=True)
+        )
+
+        self.TSGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, 1),
+            nn.ReLU(inplace=True)
+        )
+
+        self.FGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, self.max_lengths),
+        )
+
+        self.TGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
+        )
+
+        self.TFSA = nn.Sequential(
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
+
+        self.TFGSA = nn.Sequential(
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
+
+        self.TFSGSA = nn.Sequential(
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
+
+    def forward(self, inputs):
+        def f(x):
+            return torch.add(torch.exp(torch.abs(x)) / (torch.exp(torch.abs(x)) + 1), 0.5)
+
+        raw_outputs = self.base_model(**inputs)
+        tokens = raw_outputs.last_hidden_state
+
+        # TSA && FSA
+        K = self.key_layer(tokens)
+        Q = self.query_layer(tokens)
+        V = self.value_layer(tokens)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self.nsa_norm_fact)
+        TSA = torch.bmm(attention, V)
+
+        K_N = self.key_layer(tokens)
+        Q_N = self.query_layer(tokens)
+        V_N = self.value_layer(tokens)
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N.permute(0, 2, 1), K_N) * self._norm_fact))
+        FSA = torch.bmm(V_N, attention_N)
+
+        # TSGSA && FSGSA
+        TSGSA = self.TSGSA(tokens) * tokens
+
+        FSGSA = tokens * f(torch.mean(tokens, dim=1)).unsqueeze(1).expand(tokens.shape)
+
+        # TGSA && FGSA
+        TGSA = self.TGSA(tokens) * tokens
+
+        FGSA = tokens * f(tokens)
+
+        # Layer Normalization
+        norm_TSA = nn.LayerNorm([TSA.shape[1], TSA.shape[2]], eps=1e-8).cuda()
+        norm_FSA = nn.LayerNorm([FSA.shape[1], FSA.shape[2]], eps=1e-8).cuda()
+        norm_TGSA = nn.LayerNorm([TGSA.shape[1], TGSA.shape[2]], eps=1e-8).cuda()
+        norm_FGSA = nn.LayerNorm([FGSA.shape[1], FGSA.shape[2]], eps=1e-8).cuda()
+        norm_TSGSA = nn.LayerNorm([TSGSA.shape[1], TSGSA.shape[2]], eps=1e-8).cuda()
+        norm_FSGSA = nn.LayerNorm([FSGSA.shape[1], FSGSA.shape[2]], eps=1e-8).cuda()
+
+        output_TSA = norm_TSA(TSA)
+        output_FSA = norm_FSA(FSA)
+        output_TGSA = norm_TGSA(TGSA)
+        output_FGSA = norm_FGSA(FGSA)
+        output_TSGSA = norm_TSGSA(TSGSA)
+        output_FSGSA = norm_FSGSA(FSGSA)
+
+        # Combine T and F
+        output_TFSA = torch.mean(self.TFSA(torch.cat((output_TSA, output_FSA), 2)), 1)
+        output_TFGSA = torch.mean(self.TFSA(torch.cat((output_TGSA, output_FGSA), 2)), 1)
+        output_TFSGSA = torch.mean(self.TFSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
+        output_TOKENS = torch.mean(tokens, 1)
+        output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, output_TOKENS), 1)
+
+        # Add
+        # output_ALL = torch.cat((tokens, output_TSA, output_FSA, output_TGSA, output_FGSA, output_TSGSA, output_FSGSA),
+        #                        2)
+        # Pooling
+        # output_ALL = torch.mean(output_ALL, dim=1)
         # output_B, _ = torch.max(output_N, dim=1)
 
         # predicts = self.fnn(torch.cat((output_A, output_B), 1))
