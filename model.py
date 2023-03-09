@@ -563,7 +563,7 @@ class Self_Attention_New1(nn.Module):
         return predicts
 
 
-class Self_Attention_New(nn.Module):
+class Self_Attention_New2(nn.Module):
     def __init__(self, base_model, num_classes, max_length):
         super().__init__()
         self.base_model = base_model
@@ -679,7 +679,7 @@ class Self_Attention_New(nn.Module):
         return predicts
 
 
-class Self_Attention_New2(nn.Module):
+class Self_Attention_New(nn.Module):
     def __init__(self, base_model, num_classes, max_length):
         super().__init__()
         self.base_model = base_model
@@ -701,7 +701,7 @@ class Self_Attention_New2(nn.Module):
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 4, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size * 7, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
@@ -724,21 +724,21 @@ class Self_Attention_New2(nn.Module):
         )
 
         self.TFSA = nn.Sequential(
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
             nn.LeakyReLU(negative_slope=0.01),
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
         )
 
         self.TFGSA = nn.Sequential(
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
             nn.LeakyReLU(negative_slope=0.01),
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
         )
 
         self.TFSGSA = nn.Sequential(
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
             nn.LeakyReLU(negative_slope=0.01),
-            self.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
         )
 
     def forward(self, inputs):
@@ -789,7 +789,7 @@ class Self_Attention_New2(nn.Module):
         # Combine T and F
         output_TFSA = torch.mean(self.TFSA(torch.cat((output_TSA, output_FSA), 2)), 1)
         output_TFGSA = torch.mean(self.TFGSA(torch.cat((output_TGSA, output_FGSA), 2)), 1)
-        output_TFSGSA = torch.mean(self.TFSGSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
+        output_TFSGSA = torch.mean(self.TFSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
         output_TOKENS = torch.mean(tokens, 1)
         output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, output_TOKENS), 1)
 
