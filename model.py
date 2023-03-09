@@ -533,7 +533,7 @@ class Self_Attention_New1(nn.Module):
 
         FGSA = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant', value=0)
         FGSA = (self.FSGSA(FGSA) * tokens.permute(0, 2, 1)).permute(0, 2, 1)
-        print('max', torch.max(tokens), 'min', torch.min(tokens))
+        # print('max', torch.max(tokens), 'min', torch.min(tokens))
 
         # Layer Normalization
         norm_TSA = nn.LayerNorm([TSA.shape[1], TSA.shape[2]], eps=1e-8).cuda()
@@ -788,8 +788,8 @@ class Self_Attention_New2(nn.Module):
 
         # Combine T and F
         output_TFSA = torch.mean(self.TFSA(torch.cat((output_TSA, output_FSA), 2)), 1)
-        output_TFGSA = torch.mean(self.TFSA(torch.cat((output_TGSA, output_FGSA), 2)), 1)
-        output_TFSGSA = torch.mean(self.TFSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
+        output_TFGSA = torch.mean(self.TFGSA(torch.cat((output_TGSA, output_FGSA), 2)), 1)
+        output_TFSGSA = torch.mean(self.TFSGSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
         output_TOKENS = torch.mean(tokens, 1)
         output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, output_TOKENS), 1)
 
