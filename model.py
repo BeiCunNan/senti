@@ -619,7 +619,11 @@ class Self_Attention_New2(nn.Module):
             nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
         )
 
-        self.TFSGSA = nn.Sequential()
+        self.TFSGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
+            nn.LeakyReLU(negative_slope=0.01),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+        )
 
     def forward(self, inputs):
         def f(x):
@@ -644,12 +648,16 @@ class Self_Attention_New2(nn.Module):
         # TSGSA && FSGSA
         TSGSA = self.TSGSA(tokens) * tokens
 
-        FSGSA = tokens * f(torch.mean(tokens, dim=1)).unsqueeze(1).expand(tokens.shape)
+        # FSGSA = tokens * f(torch.mean(tokens, dim=1)).unsqueeze(1).expand(tokens.shape)
+        FSGSA = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant', value=0)
+        FSGSA = (self.FSGSA(FSGSA) * tokens.permute(0, 2, 1)).permute(0, 2, 1)
 
         # TGSA && FGSA
         TGSA = self.TGSA(tokens) * tokens
 
-        FGSA = tokens * f(tokens)
+        # FGSA = tokens * f(tokens)
+        FGSA = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant', value=0)
+        FGSA = (self.FSGSA(FGSA) * tokens.permute(0, 2, 1)).permute(0, 2, 1)
 
         # Layer Normalization
         norm_TSA = nn.LayerNorm([TSA.shape[1], TSA.shape[2]], eps=1e-8).cuda()
@@ -666,11 +674,18 @@ class Self_Attention_New2(nn.Module):
         output_TSGSA = norm_TSGSA(TSGSA)
         output_FSGSA = norm_FSGSA(FSGSA)
 
+        # Combine T and F
+        output_TFSA = torch.mean(self.TFSA(torch.cat((output_TSA, output_FSA), 2)), 1)
+        output_TFGSA = torch.mean(self.TFGSA(torch.cat((output_TGSA, output_FGSA), 2)), 1)
+        output_TFSGSA = torch.mean(self.TFSA(torch.cat((output_TSGSA, output_FSGSA), 2)), 1)
+        output_TOKENS = torch.mean(tokens, 1)
+        output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, output_TOKENS), 1)
+
         # Add
-        output_ALL = torch.cat((tokens, output_TSA, output_FSA, output_TGSA, output_FGSA, output_TSGSA, output_FSGSA),
-                               2)
+        # output_ALL = torch.cat((tokens, output_TSA, output_FSA, output_TGSA, output_FGSA, output_TSGSA, output_FSGSA),
+        #                        2)
         # Pooling
-        output_ALL = torch.mean(output_ALL, dim=1)
+        # output_ALL = torch.mean(output_ALL, dim=1)
         # output_B, _ = torch.max(output_N, dim=1)
 
         # predicts = self.fnn(torch.cat((output_A, output_B), 1))

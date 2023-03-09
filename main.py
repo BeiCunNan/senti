@@ -164,12 +164,12 @@ class Instructor:
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
-        plt.savefig(str(self.index) + 'image.png')
+        plt.savefig('images/'+str(self.index) + 'image.png')
         # plt.show()
 
 
 if __name__ == '__main__':
-    for i in range(4):
+    for i in range(1):
         logging.set_verbosity_error()
 
         # 预设参数获取
