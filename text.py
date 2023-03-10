@@ -1,10 +1,4 @@
-import torch
+from numpy import mean
 
-def f(x):
-    return torch.add(torch.exp(x) / (torch.exp(x) + 1), 0.5)
-
-# 创建一个大小为(2, 3)的Tensor
-x = torch.Tensor(torch.randn([32,52,768]))
-y = torch.Tensor(torch.randn([32,52,768]))
-
-print()
+m=[87.3,	91.5,	97.0	,97.2,	91.3	,93.8,	54.6]
+print(mean(m))

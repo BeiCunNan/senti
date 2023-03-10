@@ -8,7 +8,7 @@ from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
-    Self_Attention_New, Self_Attention_New2, Self_Attention_New3, Self_Attention_New4
+    Self_Attention_New4
 
 
 class Instructor:
@@ -143,8 +143,8 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Temp
-            # if (epoch==4):
-            #    break
+            # if (epoch==):
+             #   break
 
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
@@ -167,9 +167,12 @@ class Instructor:
         plt.savefig(str(self.index) + 'image.png')
         # plt.show()
 
+        return best_acc
+
 
 if __name__ == '__main__':
-    for i in range(4):
+    accs=[]
+    for i in range(30):
         logging.set_verbosity_error()
 
         # 预设参数获取
@@ -179,4 +182,6 @@ if __name__ == '__main__':
         ins = Instructor(args, logger, i)
 
         # 模型训练评估
-        ins.run()
+        temp = ins.run()
+        accs.append(temp)
+        print(accs)
