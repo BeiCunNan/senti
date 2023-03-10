@@ -1011,7 +1011,7 @@ class Self_Attention_New4(nn.Module):
         self.nsakey_layer = nn.Linear(self.max_lengths, self.max_lengths)
         self.nsaquery_layer = nn.Linear(self.max_lengths, self.max_lengths)
         self.nsavalue_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.nsa_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+        self.nsa_norm_fact = 1 / math.sqrt(self.max_lengths)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -1071,7 +1071,7 @@ class Self_Attention_New4(nn.Module):
         K_N = self.nsakey_layer(tokens_padding.permute(0, 2, 1))
         Q_N = self.nsaquery_layer(tokens_padding.permute(0, 2, 1))
         V_N = self.nsavalue_layer(tokens_padding.permute(0, 2, 1))
-        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self._norm_fact)
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.nsa_norm_fact)
         FSA = torch.bmm(attention_N, V_N).permute(0, 2, 1)
 
         # TSGSA && FSGSA
@@ -1090,13 +1090,13 @@ class Self_Attention_New4(nn.Module):
         output_FSGSA = FSGSA
 
         # Combine T and F Method 2
-        attention_TFSA = nn.Softmax(dim=-1)((torch.bmm(output_TSA, output_FSA.permute(0, 2, 1))) * self.nsa_norm_fact)
+        attention_TFSA = nn.Softmax(dim=-1)((torch.bmm(output_TSA, output_FSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFSA = torch.bmm(attention_TFSA, tokens_padding)
         attention_TFGSA = nn.Softmax(dim=-1)(
-            (torch.bmm(output_TGSA, output_FGSA.permute(0, 2, 1))) * self.nsa_norm_fact)
+            (torch.bmm(output_TGSA, output_FGSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFGSA = torch.bmm(attention_TFGSA, tokens_padding)
         attention_TFSGSA = nn.Softmax(dim=-1)(
-            (torch.bmm(output_TSGSA, output_FSGSA.permute(0, 2, 1))) * self.nsa_norm_fact)
+            (torch.bmm(output_TSGSA, output_FSGSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFSGSA = torch.bmm(attention_TFSGSA, tokens_padding)
         output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, tokens_padding), 2)
 
