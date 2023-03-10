@@ -8,7 +8,7 @@ from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
-    Self_Attention_New
+    Self_Attention_New, Self_Attention_New2, Self_Attention_New3
 
 
 class Instructor:
@@ -54,7 +54,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = Self_Attention_New(self.base_model, args.num_classes, args.max_lengths)
+            self.model = Self_Attention_New3(self.base_model, args.num_classes, args.max_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -164,7 +164,7 @@ class Instructor:
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
-        plt.savefig('images/'+str(self.index) + 'image.png')
+        plt.savefig(str(self.index) + 'image.png')
         # plt.show()
 
 
