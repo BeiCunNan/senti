@@ -1080,3 +1080,102 @@ class Self_Attention_New4(nn.Module):
         predicts = self.fnn(output_ALL)
 
         return predicts
+
+
+class Self_Attention_New5(nn.Module):
+    def __init__(self, base_model, num_classes, max_length):
+        super().__init__()
+        self.base_model = base_model
+        self.num_classes = num_classes
+        self.max_lengths = max_length
+
+        for param in base_model.parameters():
+            param.requires_grad = (True)
+
+        self.key_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+
+        self.f_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_norm_fact = 1 / math.sqrt(self.max_lengths)
+
+        self.fnn = nn.Sequential(
+            # nn.Dropout(0.5),
+            # nn.Linear(self.base_model.config.hidden_size * 4, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size, num_classes)
+        )
+
+        self.FSGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, 1),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.TSGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, 1),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.FGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, self.max_lengths),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.TGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+        self.x = nn.Linear(4, 4)
+        self.y = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+
+    def forward(self, inputs):
+        raw_outputs = self.base_model(**inputs)
+        tokens = raw_outputs.last_hidden_state
+        tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant',
+                               value=0).permute(0, 2, 1)
+
+        # TSA && FSA
+        K = self.key_layer(tokens_padding)
+        Q = self.query_layer(tokens_padding)
+        V = self.value_layer(tokens_padding)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
+        TSA = torch.bmm(attention, V)
+
+        K_N = self.f_key_layer(tokens_padding.permute(0, 2, 1))
+        Q_N = self.f_query_layer(tokens_padding.permute(0, 2, 1))
+        V_N = self.f_value_layer(tokens_padding.permute(0, 2, 1))
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.f_norm_fact)
+        FSA = torch.bmm(attention_N, V_N).permute(0, 2, 1)
+
+        # TSGSA && FSGSA
+        TSGSA = self.TSGSA(tokens_padding) * tokens_padding
+        FSGSA = (self.FSGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
+
+        # TGSA && FGSA
+        TGSA = self.TGSA(tokens_padding) * tokens_padding
+        FGSA = (self.FGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
+
+        # Combine T and F Method 2
+        attention_TFSA = nn.Softmax(dim=-1)((torch.bmm(TSA, FSA.permute(0, 2, 1))) * self._norm_fact)
+        output_TFSA = torch.bmm(attention_TFSA, tokens_padding)
+        attention_TFGSA = nn.Softmax(dim=-1)((torch.bmm(TGSA, FGSA.permute(0, 2, 1))) * self._norm_fact)
+        output_TFGSA = torch.bmm(attention_TFGSA, tokens_padding)
+        attention_TFSGSA = nn.Softmax(dim=-1)((torch.bmm(TSGSA, FSGSA.permute(0, 2, 1))) * self._norm_fact)
+        output_TFSGSA = torch.bmm(attention_TFSGSA, tokens_padding)
+        a = torch.mean(output_TFSA, dim=1).unsqueeze(-1)
+        b = torch.mean(output_TFGSA, dim=1).unsqueeze(-1)
+        c = torch.mean(output_TFSGSA, dim=1).unsqueeze(-1)
+        d = torch.mean(tokens_padding, dim=1).unsqueeze(-1)
+
+        output_ALL = torch.cat((a, b, c, d), 2)
+
+        output_ALL = self.x(output_ALL)
+        output_ALL = self.y(output_ALL.permute(0, 2, 1))
+
+        output_ALL = torch.mean(output_ALL, dim=1)
+
+        predicts = self.fnn(output_ALL)
+
+        return predicts
