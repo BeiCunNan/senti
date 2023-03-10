@@ -8,7 +8,7 @@ from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
-    Self_Attention_New, Self_Attention_New2, Self_Attention_New3
+    Self_Attention_New, Self_Attention_New2, Self_Attention_New3, Self_Attention_New4
 
 
 class Instructor:
@@ -54,7 +54,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = Self_Attention_New3(self.base_model, args.num_classes, args.max_lengths)
+            self.model = Self_Attention_New4(self.base_model, args.num_classes, args.max_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -169,7 +169,7 @@ class Instructor:
 
 
 if __name__ == '__main__':
-    for i in range(1):
+    for i in range(4):
         logging.set_verbosity_error()
 
         # 预设参数获取
