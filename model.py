@@ -1008,10 +1008,10 @@ class Self_Attention_New4(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.nsakey_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.nsaquery_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.nsavalue_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.nsa_norm_fact = 1 / math.sqrt(self.max_lengths)
+        self.f_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_norm_fact = 1 / math.sqrt(self.max_lengths)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -1021,38 +1021,22 @@ class Self_Attention_New4(nn.Module):
 
         self.FSGSA = nn.Sequential(
             nn.Linear(self.max_lengths, 1),
-            nn.ReLU(inplace=True)
+            nn.LeakyReLU(negative_slope=0.01)
         )
 
         self.TSGSA = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, 1),
-            nn.ReLU(inplace=True)
+            nn.LeakyReLU(negative_slope=0.01)
         )
 
         self.FGSA = nn.Sequential(
             nn.Linear(self.max_lengths, self.max_lengths),
+            nn.LeakyReLU(negative_slope=0.01)
         )
 
         self.TGSA = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
-        )
-
-        self.TFSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
-            nn.LeakyReLU(negative_slope=0.01),
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
-        )
-
-        self.TFGSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
-            nn.LeakyReLU(negative_slope=0.01),
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
-        )
-
-        self.TFSGSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
-            nn.LeakyReLU(negative_slope=0.01),
-            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2)
+            nn.LeakyReLU(negative_slope=0.01)
         )
 
     def forward(self, inputs):
@@ -1068,10 +1052,10 @@ class Self_Attention_New4(nn.Module):
         attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
         TSA = torch.bmm(attention, V)
 
-        K_N = self.nsakey_layer(tokens_padding.permute(0, 2, 1))
-        Q_N = self.nsaquery_layer(tokens_padding.permute(0, 2, 1))
-        V_N = self.nsavalue_layer(tokens_padding.permute(0, 2, 1))
-        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.nsa_norm_fact)
+        K_N = self.f_key_layer(tokens_padding.permute(0, 2, 1))
+        Q_N = self.f_query_layer(tokens_padding.permute(0, 2, 1))
+        V_N = self.f_value_layer(tokens_padding.permute(0, 2, 1))
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.f_norm_fact)
         FSA = torch.bmm(attention_N, V_N).permute(0, 2, 1)
 
         # TSGSA && FSGSA
@@ -1082,21 +1066,12 @@ class Self_Attention_New4(nn.Module):
         TGSA = self.TGSA(tokens_padding) * tokens_padding
         FGSA = (self.FGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
 
-        output_TSA = TSA
-        output_FSA = FSA
-        output_TGSA = TGSA
-        output_FGSA = FGSA
-        output_TSGSA = TSGSA
-        output_FSGSA = FSGSA
-
         # Combine T and F Method 2
-        attention_TFSA = nn.Softmax(dim=-1)((torch.bmm(output_TSA, output_FSA.permute(0, 2, 1))) * self._norm_fact)
+        attention_TFSA = nn.Softmax(dim=-1)((torch.bmm(TSA, FSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFSA = torch.bmm(attention_TFSA, tokens_padding)
-        attention_TFGSA = nn.Softmax(dim=-1)(
-            (torch.bmm(output_TGSA, output_FGSA.permute(0, 2, 1))) * self._norm_fact)
+        attention_TFGSA = nn.Softmax(dim=-1)((torch.bmm(TGSA, FGSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFGSA = torch.bmm(attention_TFGSA, tokens_padding)
-        attention_TFSGSA = nn.Softmax(dim=-1)(
-            (torch.bmm(output_TSGSA, output_FSGSA.permute(0, 2, 1))) * self._norm_fact)
+        attention_TFSGSA = nn.Softmax(dim=-1)((torch.bmm(TSGSA, FSGSA.permute(0, 2, 1))) * self._norm_fact)
         output_TFSGSA = torch.bmm(attention_TFSGSA, tokens_padding)
         output_ALL = torch.cat((output_TFSA, output_TFGSA, output_TFSGSA, tokens_padding), 2)
 
