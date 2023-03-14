@@ -8,6 +8,117 @@ from torch import nn
 from pooling import MaxPooling
 
 
+class AttentionPooling(nn.Module):
+    def __init__(self, input_size):
+        super(AttentionPooling, self).__init__()
+
+        self.fc = nn.Linear(input_size, 1)
+        self.softmax = nn.Softmax(dim=1)
+
+    def forward(self, inputs):
+        # inputs: [batch_size, seq_len, input_size]
+
+        # 计算注意力权重
+        attention_weights = self.fc(inputs)
+        attention_weights = self.softmax(attention_weights)
+
+        # 对每个时间步的输出加权求和
+        pooled_output = torch.sum(attention_weights * inputs, dim=1)
+
+        return pooled_output
+
+
+class A(nn.Module):
+    def __init__(self, base_model, num_classes, max_length):
+        super().__init__()
+        self.base_model = base_model
+        self.num_classes = num_classes
+        self.max_lengths = max_length
+
+        for param in base_model.parameters():
+            param.requires_grad = (True)
+
+        self.key_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.query_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
+        self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
+
+        self.f_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.f_norm_fact = 1 / math.sqrt(self.max_lengths)
+
+        self.fnn = nn.Sequential(
+            # nn.Dropout(0.5),
+            nn.Linear(self.base_model.config.hidden_size * 7, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size, num_classes)
+        )
+
+        self.FSGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, 1),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.TSGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, 1),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.FGSA = nn.Sequential(
+            nn.Linear(self.max_lengths, self.max_lengths),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.TGSA = nn.Sequential(
+            nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
+            nn.LeakyReLU(negative_slope=0.01)
+        )
+
+        self.Att_Pooling = AttentionPooling(self.base_model.config.hidden_size * 2)
+
+    def forward(self, inputs):
+        raw_outputs = self.base_model(**inputs)
+        tokens = raw_outputs.last_hidden_state
+        CLS = tokens[:, 0, :]
+
+        tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant',
+                               value=0).permute(0, 2, 1)
+
+        # TSA && FSA
+        K = self.key_layer(tokens_padding)
+        Q = self.query_layer(tokens_padding)
+        V = self.value_layer(tokens_padding)
+        attention = nn.Softmax(dim=-1)((torch.bmm(Q, K.permute(0, 2, 1))) * self._norm_fact)
+        TSA = torch.bmm(attention, V)
+
+        K_N = self.f_key_layer(tokens_padding.permute(0, 2, 1))
+        Q_N = self.f_query_layer(tokens_padding.permute(0, 2, 1))
+        V_N = self.f_value_layer(tokens_padding.permute(0, 2, 1))
+        attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.f_norm_fact)
+        FSA = torch.bmm(attention_N, V_N).permute(0, 2, 1)
+
+        # TSGSA && FSGSA
+        TSGSA = self.TSGSA(tokens_padding) * tokens_padding
+        FSGSA = (self.FSGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
+
+        # TGSA && FGSA
+        TGSA = self.TGSA(tokens_padding) * tokens_padding
+        FGSA = (self.FGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
+
+        # Combine T and F Method 2
+        TFSA = self.Att_Pooling(torch.cat((TSA, FSA), 2))
+        TFGSA = self.Att_Pooling(torch.cat((TGSA, FGSA), 2))
+        TFSGSA = self.Att_Pooling(torch.cat((TSGSA, FSGSA), 2))
+
+        A_output = torch.cat((TFSA, TFGSA, TFSGSA), 1)
+
+        output_ALL = torch.cat((CLS, A_output), 1)
+
+        predicts = self.fnn(output_ALL)
+
+        return predicts
+
+
 class Squash(Module):
     def __init__(self, epsilon=1e-8):
         super().__init__()
