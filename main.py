@@ -54,7 +54,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, args.query_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -75,20 +75,15 @@ class Instructor:
         for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             targets = targets.to(self.args.device)
-            if (self.args.method_name in ['cls_explain', 'sanl']):
-                predicts, a_ij = self.model(inputs)
-                loss = criterion(a_ij, predicts, targets)
-            else:
-                predicts = self.model(inputs)
-                loss = criterion(predicts, targets)
+
+            predicts = self.model(inputs)
+            loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             scheduler.step()
 
             train_loss += loss.item() * targets.size(0)
-            # print(predicts)
-            # print(torch.argmax(predicts, dim=1))
             n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
             n_train += targets.size(0)
 
@@ -102,12 +97,8 @@ class Instructor:
             for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 targets = targets.to(self.args.device)
-                if (self.args.method_name in ['cls_explain', 'sanl']):
-                    predicts, a_ij = self.model(inputs)
-                    loss = criterion(a_ij, predicts, targets)
-                else:
-                    predicts = self.model(inputs)
-                    loss = criterion(predicts, targets)
+                predicts = self.model(inputs)
+                loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
                 n_test += targets.size(0)

@@ -10,13 +10,12 @@ from torch.utils.data import Dataset, DataLoader
 class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
         label_list = list(label_dict.keys())
-        sep_token = ['[SEP]']
+        QUERY = 'please choose a correct sentiment category from { ' + ', '.join(label_list) + ' }' + '[SEP]'
+        # print(len(QUERY.split(' ')))
         dataset = list()
         for data in raw_data:
-            tokens = data['text'].lower().split(' ')
+            tokens = (QUERY + data['text'].lower()).split(' ')
             label_id = label_dict[data['label']]
-            # 1 No label
-            # dataset.append((label_list + sep_token + tokens, label_id))
             dataset.append((tokens, label_id))
         self._dataset = dataset
 
@@ -38,7 +37,6 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                          is_split_into_words=True,
                          add_special_tokens=True,
                          return_tensors='pt')
-
     return text_ids, torch.tensor(label_ids)
 
 

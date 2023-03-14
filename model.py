@@ -5,8 +5,6 @@ import torch.nn.functional as F
 from labml_helpers.module import Module
 from torch import nn
 
-from pooling import MaxPooling
-
 
 class AttentionPooling(nn.Module):
     def __init__(self, input_size):
@@ -29,11 +27,12 @@ class AttentionPooling(nn.Module):
 
 
 class A(nn.Module):
-    def __init__(self, base_model, num_classes, max_length):
+    def __init__(self, base_model, num_classes, max_lengths,query_lengths):
         super().__init__()
         self.base_model = base_model
         self.num_classes = num_classes
-        self.max_lengths = max_length
+        self.max_lengths = max_lengths
+        self.query_lengths = query_lengths
 
         for param in base_model.parameters():
             param.requires_grad = (True)
@@ -43,10 +42,10 @@ class A(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.f_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.f_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.f_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.f_norm_fact = 1 / math.sqrt(self.max_lengths)
+        self.f_key_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
+        self.f_query_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
+        self.f_value_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
+        self.f_norm_fact = 1 / math.sqrt(self.max_lengths + self.query_lengths)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -55,7 +54,7 @@ class A(nn.Module):
         )
 
         self.FSGSA = nn.Sequential(
-            nn.Linear(self.max_lengths, 1),
+            nn.Linear(self.max_lengths + self.query_lengths, 1),
             nn.LeakyReLU(negative_slope=0.01)
         )
 
@@ -65,7 +64,7 @@ class A(nn.Module):
         )
 
         self.FGSA = nn.Sequential(
-            nn.Linear(self.max_lengths, self.max_lengths),
+            nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths),
             nn.LeakyReLU(negative_slope=0.01)
         )
 
@@ -81,7 +80,8 @@ class A(nn.Module):
         tokens = raw_outputs.last_hidden_state
         CLS = tokens[:, 0, :]
 
-        tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]), mode='constant',
+        tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
+                               mode='constant',
                                value=0).permute(0, 2, 1)
 
         # TSA && FSA
