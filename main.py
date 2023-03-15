@@ -22,6 +22,8 @@ class Instructor:
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
+            # self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
+            # self.query_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
@@ -72,11 +74,13 @@ class Instructor:
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
-        for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+        for inputs, targets, inputs_cls, inputs_querys in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
+            inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
+            inputs_querys = {k: v.to(self.args.device) for k, v in inputs_querys.items()}
             targets = targets.to(self.args.device)
 
-            predicts = self.model(inputs)
+            predicts = self.model(inputs, inputs_cls, inputs_querys)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -94,10 +98,13 @@ class Instructor:
         self.model.eval()
 
         with torch.no_grad():
-            for inputs, targets in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+            for inputs, targets, inputs_cls, inputs_querys in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
+                inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
+                inputs_querys = {k: v.to(self.args.device) for k, v in inputs_querys.items()}
+
                 targets = targets.to(self.args.device)
-                predicts = self.model(inputs)
+                predicts = self.model(inputs, inputs_cls, inputs_querys)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()

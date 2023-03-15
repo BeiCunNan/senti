@@ -27,9 +27,11 @@ class AttentionPooling(nn.Module):
 
 
 class A(nn.Module):
-    def __init__(self, base_model, num_classes, max_lengths,query_lengths):
+    def __init__(self, base_model, num_classes, max_lengths, query_lengths):
         super().__init__()
         self.base_model = base_model
+        # self.cls_model = cls_model
+        # self.query_model = query_model
         self.num_classes = num_classes
         self.max_lengths = max_lengths
         self.query_lengths = query_lengths
@@ -42,14 +44,14 @@ class A(nn.Module):
         self.value_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self._norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.f_key_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
-        self.f_query_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
-        self.f_value_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths+ self.query_lengths)
+        self.f_key_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
+        self.f_query_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
+        self.f_value_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
         self.f_norm_fact = 1 / math.sqrt(self.max_lengths + self.query_lengths)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 7, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size * 9, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
@@ -75,10 +77,13 @@ class A(nn.Module):
 
         self.Att_Pooling = AttentionPooling(self.base_model.config.hidden_size * 2)
 
-    def forward(self, inputs):
+    def forward(self, inputs, inputs_cls, inputs_querys):
         raw_outputs = self.base_model(**inputs)
         tokens = raw_outputs.last_hidden_state
         CLS = tokens[:, 0, :]
+
+        cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
+        query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
 
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
@@ -112,7 +117,7 @@ class A(nn.Module):
 
         A_output = torch.cat((TFSA, TFGSA, TFSGSA), 1)
 
-        output_ALL = torch.cat((CLS, A_output), 1)
+        output_ALL = torch.cat((CLS, A_output,cls_outputs,query_outputs), 1)
 
         predicts = self.fnn(output_ALL)
 
