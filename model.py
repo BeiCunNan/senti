@@ -51,30 +51,9 @@ class A(nn.Module):
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 9, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size * 3, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
-
-        self.FSGSA = nn.Sequential(
-            nn.Linear(self.max_lengths + self.query_lengths, 1),
-            nn.LeakyReLU(negative_slope=0.01)
-        )
-
-        self.TSGSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size, 1),
-            nn.LeakyReLU(negative_slope=0.01)
-        )
-
-        self.FGSA = nn.Sequential(
-            nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths),
-            nn.LeakyReLU(negative_slope=0.01)
-        )
-
-        self.TGSA = nn.Sequential(
-            nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size),
-            nn.LeakyReLU(negative_slope=0.01)
-        )
-
         self.Att_Pooling = AttentionPooling(self.base_model.config.hidden_size * 2)
 
     def forward(self, inputs, inputs_cls, inputs_querys):
@@ -82,8 +61,8 @@ class A(nn.Module):
         tokens = raw_outputs.last_hidden_state
         CLS = tokens[:, 0, :]
 
-        cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
-        query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
+        # cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
+        # query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
 
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
@@ -102,22 +81,10 @@ class A(nn.Module):
         attention_N = nn.Softmax(dim=-1)((torch.bmm(Q_N, K_N.permute(0, 2, 1))) * self.f_norm_fact)
         FSA = torch.bmm(attention_N, V_N).permute(0, 2, 1)
 
-        # TSGSA && FSGSA
-        TSGSA = self.TSGSA(tokens_padding) * tokens_padding
-        FSGSA = (self.FSGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
-
-        # TGSA && FGSA
-        TGSA = self.TGSA(tokens_padding) * tokens_padding
-        FGSA = (self.FGSA(tokens_padding.permute(0, 2, 1)).permute(0, 2, 1) * tokens_padding)
-
         # Combine T and F Method 2
         TFSA = self.Att_Pooling(torch.cat((TSA, FSA), 2))
-        TFGSA = self.Att_Pooling(torch.cat((TGSA, FGSA), 2))
-        TFSGSA = self.Att_Pooling(torch.cat((TSGSA, FSGSA), 2))
 
-        A_output = torch.cat((TFSA, TFGSA, TFSGSA), 1)
-
-        output_ALL = torch.cat((CLS, A_output,cls_outputs,query_outputs), 1)
+        output_ALL = torch.cat((CLS, TFSA), 1)
 
         predicts = self.fnn(output_ALL)
 

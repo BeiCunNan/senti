@@ -10,14 +10,14 @@ from torch.utils.data import Dataset, DataLoader
 class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
         label_list = list(label_dict.keys())
-        split_token = '[SEP]'
+        split_token = ' [SEP] '
         QUERY = 'please choose a correct sentiment category from { ' + ', '.join(label_list) + ' }'
         # print(len(QUERY.split(' ')))
         dataset = list()
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
-            cls_sens = QUERY
-            query_sens = data['text'].lower().split(' ')
+            cls_sens = data['text'].lower().split(' ')
+            query_sens = QUERY
             label_ids = label_dict[data['label']]
             dataset.append((tokens, label_ids, cls_sens, query_sens))
         self._dataset = dataset

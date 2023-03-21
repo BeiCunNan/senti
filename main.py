@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import torch
 from tqdm import tqdm
 from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
-
 from config import get_config
 from data import load_data
 from loss import CELoss, SELoss
