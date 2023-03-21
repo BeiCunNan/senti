@@ -11,11 +11,10 @@ class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
-        QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
-        print(len((QUERY + split_token).split(' ')))
-        print((QUERY + split_token).split(' '))
-        # QUERY = 'what class in  { ' + ', '.join(label_list) + ' } does this text have ?'
-        # print(len(QUERY.split(' ')))
+        # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
+        QUERY = 'what class in  { ' + ', '.join(label_list) + ' } does this sentence have ?'
+        # print(len((QUERY + split_token).split(' ')))
+        # print(QUERY)
         dataset = list()
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
