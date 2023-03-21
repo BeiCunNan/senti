@@ -1,16 +1,15 @@
 import json
 import os
 
-train_data = json.load(open(os.path.join('./data/', 'SST5_Train.json'), 'r', encoding='utf-8'))
-test_data = json.load(open(os.path.join('./data/', 'SST5_Test.json'), 'r', encoding='utf-8'))
-train_label_dict = {'zero': 'very negative', 'one': 'negative', 'two': 'neutral', 'three': 'positive',
-                    'four': 'very positive'}
-test_label_dict = {'zero': 'very negative', 'one': 'negative', 'two': 'neutral', 'three': 'positive',
-                   'four': 'very positive'}
+train_data = json.load(open(os.path.join('./data/', 'SST2_全球公认_Train.json'), 'r', encoding='utf-8'))
+test_data = json.load(open(os.path.join('./data/', 'SST2_全球公认_Test.json'), 'r', encoding='utf-8'))
+sst5_label_dict = {'very negative': 'terrible', 'negative': 'bad', 'neutral': 'okay', 'positive': 'good',
+                   'very positive': 'perfect'}
+sst2_label_dict = {'positive': 'good', 'negative': 'bad'}
 
 result = []
 for raw_data in test_data:
-    label = train_label_dict[raw_data['label']]
+    label = sst2_label_dict[raw_data['label']]
     text = raw_data['text']
     item = {
         "text": text,
@@ -18,5 +17,5 @@ for raw_data in test_data:
     }
     result.append(item)
 
-with open('./data/SST5_Test.json', 'w') as w:
-     json.dump(result, w)
+with open('./data/SST2_全球公认_Test.json', 'w') as w:
+    json.dump(result, w)

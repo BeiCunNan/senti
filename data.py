@@ -11,7 +11,10 @@ class MyDataset(Dataset):
     def __init__(self, raw_data, label_dict, tokenizer, model_name):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
-        QUERY = 'please choose a correct sentiment category from { ' + ', '.join(label_list) + ' }'
+        QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
+        print(len((QUERY + split_token).split(' ')))
+        print((QUERY + split_token).split(' '))
+        # QUERY = 'what class in  { ' + ', '.join(label_list) + ' } does this text have ?'
         # print(len(QUERY.split(' ')))
         dataset = list()
         for data in raw_data:
@@ -62,11 +65,11 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     if dataset == 'sst2':
         train_data = json.load(open(os.path.join(data_dir, 'SST2_全球公认_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST2_全球公认_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'positive': 0, 'negative': 1}
+        label_dict = {'good': 0, 'bad': 1}
     elif dataset == 'sst5':
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST5_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'very negative': 0, 'negative': 1, 'neutral': 2, 'positive': 3, 'very positive': 4}
+        label_dict = {'terrible': 0, 'bad': 1, 'okay': 2, 'good': 3, 'perfect': 4}
     elif dataset == 'cr':
         train_data = json.load(open(os.path.join(data_dir, 'CR_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'CR_Test.json'), 'r', encoding='utf-8'))

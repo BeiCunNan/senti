@@ -2,7 +2,6 @@ import math
 
 import torch
 import torch.nn.functional as F
-from labml_helpers.module import Module
 from torch import nn
 
 
@@ -89,39 +88,6 @@ class A(nn.Module):
         predicts = self.fnn(output_ALL)
 
         return predicts
-
-
-class Squash(Module):
-    def __init__(self, epsilon=1e-8):
-        super().__init__()
-        self.epsilon = epsilon
-
-    def forward(self, s: torch.Tensor):
-        s2 = (s ** 2).sum(dim=-1, keepdims=True)
-        return (s2 / (1 + s2)) * (s / torch.sqrt(s2 + self.epsilon))
-
-
-class Router(Module):
-    def __init__(self, in_caps: int, out_caps: int, in_d: int, out_d: int, iterations: int):
-        super().__init__()
-        self.in_caps = in_caps
-        self.out_caps = out_caps
-        self.iterations = iterations
-        self.softmax = nn.Softmax(dim=1)
-        self.squash = Squash()
-        self.weight = nn.Parameter(torch.randn(in_caps, out_caps, in_d, out_d), requires_grad=True)
-
-    def forward(self, u: torch.Tensor):
-        u_hat = torch.einsum('ijnm,bin->bijm', self.weight, u)
-        b = u.new_zeros(u.shape[0], self.in_caps, self.out_caps)
-        v = None
-        for i in range(self.iterations):
-            c = self.softmax(b)
-            s = torch.einsum('bij,bijm->bjm', c, u_hat)
-            v = self.squash(s)
-            a = torch.einsum('bjm,bijm->bij', v, u_hat)
-            b = b + a
-        return v
 
 
 class Transformer_CLS(nn.Module):

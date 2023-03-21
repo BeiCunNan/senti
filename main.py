@@ -140,8 +140,8 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Temp
-            # if (epoch==):
-            #   break
+            if (epoch==100):
+               break
 
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
