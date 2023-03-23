@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 from tqdm import tqdm
 from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
+
 from config import get_config
 from data import load_data
 from loss import CELoss, SELoss
@@ -17,12 +18,13 @@ class Instructor:
         self.logger = logger
         self.index = index
         self.max_lengths = args.max_lengths
+
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
-            # self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
-            # self.query_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.query_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
@@ -55,7 +57,8 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths, args.query_lengths)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, args.query_lengths, self.cls_model,
+                           self.query_model)
         else:
             raise ValueError('unknown method')
 
@@ -140,8 +143,8 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Temp
-            if (epoch==100):
-               break
+            if (epoch == 100):
+                break
 
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)

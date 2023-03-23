@@ -26,11 +26,11 @@ class AttentionPooling(nn.Module):
 
 
 class A(nn.Module):
-    def __init__(self, base_model, num_classes, max_lengths, query_lengths):
+    def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model, query_model):
         super().__init__()
         self.base_model = base_model
-        # self.cls_model = cls_model
-        # self.query_model = query_model
+        self.cls_model = cls_model
+        self.query_model = query_model
         self.num_classes = num_classes
         self.max_lengths = max_lengths
         self.query_lengths = query_lengths
@@ -50,7 +50,7 @@ class A(nn.Module):
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 3, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size * 5, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
         self.Att_Pooling = AttentionPooling(self.base_model.config.hidden_size * 2)
@@ -60,8 +60,8 @@ class A(nn.Module):
         tokens = raw_outputs.last_hidden_state
         CLS = tokens[:, 0, :]
 
-        # cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
-        # query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
+        cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
+        query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
 
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
@@ -83,7 +83,7 @@ class A(nn.Module):
         # Combine T and F Method 2
         TFSA = self.Att_Pooling(torch.cat((TSA, FSA), 2))
 
-        output_ALL = torch.cat((CLS, TFSA), 1)
+        output_ALL = torch.cat((CLS, TFSA, cls_outputs, query_outputs), 1)
 
         predicts = self.fnn(output_ALL)
 
