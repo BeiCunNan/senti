@@ -13,7 +13,7 @@ def get_config():
     parser = argparse.ArgumentParser()
     num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2, 'pc': 2, 'mr': 2, 'trec': 6, 'mpqa': 2}
     max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'pc': 2, 'mr': 53, 'trec': 33, 'mpqa': 34}
-    query_lengths = {'sst2': 15, 'sst5': 18, 'cr': 12, 'subj': 11, 'pc': 12, 'mr': 12, 'trec': 15, 'mpqa': 2}
+    query_lengths = {'sst2': 13, 'sst5': 16, 'cr': 12, 'subj': 11, 'pc': 12, 'mr': 12, 'trec': 15, 'mpqa': 13}
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
@@ -27,7 +27,7 @@ def get_config():
                                  'text_hiddens', 'cnn+rnn', 'cls_explain', 'self_attention', 'san'])
 
     '''Optimization'''
-    parser.add_argument('--train_batch_size', type=int, default=1)
+    parser.add_argument('--train_batch_size', type=int, default=10)
     parser.add_argument('--test_batch_size', type=int, default=64)
     parser.add_argument('--num_epoch', type=int, default=10)
     parser.add_argument('--lr', type=float, default=1e-5)
