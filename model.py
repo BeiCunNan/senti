@@ -5,26 +5,6 @@ import torch.nn.functional as F
 from torch import nn
 
 
-class AttentionPooling(nn.Module):
-    def __init__(self, input_size):
-        super(AttentionPooling, self).__init__()
-
-        self.fc = nn.Linear(input_size, 1)
-        self.softmax = nn.Softmax(dim=1)
-
-    def forward(self, inputs):
-        # inputs: [batch_size, seq_len, input_size]
-
-        # 计算注意力权重
-        attention_weights = self.fc(inputs)
-        attention_weights = self.softmax(attention_weights)
-
-        # 对每个时间步的输出加权求和
-        pooled_output = torch.sum(attention_weights * inputs, dim=1)
-
-        return pooled_output
-
-
 class AttentionPooling_a(nn.Module):
     def __init__(self, input_size):
         super(AttentionPooling_a, self).__init__()
@@ -85,7 +65,7 @@ class AttentionPooling_c(nn.Module):
         return pooled_output
 
 
-class A_CLS(nn.Module):
+class A(nn.Module):
     def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model, query_model):
         super().__init__()
         self.base_model = base_model
@@ -126,10 +106,10 @@ class A_CLS(nn.Module):
         self.cvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.c_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.cf_key_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        self.cf_query_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        self.cf_value_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths)
+        self.cf_key_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
+        self.cf_query_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
+        self.cf_value_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
+        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths+1)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -163,9 +143,9 @@ class A_CLS(nn.Module):
         aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
         aTSA = torch.bmm(aattention, aV)
 
-        aK_N = self.f_key_layer(tokens_padding.permute(0, 2, 1))
-        aQ_N = self.f_query_layer(tokens_padding.permute(0, 2, 1))
-        aV_N = self.f_value_layer(tokens_padding.permute(0, 2, 1))
+        aK_N = self.af_key_layer(tokens_padding.permute(0, 2, 1))
+        aQ_N = self.af_query_layer(tokens_padding.permute(0, 2, 1))
+        aV_N = self.af_value_layer(tokens_padding.permute(0, 2, 1))
         aattention_N = nn.Softmax(dim=-1)((torch.bmm(aQ_N, aK_N.permute(0, 2, 1))) * self.af_norm_fact)
         aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
@@ -210,7 +190,24 @@ class A_CLS(nn.Module):
 
         return predicts
 
+class AttentionPooling(nn.Module):
+    def __init__(self, input_size):
+        super(AttentionPooling, self).__init__()
 
+        self.fc = nn.Linear(input_size, 1)
+        self.softmax = nn.Softmax(dim=1)
+
+    def forward(self, inputs):
+        # inputs: [batch_size, seq_len, input_size]
+
+        # 计算注意力权重
+        attention_weights = self.fc(inputs)
+        attention_weights = self.softmax(attention_weights)
+
+        # 对每个时间步的输出加权求和
+        pooled_output = torch.sum(attention_weights * inputs, dim=1)
+
+        return pooled_output
 class B(nn.Module):
     def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model, query_model):
         super().__init__()

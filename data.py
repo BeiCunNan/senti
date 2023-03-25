@@ -19,7 +19,7 @@ class MyDataset(Dataset):
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
             cls_sens = data['text'].lower().split(' ')
-            query_sens = QUERY
+            query_sens = QUERY.split(' ')
             label_ids = label_dict[data['label']]
             dataset.append((tokens, label_ids, cls_sens, query_sens))
         self._dataset = dataset
@@ -42,14 +42,14 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                          is_split_into_words=True,
                          add_special_tokens=True,
                          return_tensors='pt')
-    cls_ids = tokenizer(tokens,
+    cls_ids = tokenizer(cls_sens,
                         padding=True,
                         max_length=512,
                         truncation=True,
                         is_split_into_words=True,
                         add_special_tokens=True,
                         return_tensors='pt')
-    query_ids = tokenizer(tokens,
+    query_ids = tokenizer(query_sens,
                           padding=True,
                           max_length=512,
                           truncation=True,
