@@ -64,7 +64,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     if dataset == 'sst2':
         train_data = json.load(open(os.path.join(data_dir, 'SST2_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST2_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'good': 0, 'bad': 1}
+        label_dict = {'great': 0, 'terrible': 1}
     elif dataset == 'sst5':
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST5_Test.json'), 'r', encoding='utf-8'))
@@ -84,7 +84,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'mr':
         train_data = json.load(open(os.path.join(data_dir, 'MR_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'MR_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'positive': 0, 'negative': 1}
+        label_dict = {'great': 0, 'terrible': 1}
     elif dataset == 'trec':
         train_data = json.load(open(os.path.join(data_dir, 'TREC_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'TREC_Test.json'), 'r', encoding='utf-8'))
@@ -92,7 +92,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'mpqa':
         train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'bad': 0, 'good': 1}
+        label_dict = {'good': 0, 'bad': 1}
     else:
         raise ValueError('unknown dataset')
 
