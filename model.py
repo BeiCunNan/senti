@@ -60,8 +60,9 @@ class A(nn.Module):
         tokens = raw_outputs.last_hidden_state
         CLS = tokens[:, 0, :]
 
-        cls_outputs = self.base_model(**inputs_cls).last_hidden_state[:, 0, :]
-        query_outputs = self.base_model(**inputs_querys).last_hidden_state[:, 0, :]
+        cls_outputs = self.cls_model(**inputs_cls).last_hidden_state[:, 0, :]
+        query_outputs = self.query_model(**inputs_querys).last_hidden_state[:, 0, :]
+
 
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
@@ -1228,3 +1229,4 @@ class Self_Attention_New5(nn.Module):
         predicts = self.fnn(output_ALL)
 
         return predicts
+
