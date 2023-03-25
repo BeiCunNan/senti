@@ -27,7 +27,7 @@ class AttentionPooling(nn.Module):
 
 class AttentionPooling_a(nn.Module):
     def __init__(self, input_size):
-        super(AttentionPooling, self).__init__()
+        super(AttentionPooling_a, self).__init__()
 
         self.fc = nn.Linear(input_size, 1)
         self.softmax = nn.Softmax(dim=1)
@@ -47,7 +47,7 @@ class AttentionPooling_a(nn.Module):
 
 class AttentionPooling_b(nn.Module):
     def __init__(self, input_size):
-        super(AttentionPooling, self).__init__()
+        super(AttentionPooling_b, self).__init__()
 
         self.fc = nn.Linear(input_size, 1)
         self.softmax = nn.Softmax(dim=1)
@@ -67,7 +67,7 @@ class AttentionPooling_b(nn.Module):
 
 class AttentionPooling_c(nn.Module):
     def __init__(self, input_size):
-        super(AttentionPooling, self).__init__()
+        super(AttentionPooling_c, self).__init__()
 
         self.fc = nn.Linear(input_size, 1)
         self.softmax = nn.Softmax(dim=1)
