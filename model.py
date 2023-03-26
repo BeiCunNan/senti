@@ -106,10 +106,10 @@ class A(nn.Module):
         self.cvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.c_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.cf_key_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
-        self.cf_query_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
-        self.cf_value_layer = nn.Linear(self.query_lengths+1, self.query_lengths+1)
-        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths+1)
+        self.cf_key_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
+        self.cf_query_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
+        self.cf_value_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
+        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths + 1)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -133,7 +133,7 @@ class A(nn.Module):
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
-        cls_padding = F.pad(cls_tokens.permute(0, 2, 1), (0, self.max_lengths - tokens.shape[1]),
+        cls_padding = F.pad(cls_tokens.permute(0, 2, 1), (0, self.max_lengths -cls_tokens.shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
@@ -190,6 +190,7 @@ class A(nn.Module):
 
         return predicts
 
+
 class AttentionPooling(nn.Module):
     def __init__(self, input_size):
         super(AttentionPooling, self).__init__()
@@ -208,6 +209,8 @@ class AttentionPooling(nn.Module):
         pooled_output = torch.sum(attention_weights * inputs, dim=1)
 
         return pooled_output
+
+
 class B(nn.Module):
     def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model, query_model):
         super().__init__()
