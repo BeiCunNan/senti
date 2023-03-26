@@ -1,22 +1,40 @@
 import json
+import random
 
-mpqa_label_dict = {'0': 'bad', '1': 'good'}
+mpqa_label_dict = {'positive': 'positive', 'negative': 'negative', 'other': 'other'}
 
-result = []
+result_train = []
+result_test = []
 
 import csv
 
-with open('E:\data\各种各样的文本数据集\mpqa\\train.csv', 'r') as f:
+with open('E:\data\Idiom_Sentiment_Analysis-master\\sentences.csv', 'r') as f:
     reader = csv.reader(f)
-    for row in reader:
-        label = mpqa_label_dict[row[0]]
+    rows = list(reader)
+    test_rows = random.sample(rows, 500)
+    train_rows = [row for row in rows if row not in test_rows]
+
+    for row in test_rows:
+        label = mpqa_label_dict[row[2]]
         text = row[1]
         item = {
             "text": text,
             "label": label
         }
-        result.append(item)
+        result_test.append(item)
+
+    for row in train_rows:
+        label = mpqa_label_dict[row[2]]
+        text = row[1]
+        item = {
+            "text": text,
+            "label": label
+        }
+        result_train.append(item)
 #
 #
-with open('data/MPQA_Train.json', 'w') as w:
-    json.dump(result, w)
+with open('data/IE_Test.json', 'w') as w:
+    json.dump(result_test, w)
+
+with open('data/IE_Train.json', 'w') as w:
+    json.dump(result_train, w)

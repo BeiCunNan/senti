@@ -93,6 +93,10 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'good': 0, 'bad': 1}
+    elif dataset == 'mpqa':
+        train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
+        label_dict = {'positive': 0, 'negative': 1, 'other': 2}
     else:
         raise ValueError('unknown dataset')
 
