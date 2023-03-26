@@ -73,7 +73,7 @@ class A(nn.Module):
         self.query_model = query_model
         self.num_classes = num_classes
         self.max_lengths = max_lengths
-        self.query_lengths = query_lengths + 2
+        self.query_lengths = query_lengths + 1
 
         for param in base_model.parameters():
             param.requires_grad = (True)

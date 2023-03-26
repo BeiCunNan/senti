@@ -12,7 +12,7 @@ class MyDataset(Dataset):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
         # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
-        QUERY = 'what class in  { ' + ', '.join(label_list) + ' } does this sentence have ?'
+        QUERY = 'what class in  { ' + ' , '.join(label_list) + ' } does this sentence have ?'
         # print(len((QUERY + split_token).split(' ')))
         # print(QUERY)
         dataset = list()
