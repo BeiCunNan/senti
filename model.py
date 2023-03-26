@@ -73,7 +73,7 @@ class A(nn.Module):
         self.query_model = query_model
         self.num_classes = num_classes
         self.max_lengths = max_lengths
-        self.query_lengths = query_lengths
+        self.query_lengths = query_lengths + 2
 
         for param in base_model.parameters():
             param.requires_grad = (True)
@@ -106,10 +106,10 @@ class A(nn.Module):
         self.cvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.c_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.cf_key_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
-        self.cf_query_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
-        self.cf_value_layer = nn.Linear(self.query_lengths + 1, self.query_lengths + 1)
-        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths + 1)
+        self.cf_key_layer = nn.Linear(self.query_lengths, self.query_lengths)
+        self.cf_query_layer = nn.Linear(self.query_lengths, self.query_lengths)
+        self.cf_value_layer = nn.Linear(self.query_lengths, self.query_lengths)
+        self.cf_norm_fact = 1 / math.sqrt(self.query_lengths)
 
         self.fnn = nn.Sequential(
             # nn.Dropout(0.5),
@@ -133,7 +133,7 @@ class A(nn.Module):
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
-        cls_padding = F.pad(cls_tokens.permute(0, 2, 1), (0, self.max_lengths -cls_tokens.shape[1]),
+        cls_padding = F.pad(cls_tokens.permute(0, 2, 1), (0, self.max_lengths - cls_tokens.shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
