@@ -66,11 +66,10 @@ class AttentionPooling_c(nn.Module):
 
 
 class A(nn.Module):
-    def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model, query_model):
+    def __init__(self, base_model, num_classes, max_lengths, query_lengths, cls_model):
         super().__init__()
         self.base_model = base_model
         self.cls_model = cls_model
-        self.query_model = query_model
         self.num_classes = num_classes
         self.max_lengths = max_lengths
         self.query_lengths = query_lengths + 1
@@ -100,35 +99,21 @@ class A(nn.Module):
         self.bf_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
         self.bf_norm_fact = 1 / math.sqrt(self.max_lengths)
 
-        # Model c
-        # self.ckey_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
-        # self.cquery_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
-        # self.cvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
-        # self.c_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
-        #
-        # self.cf_key_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        # self.cf_query_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        # self.cf_value_layer = nn.Linear(self.query_lengths, self.query_lengths)
-        # self.cf_norm_fact = 1 / math.sqrt(self.query_lengths)
-
         self.fnn = nn.Sequential(
-            # nn.Dropout(0.5),
-            nn.Linear(self.base_model.config.hidden_size * 9, self.base_model.config.hidden_size),
+            nn.Dropout(0.5),
+            nn.Linear(self.base_model.config.hidden_size * 6, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
         self.A_Att_Pooling = AttentionPooling_a(self.base_model.config.hidden_size * 2)
         self.B_Att_Pooling = AttentionPooling_b(self.base_model.config.hidden_size * 2)
-        # self.C_Att_Pooling = AttentionPooling_c(self.base_model.config.hidden_size * 2)
 
-    def forward(self, inputs, inputs_cls, inputs_querys):
+    def forward(self, inputs, inputs_cls):
         tokens = self.base_model(**inputs).last_hidden_state
         cls_tokens = self.cls_model(**inputs_cls).last_hidden_state
-        # query_tokens = self.query_model(**inputs_querys).last_hidden_state
 
         CLS = tokens[:, 0, :]
         cls_CLS = cls_tokens[:, 0, :]
-        # query_CLS = query_tokens[:, 0, :]
 
         tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
                                mode='constant',
@@ -167,22 +152,6 @@ class A(nn.Module):
 
         # Combine T and F Method 2
         b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
-
-        # TSA && FSA
-        # cK = self.ckey_layer(query_tokens)
-        # cQ = self.cquery_layer(query_tokens)
-        # cV = self.cvalue_layer(query_tokens)
-        # cattention = nn.Softmax(dim=-1)((torch.bmm(cQ, cK.permute(0, 2, 1))) * self.c_norm_fact)
-        # cTSA = torch.bmm(cattention, cV)
-        #
-        # cK_N = self.cf_key_layer(query_tokens.permute(0, 2, 1))
-        # cQ_N = self.cf_query_layer(query_tokens.permute(0, 2, 1))
-        # cV_N = self.cf_value_layer(query_tokens.permute(0, 2, 1))
-        # cattention_N = nn.Softmax(dim=-1)((torch.bmm(cQ_N, cK_N.permute(0, 2, 1))) * self.cf_norm_fact)
-        # cFSA = torch.bmm(cattention_N, cV_N).permute(0, 2, 1)
-
-        # Combine T and F Method 2
-        # c_TFSA = self.C_Att_Pooling(torch.cat((cTSA, cFSA), 2))
 
         output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
 
