@@ -8,7 +8,7 @@ from data import load_data
 from loss import CELoss, SELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
-    A,B
+    A
 
 
 class Instructor:
@@ -57,8 +57,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = B(self.base_model, args.num_classes, args.max_lengths, args.query_lengths, self.cls_model,
-                           self.query_model)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.cls_model)
         else:
             raise ValueError('unknown method')
 
@@ -76,13 +75,12 @@ class Instructor:
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
-        for inputs, targets, inputs_cls, inputs_querys in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+        for inputs, targets, inputs_cls in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
-            inputs_querys = {k: v.to(self.args.device) for k, v in inputs_querys.items()}
             targets = targets.to(self.args.device)
 
-            predicts = self.model(inputs, inputs_cls, inputs_querys)
+            predicts = self.model(inputs, inputs_cls)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -100,13 +98,12 @@ class Instructor:
         self.model.eval()
 
         with torch.no_grad():
-            for inputs, targets, inputs_cls, inputs_querys in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+            for inputs, targets, inputs_cls in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
-                inputs_querys = {k: v.to(self.args.device) for k, v in inputs_querys.items()}
-
                 targets = targets.to(self.args.device)
-                predicts = self.model(inputs, inputs_cls, inputs_querys)
+
+                predicts = self.model(inputs, inputs_cls)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()

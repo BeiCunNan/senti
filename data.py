@@ -19,9 +19,9 @@ class MyDataset(Dataset):
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
             cls_sens = data['text'].lower().split(' ')
-            query_sens = QUERY.split(' ')
+
             label_ids = label_dict[data['label']]
-            dataset.append((tokens, label_ids, cls_sens, query_sens))
+            dataset.append((tokens, label_ids, cls_sens))
         self._dataset = dataset
 
     def __getitem__(self, index):
@@ -33,7 +33,7 @@ class MyDataset(Dataset):
 
 # Make tokens for every batch
 def my_collate(batch, tokenizer, num_classes, method_name):
-    tokens, label_ids, cls_sens, query_sens = map(list, zip(*batch))
+    tokens, label_ids, cls_sens = map(list, zip(*batch))
 
     text_ids = tokenizer(tokens,
                          padding=True,
@@ -49,14 +49,8 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                         is_split_into_words=True,
                         add_special_tokens=True,
                         return_tensors='pt')
-    query_ids = tokenizer(query_sens,
-                          padding=True,
-                          max_length=512,
-                          truncation=True,
-                          is_split_into_words=True,
-                          add_special_tokens=True,
-                          return_tensors='pt')
-    return text_ids, torch.tensor(label_ids), cls_ids, query_ids
+
+    return text_ids, torch.tensor(label_ids), cls_ids
 
 
 # Load dataset

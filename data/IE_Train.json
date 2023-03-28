@@ -24,6 +24,10 @@
     "label": "negative"
   },
   {
+    "text": "Don't let him pick a fight now, we're almost home.",
+    "label": "negative"
+  },
+  {
     "text": "He's a good fighter but there are certain points you can pick holes in.",
     "label": "negative"
   },
@@ -33,10 +37,6 @@
   },
   {
     "text": "She left the citizens of Riverbank to their shouting match and struck off along the trail to the footpath.",
-    "label": "other"
-  },
-  {
-    "text": "You must sink your differences.",
     "label": "other"
   },
   {
@@ -52,12 +52,12 @@
     "label": "positive"
   },
   {
-    "text": "In 1978, in an attempt to wipe the slate clean, Pinochet declared an amnesty to cover all human rights abuses since the coup.",
-    "label": "other"
-  },
-  {
     "text": "Doctors who tried to help the wounded were caught in the crossfire, and in some places ambulances also came under attack.",
     "label": "negative"
+  },
+  {
+    "text": "I think we need a meeting to get it laid down, we need a meeting to clear the air or not clear the air necessarily but get some definitions down.",
+    "label": "other"
   },
   {
     "text": "Hitler, of course, was dead set against a war between Britain and Germany.",
@@ -104,23 +104,11 @@
     "label": "other"
   },
   {
-    "text": "Well, you weren't gonna argue the toss.",
+    "text": "Then, in 1981, all hell broke loose in the Cambridge English Faculty.",
     "label": "negative"
   },
   {
     "text": "Battle lines are drawn for control of the Norfolk Capital hotels group.",
-    "label": "negative"
-  },
-  {
-    "text": "Chantal hissed, her eyes locked on his in a battle of wills.",
-    "label": "negative"
-  },
-  {
-    "text": "Personal appearances always seemed to be a bone of contention.",
-    "label": "negative"
-  },
-  {
-    "text": "I've got a bone to pick with one club.",
     "label": "negative"
   },
   {
@@ -132,12 +120,8 @@
     "label": "negative"
   },
   {
-    "text": "I think if we knew what those heart and lung transplants cost, people would be up in arms that the National Health Service is being expected to fund that.",
-    "label": "negative"
-  },
-  {
-    "text": "Do me a favour and get off my back.",
-    "label": "negative"
+    "text": "I really should er phone Breezy up and call his bluff and find out",
+    "label": "other"
   },
   {
     "text": "Someone was saying on television, one of those, er petrol weekend things, about all the black things, and they they were saying, you know, the black a black mood.",
@@ -145,6 +129,10 @@
   },
   {
     "text": "It was only a suggestion, Robyn; there's no need to blow a fuse.",
+    "label": "negative"
+  },
+  {
+    "text": "Blow a gasket.",
     "label": "negative"
   },
   {
@@ -156,11 +144,11 @@
     "label": "negative"
   },
   {
-    "text": "I would come down like a ton of bricks on imprecise ensemble, where others would readily accept the fault if the interpretation was up to it.",
+    "text": "You sound cheesed off, what's the matter?",
     "label": "negative"
   },
   {
-    "text": "For crying out loud.",
+    "text": "I would come down like a ton of bricks on imprecise ensemble, where others would readily accept the fault if the interpretation was up to it.",
     "label": "negative"
   },
   {
@@ -172,16 +160,16 @@
     "label": "negative"
   },
   {
+    "text": "He was fit to be tied when I separated from Hugh, and he seems to blame me for the whole thing.",
+    "label": "negative"
+  },
+  {
     "text": "Don't fly off the handle, Ma.",
     "label": "negative"
   },
   {
     "text": "But notice kick the bucket appears as a verb phrase.",
     "label": "other"
-  },
-  {
-    "text": "It would get on my nerves.",
-    "label": "negative"
   },
   {
     "text": "Oh will you give it a rest.",
@@ -196,6 +184,10 @@
     "label": "negative"
   },
   {
+    "text": "Now don't go off the deep end.",
+    "label": "other"
+  },
+  {
     "text": "Old Stevenson would go spare if he knew.",
     "label": "negative"
   },
@@ -204,11 +196,11 @@
     "label": "negative"
   },
   {
-    "text": "Some got extremely hot under the collar about it.",
+    "text": "Vegetarianism is purely a matter of choice and there's no people that harp on about you shouldn't eat meat.",
     "label": "negative"
   },
   {
-    "text": "All right, don't jump down my throat.",
+    "text": "Some got extremely hot under the collar about it.",
     "label": "negative"
   },
   {
@@ -217,6 +209,10 @@
   },
   {
     "text": "It is not particularly to make a song and dance about it.",
+    "label": "negative"
+  },
+  {
+    "text": "So I mean you, you just mind your own business.",
     "label": "negative"
   },
   {
@@ -260,8 +256,16 @@
     "label": "negative"
   },
   {
+    "text": "An eighteen year old married an eighty one year old, now that is going too far.",
+    "label": "negative"
+  },
+  {
     "text": "Well you'll take the biscuit out of the Wednesday thing won't you?",
     "label": "other"
+  },
+  {
+    "text": "Surrealism was definitely the last straw.",
+    "label": "negative"
   },
   {
     "text": "He was just about to throw a wobbly, surely the sales department should be dealing with this.",
@@ -269,6 +273,10 @@
   },
   {
     "text": "I know you are too stupid to understand this but I will talk slowly and loudly and hope that you won't try my patience too far.",
+    "label": "negative"
+  },
+  {
+    "text": "Obviously you're annoyed about that letter you received - but that doesn't give you the right to vent your spleen on me.",
     "label": "negative"
   },
   {
@@ -280,19 +288,23 @@
     "label": "negative"
   },
   {
-    "text": "Because he was a bundle of nerves, he couldn't keep still.",
-    "label": "negative"
-  },
-  {
-    "text": "Hopping about like a cat on hot bricks when a little reasoned thought would serve you better.",
-    "label": "negative"
-  },
-  {
     "text": "The line was plucking nicely through my fingers and, with my heart in my mouth, I wound the pick up in and struck.",
     "label": "negative"
   },
   {
+    "text": "Hold your breath and push, seems to work on me.",
+    "label": "other"
+  },
+  {
+    "text": "But then it's probably a case of ignorance is bliss.",
+    "label": "other"
+  },
+  {
     "text": "He says you have to have nerves of steel.",
+    "label": "positive"
+  },
+  {
+    "text": "Oh that's better, got some pins and needles in my  knees.",
     "label": "positive"
   },
   {
@@ -300,8 +312,16 @@
     "label": "negative"
   },
   {
-    "text": "So these are hung on tenterhooks directly hammered straight into the wall.",
-    "label": "other"
+    "text": "Tongue tied.",
+    "label": "negative"
+  },
+  {
+    "text": "I'm at my wits end.",
+    "label": "negative"
+  },
+  {
+    "text": "Ants in your pants, darling?",
+    "label": "positive"
   },
   {
     "text": "Once it was known that Terry Gill was wanted for questioning, a young constable who knew him, all bright eyed and bushy tailed, pointed out that his van had been parked in the car-park all day within fifty yards of the Incident Room.",
@@ -312,10 +332,6 @@
     "label": "negative"
   },
   {
-    "text": "Fred Klepner had been in and out of both Mark's and Pat Muldoon's offices, which were only a few yards apart, like an eager beaver.",
-    "label": "positive"
-  },
-  {
     "text": "He had me on the edge of my seat a couple of times.",
     "label": "other"
   },
@@ -324,8 +340,8 @@
     "label": "positive"
   },
   {
-    "text": "Hold your horses then Mr Curtis.",
-    "label": "other"
+    "text": "I shall go the extra mile.",
+    "label": "positive"
   },
   {
     "text": "A bit further, give us a smile, lick your lips, Gilly.",
@@ -340,11 +356,19 @@
     "label": "negative"
   },
   {
+    "text": "And it is I, not you, who must bear the brunt of it.",
+    "label": "negative"
+  },
+  {
     "text": "It's got nothing to do with the fact that he got bent out of shape at an early age and has been shaping laughs out of the kinks ever since.",
     "label": "other"
   },
   {
-    "text": "You've got a chip on your shoulder about James.",
+    "text": "How dare you do thing like that, you know, you're sort of, you, you just can't, you're almost beside yourself, as you're trying to use up all that adrenaline, all that energy that's poured into your body as you try to help that child across the road, knowing in actual fact you can't.",
+    "label": "negative"
+  },
+  {
+    "text": "But I was, I was bored to tears.",
     "label": "negative"
   },
   {
@@ -357,6 +381,14 @@
   },
   {
     "text": "Lexandro felt cut to the quick, and wished he could kill this impertinent if perceptive Sergeant.",
+    "label": "negative"
+  },
+  {
+    "text": "Yeah it is deep down isn't it?",
+    "label": "other"
+  },
+  {
+    "text": "He waited to be instructed, what else a Rifleman could do to be less like a fish out of water in a battalion of Grenadiers.",
     "label": "negative"
   },
   {
@@ -380,8 +412,16 @@
     "label": "positive"
   },
   {
+    "text": "How did he go to pieces, when you say he went to pieces?",
+    "label": "negative"
+  },
+  {
     "text": "I groan inwardly at the prospect of a night playing Happy Families with a bunch of desk-jockeys and number-crunchers.",
     "label": "negative"
+  },
+  {
+    "text": "Both of them were breathing hard, such a hurry and scramble of lips, hands, such a heat inside and between them, he stuffed one small breast into his mouth and then the other, giving her the same churn of astonished guilty pleasure as when she lay on her bed in the afternoons and read the forbidden books she smuggled home from the library.",
+    "label": "positive"
   },
   {
     "text": "So I go, have a job to find it he just looks at me hard as nails.",
@@ -416,20 +456,36 @@
     "label": "other"
   },
   {
-    "text": "Why open old wounds?",
-    "label": "negative"
+    "text": "Now that's a quick fix and hasn't cost anything, hasn't put anybody's nose out of joint.",
+    "label": "positive"
   },
   {
-    "text": "Not only are characters within the tale likened to animals for instance the miller, proud as a peacock, with his skull.",
-    "label": "positive"
+    "text": "Why open old wounds?",
+    "label": "negative"
   },
   {
     "text": "Yeah, pleased as punch.",
     "label": "positive"
   },
   {
+    "text": "Time to plan a dumpbin and regain my composure.",
+    "label": "other"
+  },
+  {
+    "text": "But really, what, all they wanted to do was save face from the hospital because it wasn't our fault.",
+    "label": "negative"
+  },
+  {
     "text": "The reason why I have a soft spot for this notebook, he wrote.",
     "label": "positive"
+  },
+  {
+    "text": "But her silence, and her eyebrows, speak volumes.",
+    "label": "other"
+  },
+  {
+    "text": "We let off steam in graffiti, vandalism and football hooliganism.",
+    "label": "other"
   },
   {
     "text": "He won't eat dumplings, if he sees dumplings in a stew he'll puke.",
@@ -452,8 +508,8 @@
     "label": "negative"
   },
   {
-    "text": "You're unusually well informed,' Bailey said with thinly veiled sarcasm.",
-    "label": "negative"
+    "text": "Those two lassies, they think the world of you.",
+    "label": "positive"
   },
   {
     "text": "Pain and nausea swept over him in waves that left him hot and sticky and weak at the knees.",
@@ -462,6 +518,10 @@
   {
     "text": "As long as you don't die with bells on your ankles.",
     "label": "other"
+  },
+  {
+    "text": "Suddenly Water Gypsy' s hitherto charming interior seemed claustrophobic, and she decided a brisk walk along the towpath might blow away the cobwebs and the fit of blues that bedevilled her",
+    "label": "negative"
   },
   {
     "text": "Chill out, Tal.",
@@ -473,14 +533,6 @@
   },
   {
     "text": "Feast your eyes on this little dazzler a gem in a million.",
-    "label": "positive"
-  },
-  {
-    "text": "Listen to the way he sings the phase ' Footloose And Fancy Free',",
-    "label": "other"
-  },
-  {
-    "text": "The Jamboree was in full swing.",
     "label": "positive"
   },
   {
@@ -500,6 +552,10 @@
     "label": "positive"
   },
   {
+    "text": "And mummy will have a whale of a time.",
+    "label": "positive"
+  },
+  {
     "text": "It's only when you let your hair down that others can see the real person hiding under the hat.",
     "label": "other"
   },
@@ -510,10 +566,6 @@
   {
     "text": "By the time they were ready to leave she was having to use every ounce of effort to convince Andr that no, she didn't want to paint the town red, or any other colour, for that matter, and no, she didn't want to have any candlelit dinners with him.",
     "label": "negative"
-  },
-  {
-    "text": "So you told her you were sick and now you're going to sneak out, hoping that you'll be back before the party is over.",
-    "label": "other"
   },
   {
     "text": "No. He was only pulling your leg.",
@@ -532,8 +584,8 @@
     "label": "other"
   },
   {
-    "text": "It is not clear where Sir Trevor learned to tickle the ivories.",
-    "label": "other"
+    "text": "Now take it easy, don't get panicky.",
+    "label": "positive"
   },
   {
     "text": "After that, the world is your oyster, as they say.",
@@ -548,16 +600,8 @@
     "label": "negative"
   },
   {
-    "text": "so, he said that she's feeling a bit down in the dumps and quite moody.",
-    "label": "negative"
-  },
-  {
     "text": "That erm, made me laugh because he said to his secretary, erm, you know, I I honestly don't think your time is she is so down in the mouth.",
     "label": "other"
-  },
-  {
-    "text": "To pretend as the sister said, that because she and another sister share lesbian sexuality, that that is the only thing, I think is living in a fools paradise.",
-    "label": "negative"
   },
   {
     "text": "Mr Crangle was grinning from ear to ear.",
@@ -576,6 +620,10 @@
     "label": "negative"
   },
   {
+    "text": "Female speaker I jump for joy... but until I hear from the Foreign Office or from Martin, I won't believe it.",
+    "label": "positive"
+  },
+  {
     "text": "I suppose that comments like that are music to your ears?",
     "label": "positive"
   },
@@ -592,12 +640,28 @@
     "label": "positive"
   },
   {
-    "text": "Everybody else was in raptures. And I thought, oh not Norma.",
+    "text": "So, though there are no stars in your eyes, you consider yourself beyond temptation?'",
     "label": "other"
   },
   {
-    "text": "So, though there are no stars in your eyes, you consider yourself beyond temptation?'",
-    "label": "other"
+    "text": "Constance was in seventh heaven, the dresses, the hats, the model girls, everything appeared perfect to her.",
+    "label": "positive"
+  },
+  {
+    "text": "Oh Tilly was thrilled to bits with that little that little plastic thing.",
+    "label": "positive"
+  },
+  {
+    "text": "I'm tickled pink. If I wasn't, I wouldn't have kept quiet about you and him, would I?",
+    "label": "positive"
+  },
+  {
+    "text": "These are things you can't afford to lose, not at this time of your life.",
+    "label": "negative"
+  },
+  {
+    "text": "Erm since we've got together we, we are on top of the world.",
+    "label": "positive"
   },
   {
     "text": "You feel, at the end of the treatment you feel as if you're walking on air.",
@@ -605,10 +669,6 @@
   },
   {
     "text": "I will go bananas.",
-    "label": "negative"
-  },
-  {
-    "text": "We have gone from being the bread basket of Central America to being its basket case.",
     "label": "negative"
   },
   {
@@ -632,6 +692,10 @@
     "label": "negative"
   },
   {
+    "text": "I swear you have a screw loose.",
+    "label": "negative"
+  },
+  {
     "text": "I must have gone stark raving mad.",
     "label": "negative"
   },
@@ -644,6 +708,18 @@
     "label": "other"
   },
   {
+    "text": "It is now time, however, that I eat my words.",
+    "label": "other"
+  },
+  {
+    "text": "Come clean Steve, swallow your pride.",
+    "label": "negative"
+  },
+  {
+    "text": "It was involved with your trial and error and practice, but it was certainly involved with Vicky and that is watching, or learning from okay.",
+    "label": "other"
+  },
+  {
     "text": "This picture of Dreadnought was so wide of the mark that Willis found it better to say nothing, simply making a gesture which had something in common with a petty officer's salute.",
     "label": "other"
   },
@@ -653,10 +729,6 @@
   },
   {
     "text": "Yes, the done thing for driving horses to canter or gallop on the road, they never ever should.",
-    "label": "negative"
-  },
-  {
-    "text": "They didn't switch off when he played bloody hell with' em, excuse my French er President, but this is how it went, he couldn't give a damn about you bloody lot, he kept the television on, it just showed his frustration.",
     "label": "negative"
   },
   {
@@ -684,8 +756,8 @@
     "label": "negative"
   },
   {
-    "text": "So they find your particular weakness, your Achilles heel and they'd go for that.",
-    "label": "negative"
+    "text": "The government takes the view that President Clinton was simply addressing domestic critics of his foreign policy and that his complaints shouldn't set the alarm bells ringing.",
+    "label": "other"
   },
   {
     "text": "Or an electric fire then you would be asking for trouble because you'd be trying to draw out.",
@@ -696,8 +768,8 @@
     "label": "positive"
   },
   {
-    "text": "At which point she unlocked her ball and chain.",
-    "label": "positive"
+    "text": "They are the bane of my life.",
+    "label": "negative"
   },
   {
     "text": "The fuel gauge had gone on the blink shortly after the start.",
@@ -705,6 +777,10 @@
   },
   {
     "text": "Anyway, it's a bit of a can of worms that to be quite honest",
+    "label": "negative"
+  },
+  {
+    "text": "They're in a Catch 22 situation.",
     "label": "negative"
   },
   {
@@ -721,10 +797,6 @@
   },
   {
     "text": "Tomorrow, I promise, come hell or high water.",
-    "label": "positive"
-  },
-  {
-    "text": "It'll come out in the wash I guess.",
     "label": "positive"
   },
   {
@@ -748,16 +820,16 @@
     "label": "negative"
   },
   {
+    "text": "When the going gets tough, it's these people who react best.",
+    "label": "positive"
+  },
+  {
     "text": "But sometimes you grasp at straws.",
     "label": "negative"
   },
   {
     "text": "Cambridge were left high and dry for a time this afternoon as Oxford followed in the footsteps of many a champion.",
     "label": "other"
-  },
-  {
-    "text": "She was in dire straits.",
-    "label": "negative"
   },
   {
     "text": "I don't want to leave him in the lurch",
@@ -776,10 +848,6 @@
     "label": "negative"
   },
   {
-    "text": "The Economist circulation is now five hundred and twenty five thousand each week, and although their er year is out of sync with ours, I expect the profits for the year to be at or near record levels once again.",
-    "label": "positive"
-  },
-  {
     "text": "He did his best to paper over the cracks.",
     "label": "positive"
   },
@@ -788,7 +856,7 @@
     "label": "negative"
   },
   {
-    "text": "Yeah, if at the end of the day it's a quick fix then.",
+    "text": "If you are in a pickle, don't worry about it, because you can always phone Di up.",
     "label": "positive"
   },
   {
@@ -808,15 +876,15 @@
     "label": "negative"
   },
   {
-    "text": "The cost of redeveloping a dilapidated shopping arcade into flats could spiral out of control, a councillor has warned.",
+    "text": "You spell trouble, and I want you out of the way.",
+    "label": "negative"
+  },
+  {
+    "text": "If he wasn't there then I would say that you you'd be on a sticky wicket, because most terms of employment say that if you er have a driving licence and you lose it then your employment will automatically finish.",
     "label": "negative"
   },
   {
     "text": "But why stir up a hornet 's nest by accusing Erdle when murder hasn't been mentioned?",
-    "label": "negative"
-  },
-  {
-    "text": "The game desperately needs a strong Leeds but if they don't stop the rot soon they can say goodbye to a top eight place, let alone the top.",
     "label": "negative"
   },
   {
@@ -828,12 +896,16 @@
     "label": "other"
   },
   {
+    "text": "So we now take the easy way out by using gas which we carry with us.",
+    "label": "other"
+  },
+  {
     "text": "She paused for a moment to watch Rose, who by now resembled a tar baby stuck all over with dirty wool.",
     "label": "other"
   },
   {
-    "text": "The Governor admits there have been teething problems which need sorting out.",
-    "label": "negative"
+    "text": "Mr Ridley would not be drawn on the thorny issue of rail privatisation other then to say that investment was urgently needed in Britain.",
+    "label": "other"
   },
   {
     "text": "Labour would throw money at industry.",
@@ -856,12 +928,8 @@
     "label": "negative"
   },
   {
-    "text": "He got back here late this morning, saying the swap had gone without a hitch and clutching the photograph of Sam we'd been promised.",
-    "label": "positive"
-  },
-  {
-    "text": "We do have to take a leaf, a little bit out of Kenzie's book from the n-- the late nineteen thirties and afterwards, that when things are receding, you don't batten down the hatches, you don't simply close things in.",
-    "label": "positive"
+    "text": "Well they can finally expel you but it's a vicious circle, I mean it goes on and on and on.",
+    "label": "negative"
   },
   {
     "text": "He decided to throw caution to the wind before Selwyn came over for his tea.",
@@ -880,15 +948,7 @@
     "label": "other"
   },
   {
-    "text": "Hoomey's teeth were chattering after his dice with death.",
-    "label": "negative"
-  },
-  {
     "text": "There is a legal case pending, and it is a very, very dicey situation.",
-    "label": "negative"
-  },
-  {
-    "text": "And with marks to prove it, that er just sort of one false move and my job with life was over.",
     "label": "negative"
   },
   {
@@ -908,15 +968,15 @@
     "label": "negative"
   },
   {
-    "text": "It's a no go area.",
-    "label": "negative"
-  },
-  {
     "text": "To keep the rod upright, out of harm 's way when not in use.",
     "label": "other"
   },
   {
-    "text": "And would the swans find shelter from the storm, or ride it out like three-masted sailing ships?",
+    "text": "In a recent episode of a Music Television cartoon called Beavis and Butthead, the characters play with fire.",
+    "label": "other"
+  },
+  {
+    "text": "It is not in your nature to put your head on the block; so much I do know.",
     "label": "other"
   },
   {
@@ -928,6 +988,10 @@
     "label": "positive"
   },
   {
+    "text": "Safety in numbers.",
+    "label": "positive"
+  },
+  {
     "text": "You really do like to sail close to the wind, don't you?",
     "label": "other"
   },
@@ -936,11 +1000,11 @@
     "label": "negative"
   },
   {
-    "text": "A business worth three billion pounds a year is at stake.",
+    "text": "If the bombing starts, take cover in the basement.",
     "label": "negative"
   },
   {
-    "text": "I reckon the teacher fell asleep at the wheel.",
+    "text": "Better watch your step next time you drink whisky.",
     "label": "negative"
   },
   {
@@ -952,14 +1016,6 @@
     "label": "positive"
   },
   {
-    "text": "If this were a simple and one-way movement, the answer would lie in ensuring that the record of achievement is up to date and intelligible.",
-    "label": "other"
-  },
-  {
-    "text": "Oh I was out like a light, but on the  I don't think you'd bloody wake me if I had one now.",
-    "label": "negative"
-  },
-  {
     "text": "By the time he arrived at Amanda's he was ready to drop.",
     "label": "negative"
   },
@@ -968,7 +1024,11 @@
     "label": "positive"
   },
   {
-    "text": "Like the Carters', the Parsons' marriage was in turn-around, only there it was Dennis who was the sleeping partner.",
+    "text": "And then sleep on it.",
+    "label": "positive"
+  },
+  {
+    "text": "I can not sleep a wink now.",
     "label": "negative"
   },
   {
@@ -977,10 +1037,6 @@
   },
   {
     "text": "She ended a bedraggled also-ran, trailing in ninth.",
-    "label": "negative"
-  },
-  {
-    "text": "But if you blow the whole lot on celebrating you will be back to square one.",
     "label": "negative"
   },
   {
@@ -1008,24 +1064,24 @@
     "label": "positive"
   },
   {
+    "text": "Never get anything done in this life if you don't chance your arm.",
+    "label": "other"
+  },
+  {
     "text": "Anne Dawson, had your chips?",
     "label": "other"
   },
   {
-    "text": "If I come to grief, Hilary, then so will you.",
+    "text": "Sure an' they must be pleased seein' the geddle come up in the world like she has.",
+    "label": "positive"
+  },
+  {
+    "text": "This will include male 40, 45 and 50 plus events plus male and female categories, with the first three finishers to count. With 400 to the first man home and 300 to the first lady and considerable training grants throughout, Lisburn looks sure to turn up trumps once again.",
+    "label": "positive"
+  },
+  {
+    "text": "You cut your own throat already when you wrote the script for Connie's disappearance.",
     "label": "negative"
-  },
-  {
-    "text": "Today's sticker is from the French Grand Prix he won to get back on course for the title with his sixth superb victory.",
-    "label": "positive"
-  },
-  {
-    "text": "He says that he managed to stay on the crest of the wave.",
-    "label": "positive"
-  },
-  {
-    "text": "The first principle of success in any walk of life is to know when to cut your losses.",
-    "label": "other"
   },
   {
     "text": "He tell me that it is a dead cert, we can make an absolute killing by taking a percentage of the profits.",
@@ -1040,19 +1096,11 @@
     "label": "negative"
   },
   {
-    "text": "When he stands alone in such a place confronted by several police officers, usually some of high rank, the dice are loaded against him, especially as he knows there is no one to corroborate him as to what exactly occurred during the interrogation, how it was conducted and how long it lasted",
-    "label": "negative"
-  },
-  {
     "text": "But I draw a blank with hazelnuts.",
     "label": "other"
   },
   {
     "text": "I'm gon na fall flat on my bum.",
-    "label": "negative"
-  },
-  {
-    "text": "McLeish smiled to himself at the swift fall from grace in the postscript.",
     "label": "negative"
   },
   {
@@ -1062,6 +1110,10 @@
   {
     "text": "Yeah but it's a flash in the pan.",
     "label": "negative"
+  },
+  {
+    "text": "It was a test that the Three-Ninetieth passed with flying colours destroying thirteen enemy aircraft and achieving excellent bombing results.",
+    "label": "positive"
   },
   {
     "text": "Another local team off to a flying start are Gloucester Rugby club.",
@@ -1076,10 +1128,6 @@
     "label": "negative"
   },
   {
-    "text": "If they can get a foothold in Europe they will have the chance to be bigger and better.",
-    "label": "positive"
-  },
-  {
     "text": "Aunt May is only the front runner.",
     "label": "positive"
   },
@@ -1089,6 +1137,14 @@
   },
   {
     "text": "If the money was ploughed back into dog racing  tracks could improve amenities and strengthen security which would encourage more people to go to the dogs.",
+    "label": "other"
+  },
+  {
+    "text": "Erm, should the house go up in smoke, Theresa across the road run to her.",
+    "label": "other"
+  },
+  {
+    "text": "The great creature fell on its knees in the snow.",
     "label": "other"
   },
   {
@@ -1136,8 +1192,8 @@
     "label": "negative"
   },
   {
-    "text": "Only adults make a pig 's ear of it when they first start fishing as adults.",
-    "label": "negative"
+    "text": "He says he's really going to make a killing.",
+    "label": "positive"
   },
   {
     "text": "Multiples such as W.H. Smith will certainly not miss the boat but the more traditional, book-focused groups may not even know there is a boat.",
@@ -1152,7 +1208,11 @@
     "label": "negative"
   },
   {
-    "text": "I'm not getting anywhere my legs aren't long enough",
+    "text": "You say nothing succeeds like success and number seventeen is success and how do you spell success.",
+    "label": "positive"
+  },
+  {
+    "text": "He married someone else in 1860 and drops out of the picture.",
     "label": "negative"
   },
   {
@@ -1160,19 +1220,15 @@
     "label": "negative"
   },
   {
+    "text": "He says well if you want to pack it in love.",
+    "label": "negative"
+  },
+  {
     "text": "Critically surveying her reflection, she told herself she would pass muster.",
     "label": "positive"
   },
   {
-    "text": "Britain's solar powered car takes its place in the sun.",
-    "label": "positive"
-  },
-  {
     "text": "I hope with all my heart that you find it a pyrrhic victory.",
-    "label": "positive"
-  },
-  {
-    "text": "Anything to do with rags to riches is sure of a welcome if brightly done.",
     "label": "positive"
   },
   {
@@ -1196,8 +1252,8 @@
     "label": "negative"
   },
   {
-    "text": "The sky 's the limit.",
-    "label": "positive"
+    "text": "Here you are, sink or swim in you'd go into the water.",
+    "label": "other"
   },
   {
     "text": "Skinflint Ebeneza is played by showbiz legened Anthony Newely, who starred in several smash hit musicals including Stop the World I Want to Get Off.",
@@ -1212,7 +1268,15 @@
     "label": "positive"
   },
   {
+    "text": "Well I know, but he didn't have top dog meat since he's been here.",
+    "label": "negative"
+  },
+  {
     "text": "And anything that's not on the up and up is, well I think it's detrimental to a mans life.",
+    "label": "negative"
+  },
+  {
+    "text": "James after the home leg, said we will have to weather the storm.",
     "label": "negative"
   },
   {
@@ -1224,11 +1288,11 @@
     "label": "negative"
   },
   {
-    "text": "Have you got a wooden spoon there?",
-    "label": "other"
+    "text": "Now, was this forty thousand pounds a bolt from the blue or did you know it was coming to you?",
+    "label": "positive"
   },
   {
-    "text": "Now, was this forty thousand pounds a bolt from the blue or did you know it was coming to you?",
+    "text": "It was my 85th birthday recently and out of the blue, a letter arrived from my daughter containing tickets for a four-day trip to Paris.",
     "label": "positive"
   },
   {
@@ -1244,10 +1308,6 @@
     "label": "negative"
   },
   {
-    "text": "It's Lil, power-dressed to knock your socks off, with all eyes blazing.",
-    "label": "positive"
-  },
-  {
     "text": "And lo and behold there isn't.",
     "label": "other"
   },
@@ -1260,11 +1320,11 @@
     "label": "positive"
   },
   {
-    "text": "Alyssia stopped dead in her tracks.",
-    "label": "negative"
+    "text": "Wesley Smith Seeing is believing the videophone which takes the blind out of date.",
+    "label": "other"
   },
   {
-    "text": "Charles was struck dumb trying to fathom what the man might possibly mean.",
+    "text": "While it has been suggested that the IDA was taken unaware by the problems Raybestos encountered, its handling of the company was discreet in the extreme.",
     "label": "negative"
   },
   {
@@ -1284,11 +1344,11 @@
     "label": "negative"
   },
   {
-    "text": "I think they feared that we wouldn't at that stage we'd be opening up free for all of the kind which we've obviously been seeking to avoid thus far.",
+    "text": "Now though, the gloves are off.",
     "label": "negative"
   },
   {
-    "text": "Now though, the gloves are off.",
+    "text": "The more likely reason for this move is a tit for tat reaction.",
     "label": "negative"
   },
   {
@@ -1297,10 +1357,6 @@
   },
   {
     "text": "Well, I think cause suffering whatever it happens, but, surely why, I mean the elderly had to suffer through the wars so why should they have to suffer again now?",
-    "label": "negative"
-  },
-  {
-    "text": "I've got my shoulder, my stomach er, I'm in the wars today.",
     "label": "negative"
   },
   {
@@ -1314,14 +1370,6 @@
   {
     "text": "I managed to win a couple of quid on Deano to score the first goal, at odds of 7-1.",
     "label": "positive"
-  },
-  {
-    "text": "Perhaps a bird had carried it down, as the dove had borne the olive branch.",
-    "label": "other"
-  },
-  {
-    "text": "Indeed, it was out of the question given the dollar's enfeebled position.",
-    "label": "negative"
   },
   {
     "text": "Over my dead body, I said.",
@@ -1380,6 +1428,10 @@
     "label": "positive"
   },
   {
+    "text": "He was quite determined to let sleeping dogs lie.",
+    "label": "positive"
+  },
+  {
     "text": "The two bodies are often at loggerheads, and there are constant disputes over methods.",
     "label": "negative"
   },
@@ -1404,14 +1456,6 @@
     "label": "negative"
   },
   {
-    "text": "All hell broke loose.",
-    "label": "negative"
-  },
-  {
-    "text": "The battle lines are drawn.",
-    "label": "other"
-  },
-  {
     "text": "Their relationship was characterized by a battle of wills that Constance always made sure to win.",
     "label": "negative"
   },
@@ -1420,12 +1464,12 @@
     "label": "negative"
   },
   {
-    "text": "Dear Father Christmas, I have a bone to pick with you.",
+    "text": "He was really in the bad books over that.",
     "label": "negative"
   },
   {
-    "text": "She was tempted to call his bluff, hardly able to believe he'd carry out his threat.",
-    "label": "negative"
+    "text": "Will you bury the hatchet for a while and dance with me?",
+    "label": "positive"
   },
   {
     "text": "Now if we were actually to do that in our service books, which is what one of the things that the Methodist conference suggests we consider, just crossing out and putting in the correct non-sexists language, I bet you that eighty percent of our church would be up in arms.",
@@ -1444,6 +1488,10 @@
     "label": "other"
   },
   {
+    "text": "You're a bit cheesed off are you Teresa?",
+    "label": "negative"
+  },
+  {
     "text": "Emulating its action against Hirac Inc in the US, Sparc International, the evangelising supporters group for Sun Microsystems Inc's RISC has come down like a ton of bricks on a small UK start-up trying to carve a living out of the Sparc-compatible space.",
     "label": "negative"
   },
@@ -1456,11 +1504,11 @@
     "label": "other"
   },
   {
-    "text": "There's only one thing I'd like to do, beloved, and that's eat you alive.",
+    "text": "But I don't want you to fly off the handle.",
     "label": "negative"
   },
   {
-    "text": "But I don't want you to fly off the handle.",
+    "text": "Meanwhile, the bristling bloodhounds of the sea lift the flesh along their backs, foam at the mouth dramatically and drop their heads to sniff for tracks.",
     "label": "negative"
   },
   {
@@ -1470,6 +1518,14 @@
   {
     "text": "Oh yeah, yeah used to get on my nerves.",
     "label": "negative"
+  },
+  {
+    "text": "Will you give it a rest love.",
+    "label": "negative"
+  },
+  {
+    "text": "Officers at Darlington Borough Council say the gloves are off in the battle for compensation over the town's 12m Dolphin Centre sports complex.",
+    "label": "other"
   },
   {
     "text": "If I meet a new act, I always try and assess their maturity in order to judge whether they might go off the deep end as soon as they have success.",
@@ -1485,10 +1541,6 @@
   },
   {
     "text": "Good riddance.",
-    "label": "negative"
-  },
-  {
-    "text": "Well, he did rather harp on what a lot of money he spent.",
     "label": "negative"
   },
   {
@@ -1508,10 +1560,6 @@
     "label": "negative"
   },
   {
-    "text": "This quick temper that flared at nothing, that was new.",
-    "label": "negative"
-  },
-  {
     "text": "In terms of how rant and rave for probably not very long and you don't get aggressive behaviour.",
     "label": "other"
   },
@@ -1522,10 +1570,6 @@
   {
     "text": "Now she could see red houses, swimming-pools, race tracks, skyscrapers sticking up like teeth, and roads and railways so uniformly crisscross they seemed like tiles on a vast kitchen floor.",
     "label": "other"
-  },
-  {
-    "text": "Tom's a chap with a temper on a short fuse.",
-    "label": "negative"
   },
   {
     "text": "My glasses are all steamed up.",
@@ -1548,7 +1592,7 @@
     "label": "other"
   },
   {
-    "text": "When the rations were yet again reduced, that was really the last straw.",
+    "text": "If your marriage is on the rocks, the thing to do is throw a wobbly on a motorway at night so that your husband will put you out at the next lay-by.",
     "label": "negative"
   },
   {
@@ -1556,11 +1600,11 @@
     "label": "negative"
   },
   {
-    "text": "With bated breath and trying to make herself invisible, Joan waited for them to pass the alcove and make their way downstairs.",
+    "text": "And so you saw fit to vent your spleen on poor old Ling.",
     "label": "negative"
   },
   {
-    "text": "It is enough to make you break out in a cold sweat.",
+    "text": "With bated breath and trying to make herself invisible, Joan waited for them to pass the alcove and make their way downstairs.",
     "label": "negative"
   },
   {
@@ -1576,8 +1620,8 @@
     "label": "other"
   },
   {
-    "text": "The man had nerves of steel and didn't need anyone's good wishes.",
-    "label": "positive"
+    "text": "You get your legs get stiff you get pins and needles and things like that.",
+    "label": "negative"
   },
   {
     "text": "He's scared stiff of going away to school and all this' Irish' nonsense is just an excuse to get out of it.",
@@ -1636,6 +1680,10 @@
     "label": "negative"
   },
   {
+    "text": "Other people in the world beside yourself, you know.",
+    "label": "negative"
+  },
+  {
     "text": "You know, because it was absolute, I was bored to tears.",
     "label": "negative"
   },
@@ -1649,10 +1697,6 @@
   },
   {
     "text": "We watch as friendships come apart at the seams, as lives of promise collapse under the weight of illness or despair or disillusion, but there is a reckless exhilaration about it all.",
-    "label": "negative"
-  },
-  {
-    "text": "She was cut to the quick by the accusation.",
     "label": "negative"
   },
   {
@@ -1677,10 +1721,6 @@
   },
   {
     "text": "Have a practice click, get it out of your system please.",
-    "label": "negative"
-  },
-  {
-    "text": "Don't let him get worked up.",
     "label": "negative"
   },
   {
@@ -1724,16 +1764,24 @@
     "label": "negative"
   },
   {
-    "text": "People with whom one has had personal or professional differences a row or a clash of principle are best avoided because meeting them might demand emotional resources that aren't there, open old wounds, or challenge one's public certainties that in fact feel all too precarious.",
+    "text": "In an effort to save face, he adopted a casual attitude hoping that his staff would think that he actually meant to keep his hat on all day long just for the heck of it, like gangsters do in the films.",
     "label": "negative"
   },
   {
-    "text": "My bet is Peachcake'll be pleased as punch.",
+    "text": "As Sheila watched him go, she knew that in spite of the hurtful words he had just spoken she would always have a soft spot for the man.",
+    "label": "other"
+  },
+  {
+    "text": "The 8 successful trips so far speak volumes.",
     "label": "positive"
   },
   {
-    "text": "In an effort to save face, he adopted a casual attitude hoping that his staff would think that he actually meant to keep his hat on all day long just for the heck of it, like gangsters do in the films.",
-    "label": "negative"
+    "text": "I need to let off steam.",
+    "label": "other"
+  },
+  {
+    "text": "It's steamed up between the layers is that what you're looking at.",
+    "label": "other"
   },
   {
     "text": "You never saw such a frenzy as her frantic rush to dress herself, me pulling outfits from the wardrobe, she rejecting them as fast as they landed on the bed, trying on and discarding until she stood there in a stew of irritation and indecision in nothing but bra and panties.",
@@ -1742,10 +1790,6 @@
   {
     "text": "If you're good at do-it-yourself, then fine, have a go, if you're not  this particularly applies to the gents, swallow your pride and get somebody in to do it for you.",
     "label": "other"
-  },
-  {
-    "text": "How musical the river and how charming the trees whispering sweet nothings as we pass.",
-    "label": "positive"
   },
   {
     "text": "His uncle had mentioned every Anglo-Irish family in the district, hoping, he suspected, that he would meet some girl and take a fancy to her.",
@@ -1780,15 +1824,7 @@
     "label": "other"
   },
   {
-    "text": "It's probably the aspirin sweating the chill out.",
-    "label": "other"
-  },
-  {
     "text": "I was absolutely in my element, how did I come over, Jannie?",
-    "label": "positive"
-  },
-  {
-    "text": "Just feast your eyes on Chichester's winning municipal car park.",
     "label": "positive"
   },
   {
@@ -1812,6 +1848,10 @@
     "label": "positive"
   },
   {
+    "text": "Me friend over in Norway, she said she's she got over there and sat down and she thought, yes, she's got the Complete Works of Shakespeare, I'll have a whale of a time trying to read it, she picks up the book, it's all in Norwegian.",
+    "label": "positive"
+  },
+  {
     "text": "Let Your Hair Down' boasts a Beatles riff and a Michael Hutchence vocal.",
     "label": "other"
   },
@@ -1824,11 +1864,11 @@
     "label": "positive"
   },
   {
-    "text": "The party is over.",
-    "label": "other"
+    "text": "Well I said I think he was pulling your leg.",
+    "label": "positive"
   },
   {
-    "text": "Well I said I think he was pulling your leg.",
+    "text": "Pull the other one, Jo, it's got bells on it.",
     "label": "positive"
   },
   {
@@ -1836,12 +1876,24 @@
     "label": "negative"
   },
   {
-    "text": "With education, the world is your oyster.",
+    "text": "He probably was told to go home and take it easy, you know.",
+    "label": "positive"
+  },
+  {
+    "text": "Dorothy Snook, of Bristol, will be on cloud nine after a stay at the Hereford Moat Hotel, which includes flying lessons, a balloon flight and a helicopter lesson.",
     "label": "positive"
   },
   {
     "text": "She supposed she was feeling a bit down in the dumps, apprehensive too about celebrating Christmas Day at the Danbys.",
     "label": "negative"
+  },
+  {
+    "text": "There seems little wrong with that, for we have been living in a fools paradise for years and also depriving the Americans of value.",
+    "label": "negative"
+  },
+  {
+    "text": "He was grinning from ear to ear and pointing his finger up to the flies.",
+    "label": "positive"
   },
   {
     "text": "The reason why the Cheshire cheesemakers saw fit to add a grinning cat to their product was because the expression to' grin like a Cheshire Cat' was already in use for another reason altogether.",
@@ -1850,10 +1902,6 @@
   {
     "text": "Oh, he's on the telly, he must be happy as Larry.",
     "label": "positive"
-  },
-  {
-    "text": "Never really bothered too much about that, and I've always been very like erm ooh, la, ha, ha, you think that's funny, er happy go lucky I don't think, I think if I was neurotic",
-    "label": "negative"
   },
   {
     "text": "My heart sinks, the great indefiniteness of the world is spreading through the files like damp.",
@@ -1872,6 +1920,10 @@
     "label": "positive"
   },
   {
+    "text": "What, so you'd be sick as a parrot if we went over the moon together?",
+    "label": "negative"
+  },
+  {
     "text": "He's as pleased as Punch about it.",
     "label": "positive"
   },
@@ -1880,19 +1932,11 @@
     "label": "positive"
   },
   {
-    "text": "Maxine Barrie, the Shirley Bassey lookalike who came out on top in the Granada TV Stars In Your Eyes programme, is appearing tonight at the Shotton Hall Banqueting Suite, Peterlee in a Valentine's Night Special.",
-    "label": "positive"
-  },
-  {
     "text": "She was in seventh heaven.",
     "label": "positive"
   },
   {
     "text": "Good god ur Susan will be thrilled to bits if you went again.",
-    "label": "positive"
-  },
-  {
-    "text": "But Princess Di was tickled pink yesterday by this new portrait.",
     "label": "positive"
   },
   {
@@ -1906,10 +1950,6 @@
   {
     "text": "I'm absolutely walking on air.",
     "label": "positive"
-  },
-  {
-    "text": "Mark'll go bananas I expect.",
-    "label": "negative"
   },
   {
     "text": "Your harebrained idea of going to the chap instead of me.",
@@ -1928,16 +1968,16 @@
     "label": "negative"
   },
   {
+    "text": "The scheme had an interior logic to it but in order to see it you had to be, let me see, stark raving mad, I suppose.",
+    "label": "negative"
+  },
+  {
     "text": "You must be stir crazy.",
     "label": "negative"
   },
   {
     "text": "Please don't make me eat my words.",
     "label": "negative"
-  },
-  {
-    "text": "Well despite that Freudian slip there, no they don't take problem owners.",
-    "label": "other"
   },
   {
     "text": "If you're not this particularly applies to the gents, swallow your pride and get somebody in to do it for you.",
@@ -1980,16 +2020,24 @@
     "label": "negative"
   },
   {
+    "text": "It was asking for trouble especially if you wore glasses like him.",
+    "label": "negative"
+  },
+  {
+    "text": "He reached the level of the bridge, swung his back to the wall, covering the ladder they had just used as Forster made for the door.",
+    "label": "other"
+  },
+  {
     "text": "He's bit and bridle, ball and chain, a rope to tether me like any other animal.",
+    "label": "negative"
+  },
+  {
+    "text": "It's always been the bane of my life that you can eat your way through a tuckshop without gaining a pound while I only have to look at a picture of a cream cake to make the scales groan.",
     "label": "negative"
   },
   {
     "text": "Your link's on the blink.",
     "label": "other"
-  },
-  {
-    "text": "He realised that he'd opened up a can of worms.",
-    "label": "negative"
   },
   {
     "text": "Only I had to carry the can for it.",
@@ -2004,8 +2052,8 @@
     "label": "other"
   },
   {
-    "text": "There was a cloud on the horizon, however, which worried the Bradleys.",
-    "label": "negative"
+    "text": "Come hell or high water, he'd always managed to get his mother a present.",
+    "label": "positive"
   },
   {
     "text": "Everything will come out in the wash, and Flashman will deserve it all.",
@@ -2016,14 +2064,6 @@
     "label": "negative"
   },
   {
-    "text": "BettySinclair adopted a' cross that bridge when we come to it' attitude, which means that she wants the back door left open for a sell-out.",
-    "label": "positive"
-  },
-  {
-    "text": "Was this the crux of the matter?",
-    "label": "other"
-  },
-  {
     "text": "It isn't always easy for anyone to get to the bottom of every detail of a bill er which refers to earlier legislation.",
     "label": "negative"
   },
@@ -2032,11 +2072,11 @@
     "label": "negative"
   },
   {
-    "text": "Soon the cat's back and the seal would be high and dry.",
+    "text": "He's in dire straits -- can't you see that?",
     "label": "negative"
   },
   {
-    "text": "He's in dire straits -- can't you see that?",
+    "text": "After being left in the lurch like that, she'd probably have talked.",
     "label": "negative"
   },
   {
@@ -2056,8 +2096,8 @@
     "label": "negative"
   },
   {
-    "text": "If we go to any local government official and talk to him about local government finance and how the council tax might work, he will say that it is nonsense and a case of trying to muddle through and paper over the cracks simply to make the package a little more presentable for electoral purposes.",
-    "label": "negative"
+    "text": "Always pass the buck.",
+    "label": "other"
   },
   {
     "text": "But I am in a pickle when I get one.",
@@ -2066,10 +2106,6 @@
   {
     "text": "There's one thing about junk food -- it gives you a quick fix of carbohydrates and sugar.",
     "label": "other"
-  },
-  {
-    "text": "Newspaper staff put on a brave face.",
-    "label": "positive"
   },
   {
     "text": "Saved by the bell.",
@@ -2088,15 +2124,19 @@
     "label": "negative"
   },
   {
-    "text": "And never forget, it's an away match, and we're on a sticky wicket.",
-    "label": "negative"
-  },
-  {
     "text": "We're not trying to stir up a hornet 's nest but we do want to let everyone know what we're trying to achieve.",
     "label": "positive"
   },
   {
+    "text": "Runcorn bid to stop the rot.",
+    "label": "positive"
+  },
+  {
     "text": "Maths is absolutely the fundamental stumbling block, isn't it, in a sense?",
+    "label": "negative"
+  },
+  {
+    "text": "They always take the easy way out.",
     "label": "negative"
   },
   {
@@ -2132,31 +2172,19 @@
     "label": "other"
   },
   {
-    "text": "There will be no justice and no liberation until the vicious circle is broken and the tyranny of the family is smashed.",
-    "label": "negative"
-  },
-  {
     "text": "The Boozebuster went off without a hitch.",
     "label": "positive"
   },
   {
-    "text": "It was a calculated risk to take a man without forensic experience, but we were looking for a manager primarily.",
-    "label": "other"
+    "text": "I'll batten down the hatches.",
+    "label": "negative"
   },
   {
     "text": "In addition it was to be hoped that Max could come up with some fairly definite cause of death; and it was even possible (if only just) that the surgeon might throw caution to the wind for once and volunteer a tentative approximation of the time it had actually happened.",
     "label": "other"
   },
   {
-    "text": "Because when you do run across the road, you get to the other side, and you're thinking, good gracious, that was a close shave, I'll have to sit down for a minute, I think I'll have a cup of coffee or something.",
-    "label": "negative"
-  },
-  {
     "text": "Or do you wait till they tire of the taunting and go to release the victim when the coast is clear?",
-    "label": "negative"
-  },
-  {
-    "text": "Parents have been selected to become erm, relatively insensitive to signs of distress in the offspring, because erm, as where they cry wolf all the time, and as a result, erm, parents don't take crying as seriously in children as they do in adults.",
     "label": "negative"
   },
   {
@@ -2172,24 +2200,12 @@
     "label": "negative"
   },
   {
-    "text": "Government can hang on to its defence of corporal punishment only by a hair 's breadth.",
-    "label": "negative"
-  },
-  {
     "text": "But here and there some found action on this very camp, and didn't live to tell the tale",
-    "label": "other"
-  },
-  {
-    "text": "For more information, and a free booklet called' Look Before You Leap',",
     "label": "other"
   },
   {
     "text": "We're on the edge of what we call a no go area, if we try to sail any closer to the wind the boat will come upright, the sail will flap and we'll slow down and stop and so the best we can make either side of the no go area is known as a beat.",
     "label": "negative"
-  },
-  {
-    "text": "Still, I admit he seems to be able to keep out of harm 's way.",
-    "label": "positive"
   },
   {
     "text": "A sudden reckless urge to play with fire made her deliberately provoke him.",
@@ -2198,10 +2214,6 @@
   {
     "text": "If you believe in a drogue, or sea-anchor, up-hook, scratch-in, and rig one, then ride it out and ride with it and tell me when you sight London Bridge.",
     "label": "other"
-  },
-  {
-    "text": "We know employees are being blackmailed with their jobs to risk life and limb so employers can make a fat profit at our expense.",
-    "label": "negative"
   },
   {
     "text": "Sharpe, his message in safe hands, was free to return and watch the French.",
@@ -2216,11 +2228,11 @@
     "label": "positive"
   },
   {
-    "text": "Russia and Ukraine sail close to the wind on Black Sea fleet.",
+    "text": "It's her small child who is at stake.",
     "label": "negative"
   },
   {
-    "text": "It's her small child who is at stake.",
+    "text": "Now if he'd just take cover and place some well-aimed bursts with his blaster.",
     "label": "negative"
   },
   {
@@ -2228,11 +2240,11 @@
     "label": "negative"
   },
   {
-    "text": "Forty winks.",
-    "label": "other"
+    "text": "Possibly his mother had fallen asleep at the wheel.",
+    "label": "negative"
   },
   {
-    "text": "Then the two cups of decaff before you hit the sack.",
+    "text": "Forty winks.",
     "label": "other"
   },
   {
@@ -2240,7 +2252,7 @@
     "label": "other"
   },
   {
-    "text": "She returned to bed and went out like a light.",
+    "text": "But tonight they were ready to drop, must sleep.",
     "label": "other"
   },
   {
@@ -2284,6 +2296,10 @@
     "label": "other"
   },
   {
+    "text": "In similar fashion the bottom fell out of the illustrious 1817 sovereign market in the mid-1970s when investors realised that they were paying 50 per cent over the melt price for a coin minted in millions.",
+    "label": "negative"
+  },
+  {
     "text": "Plant says the act'll bring the house down.",
     "label": "positive"
   },
@@ -2300,10 +2316,6 @@
     "label": "other"
   },
   {
-    "text": "It all but sunk Pompey and put United on the crest of the wave.",
-    "label": "positive"
-  },
-  {
     "text": "Cut your losses, Woolley.",
     "label": "negative"
   },
@@ -2312,7 +2324,15 @@
     "label": "negative"
   },
   {
+    "text": "She's dead in the water, and out of range of our conventional rescue forces.",
+    "label": "negative"
+  },
+  {
     "text": "Draper says, the dice are loaded against the parents.",
+    "label": "negative"
+  },
+  {
+    "text": "It's all downhill from now on.",
     "label": "negative"
   },
   {
@@ -2332,8 +2352,16 @@
     "label": "negative"
   },
   {
+    "text": "And she passed with flying colours",
+    "label": "positive"
+  },
+  {
     "text": "Oxford University's Matthew Syed has got off to a flying start in the Olympic Qualifying tournament in Italy, winning both his opening matches.",
     "label": "positive"
+  },
+  {
+    "text": "One was that, since she was on a fool 's errand anyway, she wasn't going to dress up for it.",
+    "label": "negative"
   },
   {
     "text": "But the French auction house has evidently decided to keep its foot in the door of this potentially lucrative market.",
@@ -2362,10 +2390,6 @@
   {
     "text": "You've got it made if only you'd realise it.",
     "label": "positive"
-  },
-  {
-    "text": "The animal was tethered in the byre, its hugely muscled body down on its knees like a sacred beast from Indian mythology.",
-    "label": "negative"
   },
   {
     "text": "President-elect Clinton takes office in January after a landslide victory over Bush earlier this month.",
@@ -2404,10 +2428,6 @@
     "label": "positive"
   },
   {
-    "text": "With six shoes under 37, Diadora is likely to make inroads into the budget end of the market.",
-    "label": "positive"
-  },
-  {
     "text": "They're a safe investment, but in love you can make a killing overnight.",
     "label": "positive"
   },
@@ -2432,11 +2452,23 @@
     "label": "other"
   },
   {
-    "text": "For a moment, she was looking directly out of the picture.",
-    "label": "other"
+    "text": "It is only through my imaginative shuffling of the aces that we are able to stay ahead of the pack.",
+    "label": "positive"
   },
   {
     "text": "Well pack it in both of you.",
+    "label": "negative"
+  },
+  {
+    "text": "Do I pass muster?",
+    "label": "other"
+  },
+  {
+    "text": "Californians are outsiders over half have travelled thousands of miles for a place in the sun.",
+    "label": "other"
+  },
+  {
+    "text": "But tomorrow never happens and, worse, the wife does the one thing absolutely guaranteed to put the kibosh on the whole matter.",
     "label": "negative"
   },
   {
@@ -2444,11 +2476,11 @@
     "label": "negative"
   },
   {
-    "text": "I opened my eyes to the sun riding high over Fair Hill.",
+    "text": "A proper rags to riches saga.",
     "label": "positive"
   },
   {
-    "text": "I'm sure your spirits will rise to the occasion.",
+    "text": "I opened my eyes to the sun riding high over Fair Hill.",
     "label": "positive"
   },
   {
@@ -2460,8 +2492,20 @@
     "label": "other"
   },
   {
+    "text": "Fraser Digby was trying to save the day when he gave away a penalty",
+    "label": "other"
+  },
+  {
     "text": "We sink or swim together.",
     "label": "positive"
+  },
+  {
+    "text": "You know, sky 's the limit with this.",
+    "label": "positive"
+  },
+  {
+    "text": "The video for the smash hit Walking On Broken Glass.",
+    "label": "other"
   },
   {
     "text": "As the season draws to a thrilling climax, with Swansea and Llanelli both bearing down on a possible league and cup double, Pontypridd and Newport get their chance to throw a spanner in the works at the Bank Holiday back-to-back Schweppes Cup semi-finals at the Cardiff Arms Park.",
@@ -2474,10 +2518,6 @@
   {
     "text": "He was like that, always had to be top dog.",
     "label": "other"
-  },
-  {
-    "text": "The newly-married couple on the up and up.",
-    "label": "positive"
   },
   {
     "text": "Little big man shows his stature Ian Ridley watches the champion weather the storm with mixture of shots to mount a spirited defence",
@@ -2528,6 +2568,18 @@
     "label": "negative"
   },
   {
+    "text": "If you're still not convinced, seeing is believing.",
+    "label": "positive"
+  },
+  {
+    "text": "Manville stopped dead in his tracks, whirling to confront the guard.",
+    "label": "negative"
+  },
+  {
+    "text": "What he actually wanted to say was, I'm struck dumb with love.",
+    "label": "positive"
+  },
+  {
     "text": "I can't believe it, wonders will never cease.",
     "label": "negative"
   },
@@ -2556,8 +2608,20 @@
     "label": "negative"
   },
   {
+    "text": "Poor man was through the wars, wasn't he?",
+    "label": "positive"
+  },
+  {
     "text": "You've been in the wars rather, haven't you?",
     "label": "negative"
+  },
+  {
+    "text": "It is, and no doubt will remain, a moot point whether, in these events, the old parliaments were abolished and replaced by novel creations, or whether a pre-existing parliament was merely renamed.",
+    "label": "other"
+  },
+  {
+    "text": "I always seem to, I think we, we were always at Stanford Hall that we must, it was a must that we have a good programme because if somebody comes and there's nothing doing, they think well.",
+    "label": "other"
   },
   {
     "text": "The European parliament is at odds with the Commission and member states over the draft directive covering working conditions for employees sent to another EC country under contract to provide a specific service.",
@@ -2568,20 +2632,8 @@
     "label": "negative"
   },
   {
-    "text": "Over my dead body,' Mitch stormed.",
-    "label": "negative"
-  },
-  {
-    "text": "Are you trying to pick a fight?",
-    "label": "negative"
-  },
-  {
     "text": "After all, we're trying to pick holes in it.",
     "label": "negative"
-  },
-  {
-    "text": "He has not given up the running battle between them over the question of form, which started out with his victory on accommodation.",
-    "label": "positive"
   },
   {
     "text": "I have constructed a kitchen out of flatpacks with only one minor nervous breakdown and one remarkable shouting match involving my wife, her mother, myself and how a length of pine beading ought to be attached to several wall cupboards.",
@@ -2616,10 +2668,6 @@
     "label": "negative"
   },
   {
-    "text": "Even now her husband's dead, he's not willing to let bygones be bygones.",
-    "label": "negative"
-  },
-  {
     "text": "Though he never forgave me, or my mother for having helped me, both into his world and out of it, he was sufficiently my father to let sleeping dogs lie.",
     "label": "other"
   },
@@ -2628,7 +2676,7 @@
     "label": "negative"
   },
   {
-    "text": "Between him and the famous pathologist now arriving, there was no love lost.",
+    "text": "If he had known what fate lay in store for his beloved Boks perhaps State President F.W. de Klerk would have decided against holding a midweek reception for the three teams about to lock horns for the supremacy of the Southern Hemisphere.",
     "label": "negative"
   },
   {
@@ -2636,12 +2684,24 @@
     "label": "negative"
   },
   {
-    "text": "So the order's on so I've got to try and argue the toss with her.",
+    "text": "His production of Mrs Warren's Profession for the National Theatre in 1971 steered cunningly clear of melodrama; his Much Ado About Nothing for the Royal Shakespeare Company in 1971 featured white parasols and sun-dappled lawns that seemed to evoke the world of Turgenev.",
+    "label": "other"
+  },
+  {
+    "text": "We tricked them into holding fire until we were about a mile out, then all hell broke loose.",
+    "label": "negative"
+  },
+  {
+    "text": "Once again the battle lines are drawn.",
     "label": "negative"
   },
   {
     "text": "So Barry Brittlebank has a bone to pick with my grammar.",
     "label": "negative"
+  },
+  {
+    "text": "Last night's developments came just 24 hours after today revealed how Diana had agreed a secret pact with Charles to bury the hatchet for the sake of appearances.",
+    "label": "other"
   },
   {
     "text": "Resisting the temptation to call his bluff by pretending someone was with her, she asked how he had got on in Glasgow.",
@@ -2672,8 +2732,8 @@
     "label": "negative"
   },
   {
-    "text": "But er you know used to cut it out of er big chunks.",
-    "label": "other"
+    "text": "Little kids eat you alive, they want so much physically and emotionally.",
+    "label": "negative"
   },
   {
     "text": "All right, all right, no need to get your knickers in a twist.",
@@ -2688,16 +2748,16 @@
     "label": "negative"
   },
   {
-    "text": "However, one party source said: The gloves are off.",
-    "label": "negative"
-  },
-  {
     "text": "Mrs Mangle would be mortified, Harold horrified... and Scott would go spare.",
     "label": "negative"
   },
   {
     "text": "Once that happens, according to the Meat and Livestock Commission, the floodgates will open and prices will go through the roof.",
     "label": "other"
+  },
+  {
+    "text": "Most have been exterminated, and good riddance to them.",
+    "label": "negative"
   },
   {
     "text": "Joe thought it was wiser to help her get up and fight her hard luck than to harp on it.",
@@ -2712,7 +2772,11 @@
     "label": "negative"
   },
   {
-    "text": "She was ready to scream blue murder when the flap landed on her tender slit.",
+    "text": "He appears to have a quick temper and uses his hands continually when he speaks.",
+    "label": "negative"
+  },
+  {
+    "text": "It made her want to rant and rave and kick out at something - preferably him.",
     "label": "negative"
   },
   {
@@ -2724,10 +2788,6 @@
     "label": "negative"
   },
   {
-    "text": "Their steamed up windows excited George.",
-    "label": "positive"
-  },
-  {
     "text": "It's a subject that makes my blood boil and disappointments have left me a blister short of swearing.",
     "label": "negative"
   },
@@ -2736,11 +2796,23 @@
     "label": "negative"
   },
   {
+    "text": "Pills take the biscuit.",
+    "label": "negative"
+  },
+  {
+    "text": "That hadn't been the last straw, far from it.",
+    "label": "negative"
+  },
+  {
     "text": "Well, well, well, another humanoid to try my patience.",
     "label": "negative"
   },
   {
     "text": "From July onwards the town of Whaddon had waited with bated breath.",
+    "label": "negative"
+  },
+  {
+    "text": "She was a bundle of nerves.",
     "label": "negative"
   },
   {
@@ -2760,20 +2832,12 @@
     "label": "positive"
   },
   {
-    "text": "He woke with pins and needles in his foot and Lee poking him.",
-    "label": "other"
-  },
-  {
     "text": "I'm scared stiff I'm going to lose touch with my children.",
     "label": "negative"
   },
   {
     "text": "Drama Zoff detailed the drama behind the scenes as Gazza was kept on tenterhooks for the past four days, wondering whether he would make his Italian debut.",
     "label": "negative"
-  },
-  {
-    "text": "Early in the 1970s, the BBC Horizon film' Joey', based on the book' Tongue Tied', a true life autobiography by Joey Deacon about his life in a mental hospital.",
-    "label": "other"
   },
   {
     "text": "He also gives us a measured degree of self doubt mixed with evasiveness and a realistic progression from a young, ambitious eager beaver on the music hall circuit to a very old man languishing with his memories in Switzerland.",
@@ -2792,10 +2856,6 @@
     "label": "other"
   },
   {
-    "text": "He was raring to go.",
-    "label": "positive"
-  },
-  {
     "text": "Wimbledon had been expected to bear the brunt of the FA's displeasure because of their past record.",
     "label": "negative"
   },
@@ -2804,15 +2864,19 @@
     "label": "negative"
   },
   {
-    "text": "Mind, I get bored to tears with doing this every damn day.",
-    "label": "negative"
-  },
-  {
     "text": "And you still have a chip on your shoulder.",
     "label": "negative"
   },
   {
     "text": "Male speaker It's a bit close to home.",
+    "label": "negative"
+  },
+  {
+    "text": "If the unholy alliance in favour of the National Curriculum is likely to come apart at the seams over the issue of resource, so also, given the very different aspirations of those who support its introduction, there is likely to be a parting of the ways over principles.",
+    "label": "negative"
+  },
+  {
+    "text": "When Lucy suggested a quick drink, Jay was cut to the quick and described herself, with sparse and ironic regret, as working late.",
     "label": "negative"
   },
   {
@@ -2844,7 +2908,19 @@
     "label": "positive"
   },
   {
+    "text": "I can fight for whatever I want and I'm hard as nails.",
+    "label": "positive"
+  },
+  {
+    "text": "Sam was obviously head over heels in love with is new bride, and Martha was clearly content.",
+    "label": "positive"
+  },
+  {
     "text": "How did Andres Valenzuela get sucked in, and what prompted his change of heart?",
+    "label": "other"
+  },
+  {
+    "text": "Paul didn't keep a stiff upper lip because that was the way that he thought that Christians should behave.",
     "label": "other"
   },
   {
@@ -2852,24 +2928,28 @@
     "label": "positive"
   },
   {
+    "text": "When the band strikes up, when you start up that village and folk cheer, there is a big lump in your throat, and that is when you are paid back.",
+    "label": "positive"
+  },
+  {
     "text": "No hard feelings, I can understand your concern.",
     "label": "positive"
   },
   {
-    "text": "He's as pleased as Punch about it.",
-    "label": "positive"
+    "text": "Has Richard put your nose out of joint?",
+    "label": "negative"
   },
   {
     "text": "The only person that didn't was Fish, who had to save face and went on claiming it was true.",
     "label": "other"
   },
   {
-    "text": "Others have behavioural problems and need to let off steam in a safe and controlled setting.",
-    "label": "negative"
+    "text": "I'll always have a soft spot for Wigan, my memories of 1984-85 are priceless.",
+    "label": "positive"
   },
   {
-    "text": "And the brothers who are getting all steamed up about their driving test.",
-    "label": "negative"
+    "text": "Body language can speak volumes on these occasions.",
+    "label": "other"
   },
   {
     "text": "In a stew?",
@@ -2886,10 +2966,6 @@
   {
     "text": "She was not going to dig up ancient grievances or remind Gloria of days gone by, when she used to come into the Watermen with half a dozen different gentlemen-friends in tow or, which was even worse, unaccompanied and on the look-out for a lonely man who might take a fancy to her.",
     "label": "other"
-  },
-  {
-    "text": "He'll be on tenterhooks the whole time, and muttering to the parents things.",
-    "label": "negative"
   },
   {
     "text": "But if you were' with it' you watched the Saturday pop show Thank Your Lucky Stars which was hosted by Brian Matthew.",
@@ -2932,14 +3008,6 @@
     "label": "positive"
   },
   {
-    "text": "I think. you really ought to let your hair down and become one horny bitch.",
-    "label": "positive"
-  },
-  {
-    "text": "But old Walter, he was such a jolly soul-so bright, and loud, and down-to-earth, so much the life and soul of the party. Not at all my idea of a writer.",
-    "label": "positive"
-  },
-  {
     "text": "Tonight we're going to paint the town red.",
     "label": "positive"
   },
@@ -2952,6 +3020,10 @@
     "label": "other"
   },
   {
+    "text": "They always saw his jokes before he got to the punch line.",
+    "label": "other"
+  },
+  {
     "text": "I get a bit dizzy again and have to take it easy, so what I do is I walk with one arm against the shop windows.",
     "label": "negative"
   },
@@ -2960,15 +3032,23 @@
     "label": "positive"
   },
   {
+    "text": "When I left you last night you were positively down in the dumps.",
+    "label": "negative"
+  },
+  {
     "text": "Jesus ain't arf depressed at seeing his children down in the mouth, me deario.",
     "label": "negative"
   },
   {
-    "text": "There was a tall muscular man of about his own age standing naked before him, grinning from ear to ear.",
+    "text": "She turned to see a very large handsome man holding out a cardigan and grinning like a Cheshire cat.",
     "label": "positive"
   },
   {
-    "text": "She turned to see a very large handsome man holding out a cardigan and grinning like a Cheshire cat.",
+    "text": "He had to make his own terms. Ten years later Burton would have been as happy as Larry.",
+    "label": "positive"
+  },
+  {
+    "text": "In the evening the surround tops flamed red in the rays of the setting sun and cheerful singing emanated from the tent of our happy go lucky band of sherpas",
     "label": "positive"
   },
   {
@@ -2976,7 +3056,7 @@
     "label": "negative"
   },
   {
-    "text": "I was certain that from now I would never look back.",
+    "text": "It is pleasing that there is a large degree of support for the Southern fire station as I said it was music to my ears.",
     "label": "positive"
   },
   {
@@ -2996,20 +3076,12 @@
     "label": "positive"
   },
   {
-    "text": "We were all tickled pink.",
-    "label": "positive"
-  },
-  {
     "text": "It was a bit of a shock, you see, coming back and finding everyone had moved out, the happiest time of your life just a pile of rubble.",
     "label": "negative"
   },
   {
     "text": "He understood now all those clichs about hearts singing, feeling ten feet high, walking on air, cloud nine.",
     "label": "other"
-  },
-  {
-    "text": "You can bet your bottom dollar some teams would go bananas on that.",
-    "label": "negative"
   },
   {
     "text": "He had even heard himself referred to as not all there.",
@@ -3020,10 +3092,6 @@
     "label": "negative"
   },
   {
-    "text": "You're absolutely off your rocker, Dot.",
-    "label": "other"
-  },
-  {
     "text": "Poor Loopy Lil, she had a screw loose.",
     "label": "positive"
   },
@@ -3032,8 +3100,8 @@
     "label": "positive"
   },
   {
-    "text": "Now she comes to a decision whatever the cost and there is a cost, she's gon na have to eat humble pie, how are they gon na receive her when she goes back.",
-    "label": "negative"
+    "text": "It's a Freudian slip isn't it really?",
+    "label": "other"
   },
   {
     "text": "So swallow your pride and don't make an enemy of your own child.",
@@ -3056,16 +3124,16 @@
     "label": "negative"
   },
   {
-    "text": "Anyone who tries to gatecrash will be turned away.",
-    "label": "negative"
-  },
-  {
     "text": "Watch your language.",
     "label": "negative"
   },
   {
     "text": "But Charlton was quick to squash any suggestion his players overstep the mark physically.",
     "label": "negative"
+  },
+  {
+    "text": "I don't want to speak out of turn, of course.",
+    "label": "other"
   },
   {
     "text": "They should not stand on ceremony and overtly assert their authority.",
@@ -3080,23 +3148,15 @@
     "label": "negative"
   },
   {
-    "text": "It's just plain asking for trouble.",
-    "label": "negative"
-  },
-  {
     "text": "I managed to get a spot with my back to the wall.",
     "label": "other"
-  },
-  {
-    "text": "The blasted thing's on the blink again.",
-    "label": "negative"
   },
   {
     "text": "But you can't have missed this can of worms, even from a foot deep of sand.",
     "label": "other"
   },
   {
-    "text": "Making me carry the can.",
+    "text": "There is a crystal clear Catch 22 situation here.",
     "label": "negative"
   },
   {
@@ -3110,10 +3170,6 @@
   {
     "text": "Matters did not, however, come to a head until the war had ended.",
     "label": "other"
-  },
-  {
-    "text": "She'd come this far to say her piece and say it she would, come hell or high water.",
-    "label": "positive"
   },
   {
     "text": "Angry Fry vowed to take Barnet to an industrial tribunal for unfair dismissal -- promising that the story of his stormy relationship with Flashman would' all come out in the wash.",
@@ -3136,6 +3192,10 @@
     "label": "positive"
   },
   {
+    "text": "When Matt married Inez I was left high and dry.",
+    "label": "negative"
+  },
+  {
     "text": "Everton, to put it bluntly, are in dire straits.",
     "label": "negative"
   },
@@ -3148,16 +3208,20 @@
     "label": "negative"
   },
   {
-    "text": "There was going to be murder before the night was through, and I had to get clear.",
+    "text": "For rock climbers abseiling is often seen as a necessary evil, only because belays are often flimsy and safety ropes never used.",
     "label": "negative"
   },
   {
-    "text": "As Chief Whip he has managed to paper over the cracks in the back benches and maintain a united front behind the Prime Minister.",
-    "label": "positive"
+    "text": "Tim and I are just simply out of sync at the moment.",
+    "label": "negative"
   },
   {
     "text": "If a complaint arises, it declines to pass the buck to tour operators, hotels or airlines.",
     "label": "negative"
+  },
+  {
+    "text": "There are no quick fixes, and I will not be indulging in any quick fix.",
+    "label": "positive"
   },
   {
     "text": "Meanwhile, Llandundo put on a brave face yesterday and struggled to get back to normal after last week's devastating floods.",
@@ -3165,6 +3229,10 @@
   },
   {
     "text": "So far, research into psychoneuroimmunology has done no more than scratch the surface of this potentially important topic.",
+    "label": "negative"
+  },
+  {
+    "text": "On the other hand, some contacts with Hollywood spell trouble.",
     "label": "negative"
   },
   {
@@ -3180,16 +3248,16 @@
     "label": "positive"
   },
   {
+    "text": "It's the hymns that are the great stumbling block.",
+    "label": "negative"
+  },
+  {
     "text": "I think you have to take the bull by the horns don't you?",
     "label": "positive"
   },
   {
     "text": "The temptation to take the easy way out was well-nigh irresistible with youngsters who had failed to make their way.",
     "label": "negative"
-  },
-  {
-    "text": "I'm the tar baby.",
-    "label": "other"
   },
   {
     "text": "They blame budgetary pressures, persistent teething problems, and cost overruns.",
@@ -3204,10 +3272,6 @@
     "label": "negative"
   },
   {
-    "text": "It does not include casual payments given as a present or to help to tide over temporary difficulties.",
-    "label": "other"
-  },
-  {
     "text": "You're in a tight spot.",
     "label": "negative"
   },
@@ -3216,7 +3280,7 @@
     "label": "other"
   },
   {
-    "text": "Mr Kravchuk and his government face an uphill battle to push the arms treaties through parliament.",
+    "text": "Lotus was slightly out and the 80 was an unmitigated disaster.",
     "label": "negative"
   },
   {
@@ -3224,8 +3288,8 @@
     "label": "negative"
   },
   {
-    "text": "Everything had gone without a hitch.",
-    "label": "positive"
+    "text": "We have had to batten down the hatches.",
+    "label": "negative"
   },
   {
     "text": "A calculated risk.",
@@ -3236,8 +3300,8 @@
     "label": "other"
   },
   {
-    "text": "Bit of a close shave, that.",
-    "label": "other"
+    "text": "Cry Wolf situation?, asked Bunker after a long pause.",
+    "label": "negative"
   },
   {
     "text": "John Hill says he started racing with a ski boat and then when the engines got bigger he had to have a go at powerboating which he really enjoys... and what of the danger... the dance with water is a dice with death..",
@@ -3248,8 +3312,12 @@
     "label": "negative"
   },
   {
-    "text": "At 5 6 and 9 stone, Hanif was the slightest of all postwar Test leaders, beating Hassett by a hair 's breadth.",
-    "label": "positive"
+    "text": "Instead of getting hysterical over the remote possibility of gutter-level heroin addiction, we have to contemplate something almost as hard and much more likely -- that our children will sample what's available and live to tell the tale.",
+    "label": "negative"
+  },
+  {
+    "text": "Look before you leap is a maxim impulsive people fail to follow.",
+    "label": "negative"
   },
   {
     "text": "It wont become a no go area and the youths involved know it.",
@@ -3272,10 +3340,6 @@
     "label": "positive"
   },
   {
-    "text": "I hope they're in safe hands.",
-    "label": "positive"
-  },
-  {
     "text": "But just to be on the safe side, we're taking the Coal Board to court.",
     "label": "positive"
   },
@@ -3284,11 +3348,15 @@
     "label": "negative"
   },
   {
-    "text": "With his own property, it was perhaps easier too for a baron to take risks or sail close to the wind.",
-    "label": "positive"
+    "text": "And, of course, there is the moral issue at stake.",
+    "label": "other"
   },
   {
     "text": "Better watch your step with him.",
+    "label": "negative"
+  },
+  {
+    "text": "You've already had one long journey today and I'd rather you didn't fall asleep at the wheel.",
     "label": "negative"
   },
   {
@@ -3297,6 +3365,10 @@
   },
   {
     "text": "When they do, they hit the sack for marathon love-making sessions, that's once Bill's made the bed.",
+    "label": "positive"
+  },
+  {
+    "text": "Or you can do absolutely nothing but lie in the sun in the garden and tan.",
     "label": "positive"
   },
   {
@@ -3332,12 +3404,12 @@
     "label": "other"
   },
   {
-    "text": "His government's free-the-market monetarism was beginning to bear fruit.",
-    "label": "positive"
-  },
-  {
     "text": "I want to do well for the club but I seem to be heading up a blind alley and maybe a move is the only solution.",
     "label": "negative"
+  },
+  {
+    "text": "I long for a blockbuster that's also good writing",
+    "label": "other"
   },
   {
     "text": "Evans made the saving tackle, just as he did when Tony Stanger, having barn-stormed out of Wayne Proctor's tackle, threatened to bring the house down in a move created by Craig Chalmers' adroit collection of Mike Rayer's kick, the irrepressible Armstrong arcing out of harm's way on a touchline blast and the thumping support of Cronin and Kenny Milne (one tighthead to the good).",
@@ -3364,8 +3436,16 @@
     "label": "positive"
   },
   {
+    "text": "Recruiting outsiders is a dead duck for the moment, another five years of failure and the time may yet come.",
+    "label": "negative"
+  },
+  {
     "text": "The rest was all downhill.",
     "label": "negative"
+  },
+  {
+    "text": "However, even if you draw a blank, it is always worth checking to see whether or not you can influence the external event that starts the sequence, so either while you are being hindered by an unproductive feeling or after an experience where you were hindered",
+    "label": "positive"
   },
   {
     "text": "Who's going to look after them when they fall flat on their face and come whining, that's what I want to know?",
@@ -3377,10 +3457,6 @@
   },
   {
     "text": "Like Walker, Gould is adamant that his team's form isn't just a flash in the pan.",
-    "label": "positive"
-  },
-  {
-    "text": "Now he's gone back to driving school in an effort to pass with flying colours.",
     "label": "positive"
   },
   {
@@ -3400,8 +3476,16 @@
     "label": "other"
   },
   {
+    "text": "Do we have the makings of a champion, or does stress and anxiety get the better of you?",
+    "label": "other"
+  },
+  {
     "text": "Matron will go up in smoke if he doesn't.",
     "label": "negative"
+  },
+  {
+    "text": "I look like I've got it made, don't I?",
+    "label": "positive"
   },
   {
     "text": "The country is still on its knees, exhausted from 25 years of Ceaucescu's oppression",
@@ -3412,12 +3496,16 @@
     "label": "positive"
   },
   {
-    "text": "You've come a long way in a short time.",
+    "text": "She's working like a beaver and improving in leaps and bounds.",
     "label": "positive"
   },
   {
-    "text": "With demand for homeloans at a low ebb, few will want to go higher.",
-    "label": "other"
+    "text": "Or will they live to fight another day?",
+    "label": "negative"
+  },
+  {
+    "text": "You've come a long way in a short time.",
+    "label": "positive"
   },
   {
     "text": "If anybody can make a comeback, he will and I'm not one of his great admirers.",
@@ -3428,8 +3516,8 @@
     "label": "other"
   },
   {
-    "text": "Achieving a standstill is vital for Heron if it is to make headway in rescheduling its debt.",
-    "label": "other"
+    "text": "Think you can make a go of it?",
+    "label": "positive"
   },
   {
     "text": "Happily, the faux-pas hasn't stopped Dino continuing to make inroads into the Irish record market",
@@ -3441,10 +3529,6 @@
   },
   {
     "text": "What the charity groups think of him is hardly going to make or break him in the operatic world.",
-    "label": "positive"
-  },
-  {
-    "text": "Are you ready for the moment of truth?",
     "label": "positive"
   },
   {
@@ -3462,6 +3546,18 @@
   {
     "text": "The King of British Airways was, shall we say, a bit ahead of the pack.",
     "label": "positive"
+  },
+  {
+    "text": "Did you get the sack or did you just pack it in?",
+    "label": "negative"
+  },
+  {
+    "text": "Ben Shepherd, for you'll find it hard to pass muster as a simple man.",
+    "label": "negative"
+  },
+  {
+    "text": "Fusion takes place in the Sun protons fusing to deuterons eventually producing helium and liberating heat.",
+    "label": "other"
   },
   {
     "text": "The collapse of the junk-bond market has put the kibosh on a management buy-out of Wickes, an engineering and home-furnishings company.",
@@ -3488,12 +3584,12 @@
     "label": "negative"
   },
   {
-    "text": "And not even Glen Hoddle's magic touch could save the day.",
-    "label": "negative"
+    "text": "I want to sail through with you like the fish.",
+    "label": "positive"
   },
   {
-    "text": "Why shouldn't Gay come to Sunset Cottage, and sink or swim with them?",
-    "label": "other"
+    "text": "And not even Glen Hoddle's magic touch could save the day.",
+    "label": "negative"
   },
   {
     "text": "Sky 's the limit right?",
@@ -3504,20 +3600,16 @@
     "label": "positive"
   },
   {
-    "text": "We're on the up and up.",
+    "text": "But utility developers shouldn't throw in the towel just yet.",
     "label": "positive"
   },
   {
-    "text": "So, with luck, they hoped to weather the storm.",
+    "text": "We're on the up and up.",
     "label": "positive"
   },
   {
     "text": "A win-win outcome is where all parties involved are successful in achieving their objectives.",
     "label": "other"
-  },
-  {
-    "text": "The fine talk in the sessions about love and understanding, give and take, began to wither on the vine.",
-    "label": "negative"
   },
   {
     "text": "She whacked butter and eggs with her wooden spoon.",
@@ -3528,7 +3620,7 @@
     "label": "other"
   },
   {
-    "text": "If the two papers had appeared out of the blue, with no preparation of the scientific ground, they would surely have made an enormous impact both among astronomers and in the wider world.",
+    "text": "His jaw dropped slightly as he took them in.",
     "label": "other"
   },
   {
@@ -3540,15 +3632,7 @@
     "label": "other"
   },
   {
-    "text": "More than the architecture, the museum's Identity Card Project is likely to raise eyebrows.",
-    "label": "negative"
-  },
-  {
     "text": "Horror-struck, she was rooted to the spot with terror, her eyes drawn to the top of the stairs, waiting for the first sign.",
-    "label": "negative"
-  },
-  {
-    "text": "He stopped dead in his tracks, rooted to the spot with horror.",
     "label": "negative"
   },
   {
@@ -3557,6 +3641,10 @@
   },
   {
     "text": "Words fail me, I tell you.",
+    "label": "negative"
+  },
+  {
+    "text": "He told her he and Mallachy had got involved through Mallachy's big mouth in a late-club row up the Malone Road where some students had been blowing off their mouths over politics and religion, and it had almost come to blows.",
     "label": "negative"
   },
   {
@@ -3576,10 +3664,6 @@
     "label": "other"
   },
   {
-    "text": "The market traders are up in arms about this and I found them in the process of trying to get a petition together but it it wasn't put together right, they were just getting people to sign blank pieces of paper.",
-    "label": "negative"
-  },
-  {
     "text": "Fullback Marty Roebuck continues to be in the wars and suffered a broken jaw in a pre-season club trial.",
     "label": "negative"
   },
@@ -3592,8 +3676,8 @@
     "label": "other"
   },
   {
-    "text": "Dr George Carey held out an olive branch to opponents by saying clergy opposed to women priests would not be barred from becoming bishops.",
-    "label": "positive"
+    "text": "Moreover, its existence was completely at odds with the national trend for community care, since patients who were referred were brought to a location quite remote from the area in which they had lived.",
+    "label": "negative"
   },
   {
     "text": "That first day at school depressed me, and during the next few days I begged my parents to let me stay at home, which of course was out of the question.",
@@ -3620,12 +3704,12 @@
     "label": "negative"
   },
   {
-    "text": "After all, it's water under the bridge now, surely?",
-    "label": "positive"
+    "text": "None of us can sit on the fence.",
+    "label": "other"
   },
   {
-    "text": "It may be necessary to get the individual to look at alternative ways of approaching and coping with the circumstances of life without work, perhaps trying to wipe the slate clean and start the process all over again.",
-    "label": "other"
+    "text": "After all, it's water under the bridge now, surely?",
+    "label": "positive"
   },
   {
     "text": "A young woman with a shopping trolley finds herself caught in the crossfire.",
@@ -3640,16 +3724,16 @@
     "label": "negative"
   },
   {
-    "text": "Cliff is the nearest thing we can muster to a devil 's advocate.",
-    "label": "negative"
-  },
-  {
     "text": "The mob, now several hundred strong, and going at it hammer and tongs, took time out to boo and cheer at the military presence.",
     "label": "other"
   },
   {
     "text": "America put Japan back on its feet, dusted it down, shook hands with it and said let bygones be bygones.",
     "label": "positive"
+  },
+  {
+    "text": "Best to let sleeping dogs lie.",
+    "label": "other"
   },
   {
     "text": "Councillors have found themselves at loggerheads with the Government on a number of occasions.",
@@ -3660,11 +3744,19 @@
     "label": "negative"
   },
   {
+    "text": "They were too embarrassed or didn't want to make a mountain out of a molehill.",
+    "label": "negative"
+  },
+  {
     "text": "The Everyman is making this exclusive offer to the Echo to promote the two for the price of one Bard Card ticket, which operates for its own Shakespearian production, Much Ado About Nothing, until Friday.",
     "label": "other"
   },
   {
     "text": "And you as the poor customer are going to have to argue the toss as to whether it's a defect or faulty workmanship, so the chances are you won't be able to claim.",
+    "label": "negative"
+  },
+  {
+    "text": "In 1751 the Julian calendar was abandoned by the Chesterfield Act which instituted the Gregorian calendar, but all hell broke loose.",
     "label": "negative"
   },
   {
@@ -3704,10 +3796,6 @@
     "label": "negative"
   },
   {
-    "text": "For crying out loud.",
-    "label": "negative"
-  },
-  {
     "text": "Cut it out, Ma.",
     "label": "negative"
   },
@@ -3728,10 +3816,6 @@
     "label": "negative"
   },
   {
-    "text": "Good riddance, thought Harry.",
-    "label": "negative"
-  },
-  {
     "text": "Oh, why must you harp on about that.",
     "label": "negative"
   },
@@ -3744,12 +3828,12 @@
     "label": "negative"
   },
   {
-    "text": "On the other hand, Colonel Haldane did not succeed in winning the vote of the burgh of Inverkeithing itself, a failure which may perhaps be linked to the lasting hostility of the burgesses occasioned by his own quick temper two years earlier.",
+    "text": "You can't mind your own business.",
     "label": "negative"
   },
   {
-    "text": "Guido was being mercifully discreet about what Silvia and Jeff had done to him, when she had thought it would be more his style to rant and rave in anger.",
-    "label": "other"
+    "text": "On the other hand, Colonel Haldane did not succeed in winning the vote of the burgh of Inverkeithing itself, a failure which may perhaps be linked to the lasting hostility of the burgesses occasioned by his own quick temper two years earlier.",
+    "label": "negative"
   },
   {
     "text": "The frustration and worry she felt at the moment were enough to make her want to scream blue murder.",
@@ -3776,16 +3860,8 @@
     "label": "other"
   },
   {
-    "text": "Italy must take the biscuit.",
-    "label": "negative"
-  },
-  {
     "text": "That's the last straw.",
     "label": "negative"
-  },
-  {
-    "text": "They do not only make their way through stuffed and clamoring doorways, but emerge from the unseen bowels of the pub, as though they have held themselves privately for days in the cellar, waiting with bated breath, presenting themselves only as the hour grows ripe.",
-    "label": "other"
   },
   {
     "text": "That's what it was all about six years ago, why you were a bundle of nerves every time I came anywhere near you, because you couldn't cope with your feelings.",
@@ -3793,10 +3869,6 @@
   },
   {
     "text": "You're like a cat on hot bricks.",
-    "label": "negative"
-  },
-  {
-    "text": "And you'll hold your breath until you turn blue if I won't, I suppose?",
     "label": "negative"
   },
   {
@@ -3816,7 +3888,15 @@
     "label": "negative"
   },
   {
+    "text": "He was still on tenterhooks waiting for his directors decision about the manager's job.",
+    "label": "negative"
+  },
+  {
     "text": "All but a handful of the 18,298 crowd stayed in their places but their growing frustration reached fever pitch in the 88th minute when Adams stole in unmarked at the far post to volley home Le Tissier's inviting cross.",
+    "label": "negative"
+  },
+  {
+    "text": "Hold your horses, the lady's with me.",
     "label": "negative"
   },
   {
@@ -3826,10 +3906,6 @@
   {
     "text": "I had no personal control over branch funds, but had to bear the brunt of the attack.",
     "label": "negative"
-  },
-  {
-    "text": "Should you cook for others beside yourself, they too will benefit from the new food regime.",
-    "label": "positive"
   },
   {
     "text": "I'm bored to tears with your feeling guilty.",
@@ -3852,10 +3928,6 @@
     "label": "other"
   },
   {
-    "text": "You can get it out of your system... get rid of your frustrations about your parents and that.",
-    "label": "positive"
-  },
-  {
     "text": "Odd, the things people get worked up about.",
     "label": "negative"
   },
@@ -3868,12 +3940,8 @@
     "label": "other"
   },
   {
-    "text": "I was head over heels in love with our English teacher when I was about fourteen or fifteen.",
-    "label": "positive"
-  },
-  {
-    "text": "The following day, however, Mrs Thatcher had a change of heart, and asked him to flesh out his figures.",
-    "label": "other"
+    "text": "All through the African campaign I longed to hear from you, and found it hard at times to keep a stiff upper lip without your help.",
+    "label": "negative"
   },
   {
     "text": "She would look on the bright side.",
@@ -3912,15 +3980,11 @@
     "label": "other"
   },
   {
-    "text": "So he left me in a stew of doubt.",
-    "label": "negative"
-  },
-  {
     "text": "Swallow your pride and your anger, old man.",
     "label": "negative"
   },
   {
-    "text": "She seemed to take a fancy to a green patch further into the field and began to amble slowly towards it",
+    "text": "Isn't that just the place a woman would keep her love letters, and Garry is the type of man who would write sweet nothings, isn't he?",
     "label": "positive"
   },
   {
@@ -3936,19 +4000,11 @@
     "label": "positive"
   },
   {
-    "text": "A moment later the two of them had disappeared into the house, leaving me standing there in the sunshine, feeling suddenly weak at the knees.",
-    "label": "negative"
-  },
-  {
-    "text": "What good is it doing him, capering about with bells on?",
+    "text": "Meanwhile the ethereal life of Ranveer, Bubbles and Socks, an unworldly trio who react in a childlike way to every sling and arrow as if permanently looking for Nanny, starts to unravel when a new administrator takes over the game park with thinly veiled hostility towards his country's nobility.",
     "label": "negative"
   },
   {
     "text": "Just tune in, chill out, pull up a spliff.",
-    "label": "positive"
-  },
-  {
-    "text": "After a while, the bullying at school didn't affect me too much, and I was in my element with all the wildlife around me.",
     "label": "positive"
   },
   {
@@ -3968,11 +4024,7 @@
     "label": "positive"
   },
   {
-    "text": "Everyone knows that the party is over.",
-    "label": "negative"
-  },
-  {
-    "text": "Just pulling your leg.",
+    "text": "Willi was infinitely preferable when they were in a crowd, when he was being the life and soul of the party.",
     "label": "positive"
   },
   {
@@ -4000,11 +4052,15 @@
     "label": "negative"
   },
   {
-    "text": "As Michael looked at the man sitting opposite, his fat ugly face grinning like a Cheshire cat's, he felt an impulse to smash his fist into his teeth.",
-    "label": "negative"
+    "text": "There was also a large cat, which was sitting on a chair and grinning from ear to ear.",
+    "label": "positive"
   },
   {
     "text": "Honestly that plus my homemade crme caramel made in the individual ramekins and he's happy as Larry.",
+    "label": "positive"
+  },
+  {
+    "text": "Stranger than the truth perhaps but tireless, happy go lucky, organised, a friend at all times, these are the boys and girls that really will ensure you get to make the most of your holiday.",
     "label": "positive"
   },
   {
@@ -4012,8 +4068,8 @@
     "label": "negative"
   },
   {
-    "text": "The noise must have been awful but it was sweet music to my ears.",
-    "label": "positive"
+    "text": "I didn't exactly jump for joy.",
+    "label": "negative"
   },
   {
     "text": "She might live to rue this impetuous decision, but at least she'd never look back with regret on what might have been if only she'd had the courage to dare.",
@@ -4025,10 +4081,6 @@
   },
   {
     "text": "He was a strong, healthy lad and as pleased as punch to be working with Dad.",
-    "label": "positive"
-  },
-  {
-    "text": "Match of the Day's team, as well as his own, in raptures.",
     "label": "positive"
   },
   {
@@ -4048,6 +4100,10 @@
     "label": "positive"
   },
   {
+    "text": "He said I'm on top of the world.",
+    "label": "positive"
+  },
+  {
     "text": "An hour later Sophie left the pet shop feeling as though she were walking on air.",
     "label": "positive"
   },
@@ -4058,10 +4114,6 @@
   {
     "text": "It's not all there yet.",
     "label": "other"
-  },
-  {
-    "text": "So don't go nuts, use those leftovers in the following recipes.",
-    "label": "positive"
   },
   {
     "text": "Don't forget, I've seen you in some states, Ruth, practically off your rocker wasting away wrapped up in that sod.",
@@ -4080,6 +4132,10 @@
     "label": "negative"
   },
   {
+    "text": "Swallow your pride and your anger, old man.",
+    "label": "negative"
+  },
+  {
     "text": "Skills are acquired by a process of trial and error but the trials are not entirely random as is assumed in classical trial and error learning.",
     "label": "other"
   },
@@ -4090,10 +4146,6 @@
   {
     "text": "It had rather given the impression that splits were not the done thing.",
     "label": "other"
-  },
-  {
-    "text": "Angry scenes erupted at a meeting in Darlington last night as the British National Party tried to gatecrash an environmental debate.",
-    "label": "negative"
   },
   {
     "text": "And if we overstep the mark we offer the manufacturer the right to reply.",
@@ -4108,15 +4160,7 @@
     "label": "other"
   },
   {
-    "text": "Trade in recyclables is the Achilles heel of waste regulation.",
-    "label": "negative"
-  },
-  {
     "text": "Its clatter set alarm bells ringing in her head.",
-    "label": "negative"
-  },
-  {
-    "text": "I can assure you, from some very solid experience, it's asking for trouble to be obstructive.",
     "label": "negative"
   },
   {
@@ -4128,16 +4172,20 @@
     "label": "other"
   },
   {
+    "text": "In mystery and a can of worms.",
+    "label": "negative"
+  },
+  {
     "text": "Fear returns to haunt us as managers carry the can",
     "label": "negative"
   },
   {
-    "text": "This is an example of what I have labelled a' Catch 22' clause that is unfortunately very general to interpretations in gender studies.",
+    "text": "A chill wind came through the open doors to the balcony.",
     "label": "other"
   },
   {
-    "text": "A chill wind came through the open doors to the balcony.",
-    "label": "other"
+    "text": "There's only one cloud on the horizon.",
+    "label": "negative"
   },
   {
     "text": "Matters regarding the Grammar School had come to a head.",
@@ -4152,6 +4200,10 @@
     "label": "negative"
   },
   {
+    "text": "And that is the crux of the matter.",
+    "label": "other"
+  },
+  {
     "text": "I'll get to the bottom of it.",
     "label": "positive"
   },
@@ -4164,24 +4216,12 @@
     "label": "negative"
   },
   {
-    "text": "And when a club is in dire straits there is a tendency to be over-critical, but Everton are not just in trouble.",
-    "label": "negative"
+    "text": "I can't leave her in the lurch",
+    "label": "positive"
   },
   {
     "text": "A firearm is to be used only as a last resort.",
     "label": "other"
-  },
-  {
-    "text": "I got the feeling that there could be murder done.",
-    "label": "negative"
-  },
-  {
-    "text": "Bureaucracy was also a necessary evil to cope with the ravages of war.",
-    "label": "negative"
-  },
-  {
-    "text": "The interruption had knocked her thoughts out of sync",
-    "label": "negative"
   },
   {
     "text": "Coupled with the exit of some vital players, it was as much as Neath could do to paper over the cracks and keep winning.",
@@ -4196,15 +4236,7 @@
     "label": "other"
   },
   {
-    "text": "I suppose parents have to put on a brave face.",
-    "label": "positive"
-  },
-  {
     "text": "If the results from the Morton Salt Mine are correct they seem to spell trouble for one of the simplest' grand unified' theories.",
-    "label": "negative"
-  },
-  {
-    "text": "As it was, we were often on a sticky wicket when the rummage crew had to deal with the crane drivers for a smuggling offence.",
     "label": "negative"
   },
   {
@@ -4228,10 +4260,6 @@
     "label": "other"
   },
   {
-    "text": "Mr Kelloway says there have only been minor teething problems and he is satisfied the machine is ready for production.",
-    "label": "positive"
-  },
-  {
     "text": "But once again the thorny issue of bolts in West Penwith is raised.",
     "label": "negative"
   },
@@ -4248,10 +4276,6 @@
     "label": "positive"
   },
   {
-    "text": "Now you're suggesting that's only the tip of the iceberg.",
-    "label": "negative"
-  },
-  {
     "text": "The raid itself was an unmitigated disaster.",
     "label": "negative"
   },
@@ -4264,12 +4288,12 @@
     "label": "positive"
   },
   {
-    "text": "The Olympics were played without a hitch at a time of increasingly intense international situations.",
-    "label": "positive"
-  },
-  {
     "text": "As far as road races are concerned we are having to financially batten down the hatches this year and all events will be self-financing.",
     "label": "negative"
+  },
+  {
+    "text": "It was a calculated risk.",
+    "label": "positive"
   },
   {
     "text": "You may even throw caution to the wind and try one of our Mystery Trips.",
@@ -4278,6 +4302,10 @@
   {
     "text": "He has polished shoes, a close shave, and too much pride for a free drink.",
     "label": "positive"
+  },
+  {
+    "text": "But every day hundreds of ordinary workers dice with death to complete these essential tasks.",
+    "label": "negative"
   },
   {
     "text": "It seems to be looking straight at me, its knuckled legs poised, tense, waiting I know for one false move from me to trigger it into an electrifying spring... straight at me.",
@@ -4296,16 +4324,8 @@
     "label": "negative"
   },
   {
-    "text": "Proceed with caution and, at the risk of sounding like a tabloid astrologer, look before you leap.",
-    "label": "negative"
-  },
-  {
     "text": "There are queues, of course, and Nasserein is definitely a no go area.",
     "label": "negative"
-  },
-  {
-    "text": "I'm going to marry you and lock you up out of harm 's way.",
-    "label": "positive"
   },
   {
     "text": "The war took away the unfortunate necessity, as Unionists saw it, to play with fire in the national interest, but it did not materially alter their view of themselves.",
@@ -4316,19 +4336,15 @@
     "label": "positive"
   },
   {
-    "text": "OK, we'll make it half-eight just to be on the safe side.",
-    "label": "positive"
-  },
-  {
     "text": "There is, as James Thurber sagely noted, no safety in numbers or in anything else.",
     "label": "negative"
   },
   {
-    "text": "Nothing less than the future of mankind is at stake.",
+    "text": "Take cover now to beat redundancy nightmare.",
     "label": "negative"
   },
   {
-    "text": "Take cover now to beat redundancy nightmare.",
+    "text": "But watch your step, Kit.",
     "label": "negative"
   },
   {
@@ -4344,8 +4360,8 @@
     "label": "negative"
   },
   {
-    "text": "That said, Olazabal offered little encouragement that he is finally ready to drop the tag of' the great pretender' and capture the major championship that his enormous talents deserve.",
-    "label": "positive"
+    "text": "A minute later he went out like a light.",
+    "label": "negative"
   },
   {
     "text": "I sleep like a log and never get indigestion.",
@@ -4353,6 +4369,10 @@
   },
   {
     "text": "Ah, well, sleep on it.",
+    "label": "positive"
+  },
+  {
+    "text": "Others get up, without disturbing their sweetly sleeping partner, and do jobs, anything from planting out seedlings to preparing books for the auditors.",
     "label": "positive"
   },
   {
@@ -4392,10 +4412,6 @@
     "label": "negative"
   },
   {
-    "text": "Devolution is a dead duck.",
-    "label": "negative"
-  },
-  {
     "text": "We're dead in the water, small children laugh in our faces.",
     "label": "negative"
   },
@@ -4420,11 +4436,11 @@
     "label": "positive"
   },
   {
-    "text": "They had a low-key attitude to the region and had just wanted to get a foot in the door.",
+    "text": "The other decision she made was that, on the one-per-cent chance that it wasn't a fool 's errand she was on, since it was uphill for most of the way and she didn't want to arrive hot and sticky, she would take a taxi up, and walk down",
     "label": "other"
   },
   {
-    "text": "But for self -consciousness to get a foothold it would be necessary to establish that they were aware of recognising themselves.",
+    "text": "They had a low-key attitude to the region and had just wanted to get a foot in the door.",
     "label": "other"
   },
   {
@@ -4432,8 +4448,8 @@
     "label": "other"
   },
   {
-    "text": "Yup, I've got it made.",
-    "label": "positive"
+    "text": "We haven't worked all these months to have it go up in smoke now.",
+    "label": "other"
   },
   {
     "text": "The country's on its knees and snotty kids in bin-liners are abroad in the cities.",
@@ -4456,8 +4472,8 @@
     "label": "positive"
   },
   {
-    "text": "Cos you know we're hoping to make a comeback next year.",
-    "label": "positive"
+    "text": "He came in when the lads were at a low ebb somewhere on the ocean bed.",
+    "label": "other"
   },
   {
     "text": "Having answered his own question of whether he would make the cut, he proved himself capable of denying the one that he was a one-major wonder.",
@@ -4488,8 +4504,16 @@
     "label": "negative"
   },
   {
+    "text": "In other words, it is a form of Murphy 's law, things always tend to go wrong.",
+    "label": "negative"
+  },
+  {
     "text": "They were left with the feeling of not getting anywhere.",
     "label": "negative"
+  },
+  {
+    "text": "With Diana out of the picture, Charles is emerging as a fitting father figure.",
+    "label": "positive"
   },
   {
     "text": "The fact we are not ahead of the pack at the moment is a help because everyone is not talking about us winning it.",
@@ -4506,6 +4530,10 @@
   {
     "text": "He had worked with Elizabeth in the 1951 picture A Place in the Sun and they had remained close friends.",
     "label": "positive"
+  },
+  {
+    "text": "This was indeed a Pyrrhic victory, because West Indies cricket was assuredly the loser.",
+    "label": "other"
   },
   {
     "text": "James wrote a book, Rags to Riches, giving advice on how to succeed in business.",
@@ -4540,24 +4568,36 @@
     "label": "positive"
   },
   {
+    "text": "Movies that are a smash hit at the box-office still end up losing millions.",
+    "label": "other"
+  },
+  {
+    "text": "They do not want to give up, to throw in the towel, to admit defeat.",
+    "label": "positive"
+  },
+  {
     "text": "And the search is on to find the top dog among an entry of eight hundred collies, German shepherds and even poodles.",
     "label": "other"
   },
   {
-    "text": "But since then Oxford have been on the up and up.",
-    "label": "positive"
-  },
-  {
-    "text": "If she calmed down, she might just weather the storm.",
-    "label": "positive"
+    "text": "The key behaviours that, even in the most difficult circumstance, make a win-win outcome.",
+    "label": "other"
   },
   {
     "text": "As a starting point for a full-function open operating system, VM could scarcely be bettered, but IBM in its wisdom poured money into MVS and allowed VM to wither on the vine.",
     "label": "other"
   },
   {
+    "text": "A huge wooden spoon protruded from the cauldron.",
+    "label": "other"
+  },
+  {
     "text": "This order came like a bolt from the blue and I'm very grateful for it.",
     "label": "positive"
+  },
+  {
+    "text": "It was completely out of the blue.",
+    "label": "other"
   },
   {
     "text": "His jaw dropped.",
@@ -4596,10 +4636,6 @@
     "label": "negative"
   },
   {
-    "text": "1979 Elvis Costello and Bonnie Bramlett come to blows after a racialist argument at the Holiday Inn in Columbus, Ohio.",
-    "label": "negative"
-  },
-  {
     "text": "If they want to get promoted they have got to fight tooth and nail.",
     "label": "negative"
   },
@@ -4616,16 +4652,16 @@
     "label": "negative"
   },
   {
-    "text": "Imagine having a brass band meet a colonel in the middle of the bogs with the whole countryside up in arms.",
-    "label": "negative"
-  },
-  {
     "text": "DeFreitas and Lewis were struggling with muscle stiffness, Smith and Stewart were in the wars from close fielding, and Reeve, picked ahead of the extra batsman Ramprakash for just such a position, was off the field all day with food poisoning.",
     "label": "other"
   },
   {
     "text": "It is a moot point as to how far the apparent relaxation of attitudes towards unmarried mothers during World War I resulted in any real shifts in policy during the inter-war years.",
     "label": "other"
+  },
+  {
+    "text": "No, Jack, absolutely nothing doing. ",
+    "label": "negative"
   },
   {
     "text": "However, public perception of risk is often at odds with the objective measures used by engineers.",
@@ -4640,11 +4676,7 @@
     "label": "negative"
   },
   {
-    "text": "He claims that the ex-Celt tried to pick a fight with him in the toilets at a function after Manchester United's unsuccessful FA Cup Final against Southampton in 1976.",
-    "label": "negative"
-  },
-  {
-    "text": "Failure to agree on the basic principles of caring for refugee children started a running battle between liberal and orthodox exponents of Judaism which lasted throughout the war and beyond.",
+    "text": "To date, it's been reasonably simple to pick holes in there.",
     "label": "negative"
   },
   {
@@ -4654,10 +4686,6 @@
   {
     "text": "All water under the bridge until next year.",
     "label": "positive"
-  },
-  {
-    "text": "You just got caught in the crossfire.",
-    "label": "negative"
   },
   {
     "text": "You need to clear the air and get deep seated anxieties and worries off your chest Saturday.",
@@ -4684,6 +4712,10 @@
     "label": "other"
   },
   {
+    "text": "Eleanor and Henry had separated unofficially and there was no love lost between them.",
+    "label": "negative"
+  },
+  {
     "text": "The use of prose for mockery in Much Ado about Nothing is so widespread as to make illustration superfluous.",
     "label": "other"
   },
@@ -4700,12 +4732,8 @@
     "label": "negative"
   },
   {
-    "text": "It has more than fulfilled its founding fathers' two objectives: to rebuild the economy of a shattered Europe, and to bury the hatchet between France and Germany and so bind together the nations of Europe that they would never go to war again.",
-    "label": "positive"
-  },
-  {
-    "text": "His stomach was churning but he knew he could elude her if only he could remain calm and call her bluff.",
-    "label": "negative"
+    "text": "Understandably, this has been a bone of contention with many of the staff of the polytechnics ever since, who maintain that for teaching at degree level to be lively and effective it needs to be supported within the institution by an active research programme.",
+    "label": "other"
   },
   {
     "text": "I wouldn't ask your father, but your mother would, I'm sure, be up in arms.",
@@ -4724,12 +4752,16 @@
     "label": "negative"
   },
   {
-    "text": "Give it a rest, lads, for pity's sake.",
+    "text": "Yes you do watch their fees, but they haven't watched yours for crying out loud it's quite obviously.",
     "label": "negative"
   },
   {
-    "text": "The black-market dollar, Brazil's most nervous index, did not go through the roof.",
-    "label": "other"
+    "text": "Cut it out.",
+    "label": "negative"
+  },
+  {
+    "text": "Give it a rest, lads, for pity's sake.",
+    "label": "negative"
   },
   {
     "text": "And good riddance.",
@@ -4744,15 +4776,11 @@
     "label": "other"
   },
   {
-    "text": "Mind your own business.",
-    "label": "negative"
-  },
-  {
     "text": "It has never been the Queen's style to rant and rave when things have gone wrong.",
     "label": "negative"
   },
   {
-    "text": "Nicaraguans see red over economic ruin Grinding poverty.",
+    "text": "We will all go and scream blue murder at the goats and make them thoroughly ashamed and sorry for themselves.",
     "label": "negative"
   },
   {
@@ -4760,11 +4788,11 @@
     "label": "negative"
   },
   {
-    "text": "Warning MacQuillan against his folly was one thing, killing him to save him from it was going too far.",
+    "text": "All steamed up over the real thing.",
     "label": "negative"
   },
   {
-    "text": "Mr Brown said the planned charges were the last straw for customers already angry over banks' high-handed attitude.",
+    "text": "Warning MacQuillan against his folly was one thing, killing him to save him from it was going too far.",
     "label": "negative"
   },
   {
@@ -4772,7 +4800,7 @@
     "label": "negative"
   },
   {
-    "text": "Mr Cubbage was like a cat on hot bricks, he was most distraught at Coleen's decision to go to England, and he bombarded her with letters and flowers.",
+    "text": "So I wouldn't hold your breath for them to move.",
     "label": "negative"
   },
   {
@@ -4788,8 +4816,16 @@
     "label": "negative"
   },
   {
+    "text": "I'm really on tenterhooks about the twins.",
+    "label": "negative"
+  },
+  {
     "text": "It was after the tour that Take That-mania reached fever pitch and the band were forced to employer a minder to make sure they don't get into any sticky situations.",
     "label": "positive"
+  },
+  {
+    "text": "Hold your horses, was Hilary a boarder?",
+    "label": "other"
   },
   {
     "text": "But the Tigersharks are wide awake and raring to go.",
@@ -4800,12 +4836,12 @@
     "label": "negative"
   },
   {
-    "text": "Just another wench, he told himself angrily, but deep down he knew different.",
+    "text": "You, my san, have got a chip on your shoulder.",
     "label": "negative"
   },
   {
-    "text": "How about that for a Freudian slip?",
-    "label": "other"
+    "text": "It would have been rather too close to home.",
+    "label": "negative"
   },
   {
     "text": "It was ridiculous, letting herself get worked up into this state.",
@@ -4817,10 +4853,6 @@
   },
   {
     "text": "Did I accuse you of being as hard as nails?",
-    "label": "negative"
-  },
-  {
-    "text": "You'd hurt me so badly, there I was, head over heels in love with you, and you were asking me to be your mistress.",
     "label": "negative"
   },
   {
@@ -4840,8 +4872,8 @@
     "label": "negative"
   },
   {
-    "text": "And she bore Arnie no hard feelings.",
-    "label": "positive"
+    "text": "He's only back from the war two minutes and he's put the Medical Officer of Health's nose out of joint.",
+    "label": "negative"
   },
   {
     "text": "And of course we're pleased as Punch to put him in print again.",
@@ -4853,10 +4885,6 @@
   },
   {
     "text": "He said:' I still have a soft spot for Arsenal.",
-    "label": "positive"
-  },
-  {
-    "text": "Their very names speak volumes for the unity which the Spirit creates.",
     "label": "positive"
   },
   {
@@ -4896,10 +4924,6 @@
     "label": "positive"
   },
   {
-    "text": "There is also a dancing monkey with bells on its ankles.",
-    "label": "other"
-  },
-  {
     "text": "Yo dudes, it's time to chill out with DJ Phil Disco King.",
     "label": "positive"
   },
@@ -4910,10 +4934,6 @@
   {
     "text": "The morning session at the law courts was in full swing, and the halls and corridors were crowded.",
     "label": "positive"
-  },
-  {
-    "text": "This will be followed by the display programme and then we are planning a sponsored event which can be as a family team, with Mum, children and husband/grannie/auntie or a group of friends, each team of four plus one must have a ball.",
-    "label": "other"
   },
   {
     "text": "She was having a very enjoyable time and was clearly the life and soul of the party.",
@@ -4944,6 +4964,10 @@
     "label": "positive"
   },
   {
+    "text": "Pensioner Ivy Groves was down in the mouth yesterday - because Government red tape will leave her without false teeth for weeks.",
+    "label": "negative"
+  },
+  {
     "text": "Suddenly Lisa was grinning from ear to ear.",
     "label": "positive"
   },
@@ -4953,6 +4977,10 @@
   },
   {
     "text": "My heart sinks and culinary amnesia sets in somewhere between the tinned fruit and dried pasta.",
+    "label": "negative"
+  },
+  {
+    "text": "What she wanted was to slap Nicolo Sabatini's face, to stalk out of the Sala dell'Arte and never look back.",
     "label": "negative"
   },
   {
@@ -4969,10 +4997,6 @@
   },
   {
     "text": "People have been diagnosed with cancer etcetera, erm, in fact at the convention yesterday, they had some clients on the stage, one lady had been diagnosed with breast cancer, she got a pay-out from living assurance, five years later she's been cleared, and, and she's thrilled to bits about it.",
-    "label": "positive"
-  },
-  {
-    "text": "If you can spend five weeks having the time of your life and get paid at the end of it, why not?",
     "label": "positive"
   },
   {
@@ -5012,8 +5036,12 @@
     "label": "negative"
   },
   {
-    "text": "That was the done thing.",
+    "text": "Education is very much based on trial and error though schools which specialise in the education of the autistic child have developed common aims.",
     "label": "other"
+  },
+  {
+    "text": "Of those applicants who were oblivious of Bond, most were, like the geriatric security officers and weedy office workers, sadly wide of the mark.",
+    "label": "negative"
   },
   {
     "text": "A lulling orchestral accompaniment, some smokey crooning and an ingratiating melody gatecrash your approval on first hearings and then slowly reveal the tumult of fury that seethes beneath the surface.",
@@ -5032,12 +5060,12 @@
     "label": "negative"
   },
   {
-    "text": "Asking for trouble to put steps like that where there are old people.",
+    "text": "He got his back to the wall as they swept over him.",
     "label": "negative"
   },
   {
-    "text": "He got his back to the wall as they swept over him.",
-    "label": "negative"
+    "text": "Every time it goes on the blink I wonder who'll win.",
+    "label": "other"
   },
   {
     "text": "This is a can of worms and really needs to be looked into carefully.",
@@ -5056,7 +5084,7 @@
     "label": "negative"
   },
   {
-    "text": "Recently matters had come to a head",
+    "text": "Yet there was one cloud on the horizon.",
     "label": "negative"
   },
   {
@@ -5072,23 +5100,11 @@
     "label": "negative"
   },
   {
-    "text": "Was Adams right in trying to get to the bottom of it?",
-    "label": "other"
-  },
-  {
-    "text": "When the going gets tough, the tough allegedly go shopping, and into debt.",
-    "label": "negative"
-  },
-  {
     "text": "We were caught, high and dry.",
     "label": "negative"
   },
   {
     "text": "But if members tell us they are in dire straits, without a job, gone bankrupt, and the wife's run off with the milkman, then we will move heaven and earth to help them.",
-    "label": "positive"
-  },
-  {
-    "text": "I'm not going to leave you in the lurch",
     "label": "positive"
   },
   {
@@ -5116,6 +5132,10 @@
     "label": "negative"
   },
   {
+    "text": "Radford himself early in March dropped his ideas for a quick fix.",
+    "label": "negative"
+  },
+  {
     "text": "Susan, a part-time school cook, then had to put on a brave face for a holiday in Spain.",
     "label": "other"
   },
@@ -5124,12 +5144,16 @@
     "label": "positive"
   },
   {
-    "text": "But he saw Central America as a new stumbling block.",
+    "text": "Radio waves spell trouble for industry.",
     "label": "negative"
   },
   {
-    "text": "Sarah hesitated, then seemed to decide to take the bull by the horns.",
+    "text": "Everyone has their own idea on how to stop the rot.",
     "label": "positive"
+  },
+  {
+    "text": "But he saw Central America as a new stumbling block.",
+    "label": "negative"
   },
   {
     "text": "This practically ruined him but rather than take the easy way out and declare himself bankrupt.",
@@ -5144,10 +5168,6 @@
     "label": "negative"
   },
   {
-    "text": "The other thorny issue to be addressed is that of course funding.",
-    "label": "negative"
-  },
-  {
     "text": "Let's just say I got in a tight spot.",
     "label": "negative"
   },
@@ -5156,11 +5176,7 @@
     "label": "other"
   },
   {
-    "text": "Apart from certain skilled trades, the attempt to unionize was an uphill battle for most workers until the Great Depression of the 30s.",
-    "label": "negative"
-  },
-  {
-    "text": "It has thus become a vicious circle of spoken mumbo jumbo.",
+    "text": "Lord Donaldson spoke of the further proposed fragmentation of the profession as' an unmitigated disaster.",
     "label": "negative"
   },
   {
@@ -5176,10 +5192,6 @@
     "label": "other"
   },
   {
-    "text": "You can not be tentative or apprehensive in your movements; you have to throw caution to the wind and' attack' a manoeuvre with the objective clearly in your mind.",
-    "label": "other"
-  },
-  {
     "text": "I only needed minimum pressure to get a close shave.",
     "label": "negative"
   },
@@ -5188,15 +5200,11 @@
     "label": "negative"
   },
   {
-    "text": "From that day there was no appeal from the consequences of even one false move.",
-    "label": "other"
+    "text": "But even if they are carried, the second shot becomes fraught with danger.",
+    "label": "negative"
   },
   {
     "text": "Muriel, probably because of her years and the fact they were looking for a more mature person, was by a hair 's breadth the front-runner, ahead of two younger girls both with experience of the insurance business.",
-    "label": "positive"
-  },
-  {
-    "text": "In order to survive the jungle and live to tell the tale it is important not only to have good companions.",
     "label": "positive"
   },
   {
@@ -5216,12 +5224,12 @@
     "label": "negative"
   },
   {
-    "text": "I believed he was in safe hands.",
-    "label": "positive"
+    "text": "Oh, and maybe just a tiny piece of advice: next time you, quote,' risk life and limb' I suggest you check first that the person does need rescuing.",
+    "label": "negative"
   },
   {
-    "text": "He cut a lot to be on the safe side.",
-    "label": "other"
+    "text": "I believed he was in safe hands.",
+    "label": "positive"
   },
   {
     "text": "There is safety in numbers but less risk of embarrassment when the numbers are small.",
@@ -5229,14 +5237,6 @@
   },
   {
     "text": "But it is important to point out how much is at stake, if Labour has its way.",
-    "label": "negative"
-  },
-  {
-    "text": "The audience had been told to disperse to their cars to take cover.",
-    "label": "negative"
-  },
-  {
-    "text": "Anyway, you'd better watch your step.",
     "label": "negative"
   },
   {
@@ -5256,12 +5256,12 @@
     "label": "negative"
   },
   {
-    "text": "Both projects, and more besides, aim to make Microsoft an also-ran in tomorrow's markets.",
-    "label": "other"
+    "text": "With so much within easy reach, we were clearly spoilt for choice and decided to sleep on it.",
+    "label": "positive"
   },
   {
-    "text": "So I'm back to square one.",
-    "label": "negative"
+    "text": "Both projects, and more besides, aim to make Microsoft an also-ran in tomorrow's markets.",
+    "label": "other"
   },
   {
     "text": "No you've got them in the bag.",
@@ -5276,16 +5276,24 @@
     "label": "positive"
   },
   {
-    "text": "Isn't it time to cut your losses and simply sell the company?",
+    "text": "If the Tories' supporters in 1970 had liked the sound of anti-union radicalism, a significant number had decided by 1974 that it threatened to bring the house down around their ears.",
     "label": "negative"
+  },
+  {
+    "text": "But if this were so then most other accounts of authority would come to grief.",
+    "label": "negative"
+  },
+  {
+    "text": "Alistar Campbell roared past 500 runs on Saturday and put himself firmly on course for the magical 1,000 mark.",
+    "label": "positive"
   },
   {
     "text": "You had to have a cert, dead cert, iron case before any prosecution case came up.",
     "label": "other"
   },
   {
-    "text": "The casualty was lying beam-on to the swell, and dead in the water with no engine power, so the helicopter's attempt to lift them.",
-    "label": "other"
+    "text": "The Decade of Evangelism would be a dead duck if the Church decided to be' structurally sexist.",
+    "label": "negative"
   },
   {
     "text": "At least it will be all downhill",
@@ -5300,8 +5308,16 @@
     "label": "negative"
   },
   {
-    "text": "Mum knew then she had met her match and tried-to retreat indoors, but Mrs Smith left her foot in the door so that she had to listen.",
-    "label": "negative"
+    "text": "Neither Philippe Sguin nor Philippe de Villier is in any sense a flash in the pan.",
+    "label": "positive"
+  },
+  {
+    "text": "Before the setbacks, the new Lancias had passed their tests with flying colours.",
+    "label": "other"
+  },
+  {
+    "text": "Two birdies in his first three holes and another at the sixth gave him a flying start but it was not all so straightforward.",
+    "label": "other"
   },
   {
     "text": "Finally, under the obscurity of dust and smoke the Germans managed to get a foothold on the summit",
@@ -5336,8 +5352,8 @@
     "label": "other"
   },
   {
-    "text": "To the public at large faith in the political process, already at a low ebb, will diminish further.",
-    "label": "negative"
+    "text": "The dog's come a long way",
+    "label": "positive"
   },
   {
     "text": "Phantoms are exceptionally rare, but Vox Amplification have decided these guitars should make a comeback.",
@@ -5348,16 +5364,12 @@
     "label": "other"
   },
   {
-    "text": "She just knew she could make a go of it.",
-    "label": "positive"
-  },
-  {
-    "text": "This option largely failed to make headway for many of the basic theoretical reasons that were outlined in Chapter 2.",
-    "label": "negative"
-  },
-  {
     "text": "The NAP, trying to make inroads into the Asian community, put out its own sheet, called Breaking the Silence",
     "label": "other"
+  },
+  {
+    "text": "If it were not, one could make a killing on the stock exchange by having a computer that would remember tomorrow's prices.",
+    "label": "positive"
   },
   {
     "text": "It was absolutely make or break.",
@@ -5366,6 +5378,10 @@
   {
     "text": "And so the moment of truth.",
     "label": "other"
+  },
+  {
+    "text": "Relying on a small bureau with perhaps a single film recorder is, as Murphy 's Law always points out, a somewhat foolish activity.",
+    "label": "negative"
   },
   {
     "text": "When you're not getting anywhere with someone, you can choose to switch streams.",
@@ -5396,6 +5412,10 @@
     "label": "positive"
   },
   {
+    "text": "The crazy old vessels, riding high in the water without cargo, awaited their owners return.",
+    "label": "other"
+  },
+  {
     "text": "Majestic Irish rise to the occasion",
     "label": "positive"
   },
@@ -5404,8 +5424,16 @@
     "label": "positive"
   },
   {
+    "text": "Could Jeremy Paxman save the day for the interrogators?",
+    "label": "other"
+  },
+  {
     "text": "Latecomers sink or swim in the great flotation race.",
     "label": "other"
+  },
+  {
+    "text": "When you're champions and in Europe, the sky 's the limit.",
+    "label": "positive"
   },
   {
     "text": "Connors aims for smash hit.",
@@ -5414,10 +5442,6 @@
   {
     "text": "I would have recommended that he should throw in the towel",
     "label": "negative"
-  },
-  {
-    "text": "Just keep your cool and you'll yet emerge as top dog.",
-    "label": "positive"
   },
   {
     "text": "Newton is on the up and up.",
@@ -5432,10 +5456,6 @@
     "label": "negative"
   },
   {
-    "text": "When he motioned for her to take the wooden spoon from him she did so, avoiding touching him at all costs.",
-    "label": "negative"
-  },
-  {
     "text": "Blue condition Ibanez FGM 100 Gambale Signature Looking at the Thunder From Down Under's own personal bolt from the blue.",
     "label": "other"
   },
@@ -5444,8 +5464,16 @@
     "label": "negative"
   },
   {
+    "text": "And lo and behold, no sooner had British Bakeries written to say' the problem should now be eliminated' than a loaf arrived at home with at least five slices suffering from holes bigger than those in the Darlington defence.",
+    "label": "negative"
+  },
+  {
     "text": "The fact that a 23 year old black man was making films at all would have been enough to raise eyebrows a few years ago.",
     "label": "other"
+  },
+  {
+    "text": "Now I've engendered a feedback loop, so that if Mait, or anyone else, tries to use it, the enhancer will focus his concentration, feed it back, and drain it off again in a continuous loop that should keep him rooted to the spot for the rest of his life or until someone else separates his gaze from the lenses.",
+    "label": "negative"
   },
   {
     "text": "Then she stopped dead in her tracks, the blood seeping from her veins, leaving her stiff and white with shock.",
@@ -5461,6 +5489,14 @@
   },
   {
     "text": "Eventually, after a series of confrontations in which both sides seemed curiously reluctant to come to blows, Mar's and Argyll's main armies were left uneasily eyeing each other at Stirling.",
+    "label": "negative"
+  },
+  {
+    "text": "It's a sad and unusual case for all concerned but the mother is determined to fight tooth and nail.",
+    "label": "negative"
+  },
+  {
+    "text": "While perhaps reasonable for a very small group, it could soon become a free for all in a larger organisation.",
     "label": "negative"
   },
   {
@@ -5484,10 +5520,6 @@
     "label": "negative"
   },
   {
-    "text": "Shortly afterwards, an olive branch came from the County Hospital.",
-    "label": "positive"
-  },
-  {
     "text": "Obviously this needs to be done without undue pressure; hammering is out of the question, and the stakes must not be broken.",
     "label": "other"
   },
@@ -5504,10 +5536,6 @@
     "label": "other"
   },
   {
-    "text": "And major sponsors of the Renault-Williams team, caught in the crossfire of the bitter battle between the world champion and his team boss Frank Williams, are in a panic.",
-    "label": "negative"
-  },
-  {
     "text": "Clear the air as you drive.",
     "label": "positive"
   },
@@ -5516,19 +5544,15 @@
     "label": "other"
   },
   {
-    "text": "But before you know it, you're right in there hammer and tongs, defending yourself against an onslaught of outrage and invective.",
-    "label": "negative"
-  },
-  {
     "text": "Right now Mr Hussein finds it convenient to pose as a conciliator prepared to grant autonomy to the Kurds he has displaced and, in relations with the rest of the world, to let bygones be bygones.",
     "label": "other"
   },
   {
-    "text": "The Treasury and the Ministry of Aviation, now run by Julian Amery, Macmillan's son-in-law, remained at loggerheads as the issue moved to full Cabinet on Guy Fawkes Day 1962.",
-    "label": "negative"
+    "text": "If the child is behaving well or playing quietly the typical parental attitude is let sleeping dogs lie.",
+    "label": "other"
   },
   {
-    "text": "There was no love lost between Mazur and his boss Bonni Tischler.",
+    "text": "The Treasury and the Ministry of Aviation, now run by Julian Amery, Macmillan's son-in-law, remained at loggerheads as the issue moved to full Cabinet on Guy Fawkes Day 1962.",
     "label": "negative"
   },
   {
@@ -5544,7 +5568,15 @@
     "label": "negative"
   },
   {
+    "text": "Point Three, the main bone of contention between the two sides, led to the total demilitarization of the Black Sea.",
+    "label": "other"
+  },
+  {
     "text": "I ought to call your bluff.",
+    "label": "negative"
+  },
+  {
+    "text": "Now will you please get off my back.",
     "label": "negative"
   },
   {
@@ -5560,10 +5592,6 @@
     "label": "negative"
   },
   {
-    "text": "We must cut it out, before it spreads.",
-    "label": "other"
-  },
-  {
     "text": "Dolan, in the meantime, has been told to give it a rest otherwise the upcoming European tour will have to be called off.",
     "label": "negative"
   },
@@ -5576,7 +5604,7 @@
     "label": "negative"
   },
   {
-    "text": "The reviewer is likely to get hot under the collar if a personal favourite has been left out and can easily end up merely drawing up a rival selection.",
+    "text": "But the Tories would be unwise to harp on about Mr Kinnock's.",
     "label": "negative"
   },
   {
@@ -5588,12 +5616,12 @@
     "label": "other"
   },
   {
-    "text": "Black outlook is making us see red.",
+    "text": "Make no mistake, Wright's short fuse is a serious business and if Graham is to lose a top player through suspension, on top of all the headlines on his ill-discipline, the Arsenal manager may soon wonder if he is worth the trouble.",
     "label": "negative"
   },
   {
-    "text": "Make no mistake, Wright's short fuse is a serious business and if Graham is to lose a top player through suspension, on top of all the headlines on his ill-discipline, the Arsenal manager may soon wonder if he is worth the trouble.",
-    "label": "negative"
+    "text": "Mark said that when the Raja saw the damage he was wearing glasses which steamed up a bit.",
+    "label": "other"
   },
   {
     "text": "Scathach had impaled it from behind, the point going too far and penetrating Tallis.",
@@ -5640,6 +5668,10 @@
     "label": "positive"
   },
   {
+    "text": "It was depressing to think of Sien and the children he had left to fend for themselves, depressing too to remember that Theo was having to bear the brunt of his trouble as always.",
+    "label": "negative"
+  },
+  {
     "text": "The thing with Minneapolis was that everyone was bored to tears, so we just made a scene.",
     "label": "negative"
   },
@@ -5652,11 +5684,11 @@
     "label": "positive"
   },
   {
-    "text": "Now don't get worked up again.",
+    "text": "But the senior bankers are fish out of water when it comes to international lending.",
     "label": "negative"
   },
   {
-    "text": "Mr. Stevenson is not gone a week and you all go to pieces.",
+    "text": "Now don't get worked up again.",
     "label": "negative"
   },
   {
@@ -5700,8 +5732,8 @@
     "label": "positive"
   },
   {
-    "text": "Your body language will speak volumes about your happy state.",
-    "label": "positive"
+    "text": "The best way to let off steam is with people who love you and don't judge you.",
+    "label": "other"
   },
   {
     "text": "The only thing that gets me steamed up is when they have a go at you.",
@@ -5724,10 +5756,6 @@
     "label": "negative"
   },
   {
-    "text": "My children think the world of their gerbil.",
-    "label": "positive"
-  },
-  {
     "text": "This was accompanied by a thinly veiled threat that her retention would cause a serious impediment to the educational efficiency of the school.",
     "label": "negative"
   },
@@ -5738,10 +5766,6 @@
   {
     "text": "Perfect for the postparty come-down spliff up, chill out and get One Dove on them gramophones.",
     "label": "positive"
-  },
-  {
-    "text": "Rhetorically and strategically, the war was in full swing before crack was identified as the principal enemy.",
-    "label": "other"
   },
   {
     "text": "Within the limitations imposed by his hosts and his own inhibitions and scruples, the anthropologist has to mix in with local society and become the life and soul of the party.",
@@ -5761,6 +5785,10 @@
   },
   {
     "text": "You'll have to take it easy when you do come out.",
+    "label": "positive"
+  },
+  {
+    "text": "They just want to stay on cloud nine.",
     "label": "positive"
   },
   {
@@ -5796,11 +5824,11 @@
     "label": "positive"
   },
   {
-    "text": "If attending a wedding or party of close friends, you should have the time of your life",
+    "text": "Britain was on top of the world.",
     "label": "positive"
   },
   {
-    "text": "Britain was on top of the world.",
+    "text": "Everything becomes so much easier and some people have an experience akin to walking on air or walking on the moon.",
     "label": "positive"
   },
   {
@@ -5824,10 +5852,6 @@
     "label": "other"
   },
   {
-    "text": "It could take some trial and error to discover the correct interval, and you may need to chart the person's pattern.",
-    "label": "other"
-  },
-  {
     "text": "In answer to this, there are cases in which the notion of force feeding is very wide of the mark.",
     "label": "other"
   },
@@ -5844,15 +5868,19 @@
     "label": "other"
   },
   {
-    "text": "Trying to interrogate officers of the Grand Army would have been asking for trouble.",
-    "label": "negative"
-  },
-  {
     "text": "The light showed dozens of them, all the way back to the wall.",
     "label": "other"
   },
   {
+    "text": "The thing was on the blink again.",
+    "label": "negative"
+  },
+  {
     "text": "It not take him long to realize that if the police wanted someone to carry the can, then Dirk Coetzee was heading for death row.",
+    "label": "negative"
+  },
+  {
+    "text": "Again there is nothing catch 22 about this.",
     "label": "negative"
   },
   {
@@ -5860,19 +5888,11 @@
     "label": "positive"
   },
   {
-    "text": "We all have our cross to bear' has become a modern-day expression.",
-    "label": "other"
-  },
-  {
     "text": "All those vital issues are to be rigidly centralised and that is the crux of the matter.",
     "label": "other"
   },
   {
     "text": "I knew Purvis would get to the bottom of it in time.",
-    "label": "positive"
-  },
-  {
-    "text": "When the going gets tough with your studies, having goals will help to see you through.",
     "label": "positive"
   },
   {
@@ -5884,12 +5904,12 @@
     "label": "positive"
   },
   {
-    "text": "As a last resort you can call out the total number of those present.",
+    "text": "First, must it be murder?",
     "label": "other"
   },
   {
-    "text": "First, must it be murder?",
-    "label": "other"
+    "text": "The need for exports is too often regarded by Yugoslav enterprises as a' necessary evil' imposed on them by the government.",
+    "label": "negative"
   },
   {
     "text": "Isn't it easier to pass the buck to your boss, some staff person or a committee?",
@@ -5908,7 +5928,7 @@
     "label": "negative"
   },
   {
-    "text": "If an employee decides to accept the transfer as a result of a counselling session which gave a misleading impression, it can only spell trouble for his or her future happiness in the job.",
+    "text": "Defence cuts could also be a stumbling block.",
     "label": "negative"
   },
   {
@@ -5926,10 +5946,6 @@
   {
     "text": "You come out of a tight spot smelling of roses.",
     "label": "positive"
-  },
-  {
-    "text": "But Dr Mackie said the report showed only the tip of the iceberg as many incidents went unreported.",
-    "label": "negative"
   },
   {
     "text": "For Africa, meanwhile, the 1980s have been an almost unmitigated disaster.",
@@ -5972,6 +5988,10 @@
     "label": "positive"
   },
   {
+    "text": "But it's very reassuring to know I am in safe hands here.",
+    "label": "positive"
+  },
+  {
     "text": "I'd best take a look, just to be on the safe side.",
     "label": "positive"
   },
@@ -5992,15 +6012,7 @@
     "label": "negative"
   },
   {
-    "text": "It is clearly impossible to anticipate every eventuality, but the guiding principle must be that if the source of difficulty does not lie in the implementation of a selected strategy and is not being assessed during the conduct of the investigation, then assistance can be given.",
-    "label": "other"
-  },
-  {
     "text": "I went out like a light.",
-    "label": "other"
-  },
-  {
-    "text": "They knew I was ready to drop the bairn.",
     "label": "other"
   },
   {
@@ -6016,10 +6028,6 @@
     "label": "negative"
   },
   {
-    "text": "Not until 1985, however, did the long debate bear fruit, when an international competition was launched to design a suitable building.",
-    "label": "other"
-  },
-  {
     "text": "Filming of the new Hollywood blockbuster Super Mario Brothers has descended into chaos after a series of bitter on-set rows.",
     "label": "negative"
   },
@@ -6028,12 +6036,12 @@
     "label": "negative"
   },
   {
-    "text": "If you do find that you have recorded an unsatisfactory shot, cut your losses there and then by reversing back to the beginning.",
-    "label": "other"
+    "text": "Chatam remains firmly on course for the Gold Cup after his narrow defeat by Jodami in Ireland on Sunday.",
+    "label": "positive"
   },
   {
-    "text": "Remarkably, they turn what had looked like a dead duck of an evening.",
-    "label": "positive"
+    "text": "If you do find that you have recorded an unsatisfactory shot, cut your losses there and then by reversing back to the beginning.",
+    "label": "other"
   },
   {
     "text": "It is an ideal place for a honeymoon but life afterwards must seem all downhill, at least in terms of location.",
@@ -6053,10 +6061,6 @@
   },
   {
     "text": "The Honey Thieves are a band who would graduate with flying colours from such a straight-forward system of appraisal.",
-    "label": "positive"
-  },
-  {
-    "text": "Racers, once the top team in Britain, will want a flying start to the season to reassert themselves.",
     "label": "positive"
   },
   {
@@ -6084,15 +6088,15 @@
     "label": "negative"
   },
   {
-    "text": "One could tell he was a man who had come a long way, and who intended going a great deal further.",
-    "label": "positive"
-  },
-  {
     "text": "The fortunes of wartime Britain were at a low ebb in July 1941.",
     "label": "negative"
   },
   {
     "text": "He'll be like an old boxer trying to make a comeback.",
+    "label": "other"
+  },
+  {
+    "text": "It is incredible that my challenge in tournaments so often during this time had been to make the cut",
     "label": "other"
   },
   {
@@ -6108,8 +6112,8 @@
     "label": "positive"
   },
   {
-    "text": "Differential expansion with increasing temperature causes the compound rod to bend and make or break electrical contact.",
-    "label": "other"
+    "text": "A-level students reach the moment of truth.",
+    "label": "negative"
   },
   {
     "text": "At other times the loop amounts to going round in circles and not getting anywhere fast.",
@@ -6136,10 +6140,6 @@
     "label": "positive"
   },
   {
-    "text": "Getting out her suitcase, and with her fury riding high, she began throwing her belongings into it.",
-    "label": "negative"
-  },
-  {
     "text": "By contrast, his present legislation is expected to sail through with little more than some scattered shots from the Parti Qubcois.",
     "label": "positive"
   },
@@ -6158,10 +6158,6 @@
   {
     "text": "Singer Whitney Houston, whose first film Bodyguard is set to become a smash hit, has turned her back on movie stardom.",
     "label": "other"
-  },
-  {
-    "text": "Especially important, we agree, is the likelihood that governments pursuing policies of austerity will be forced by recession and rising unemployment to throw in the towel.",
-    "label": "negative"
   },
   {
     "text": "If you want to be a part of Top Dog' 91, fill in the entry form opposite and do it now.",
@@ -6192,6 +6188,14 @@
     "label": "positive"
   },
   {
+    "text": "Lo and behold you can actually stop when and where you want.",
+    "label": "negative"
+  },
+  {
+    "text": "Particularly in the macho world of surgery, the researchers' clinical limitations may raise eyebrows while their abilities in molecular biology are more likely to be seen as a threat than an achievement.",
+    "label": "negative"
+  },
+  {
     "text": "So startled was he by this sudden onslaught, Ryker momentarily froze, rooted to the spot",
     "label": "negative"
   },
@@ -6201,6 +6205,10 @@
   },
   {
     "text": "Two men had come to blows, an arm had been broken.",
+    "label": "negative"
+  },
+  {
+    "text": "Cricket officials and local residents say they will fight tooth and nail to save the ground, home to both clubs since the early 1930s.",
     "label": "negative"
   },
   {
@@ -6232,7 +6240,11 @@
     "label": "positive"
   },
   {
-    "text": "Microsoft Windows for Workgroups vs Lotus Notes looks set to be a long running battle.",
+    "text": "Some exercises they perform sitting on chairs or using them for support, but floor exercises have been out of the question.",
+    "label": "other"
+  },
+  {
+    "text": "Afterwards, the SAE would disclose his identity, then pick holes in the AE's sales techniques.",
     "label": "negative"
   },
   {
@@ -6246,10 +6258,6 @@
   {
     "text": "If, as seems to be the case, animals are alleged to posses rights with all the charisma attaching to these more fundamental notions, we need to clear the air by examining the extent to which human beings do.",
     "label": "other"
-  },
-  {
-    "text": "But the American press, used to seeing horses flat out from the start and going at it hammer and tongs, were not in tune to the subtleties of Piggott's unleashing that burst, and the criticism started.",
-    "label": "negative"
   },
   {
     "text": "Why couldn't God let bygones be bygones?",
@@ -6268,23 +6276,27 @@
     "label": "negative"
   },
   {
+    "text": "However, once one begins to argue the toss about the liberal value of various academic subjects, it becomes difficult to exclude any of them.",
+    "label": "negative"
+  },
+  {
     "text": "A sparrow hawk appeared and all hell broke loose.",
     "label": "negative"
   },
   {
-    "text": "Instead I was getting myself into an increasingly confrontational situation, a battle of wills, with the Director of Coaching.",
+    "text": "The question of budget deficits remained a bone of contention and was fudged in the report.",
     "label": "negative"
   },
   {
-    "text": "One day some man is going to call your bluff, sweetheart",
-    "label": "negative"
-  },
-  {
-    "text": "But I'm not prepared to have this new expansion with all the congestion and noise it would cause and 90pc of people in the area will be up in arms.",
+    "text": "It's A Shame About Ray' album is beefed up a little, but still buzzes with a naive, laid-back charm that's at odds with the black mood of the band.",
     "label": "negative"
   },
   {
     "text": "Maybe he was cheesed off meeting people so far along the ridge without explanation as to their start point.",
+    "label": "negative"
+  },
+  {
+    "text": "Perhaps it has just got eczema, for crying out loud.",
     "label": "negative"
   },
   {
@@ -6304,10 +6316,6 @@
     "label": "negative"
   },
   {
-    "text": "But I wasn't there, and this is to your advantage because I'm not going to harp on about my favourite Shankly saying, or pretend I was close friends with the man like certain people do.",
-    "label": "other"
-  },
-  {
     "text": "The other customers were almost as hot under the collar as Phyllis, but for very different reasons.",
     "label": "negative"
   },
@@ -6318,6 +6326,10 @@
   {
     "text": "I hate it, I rant and rave, I never like things I've done.",
     "label": "negative"
+  },
+  {
+    "text": "That Wright is ultimately responsible for handling his short fuse and, to help him do that, think back to the hundreds of games he's played when there has been no trouble.",
+    "label": "other"
   },
   {
     "text": "The bath was soon drawn, the foam white and thick, the mirrors steamed up.",
@@ -6332,6 +6344,10 @@
     "label": "negative"
   },
   {
+    "text": "Boxing and Las Vegas, joined in very unholy matrimony, are waiting with bated breath and heavily baited betting slips for the outcome of a fight that can be almost relied upon to restore some credibility to the heavyweight division.",
+    "label": "negative"
+  },
+  {
     "text": "Peter has sold the film rights to Romulus Films - but don't hold your breath waiting for it.",
     "label": "negative"
   },
@@ -6340,16 +6356,12 @@
     "label": "positive"
   },
   {
-    "text": "Sparks fly along the nerve wires, pins and needles and it's over.",
-    "label": "negative"
-  },
-  {
-    "text": "The patient with back pain will say, I'm scared stiff.",
-    "label": "negative"
-  },
-  {
     "text": "For the remainder of the carol I was on tenterhooks, not daring to take my eyes from the lectern.",
     "label": "negative"
+  },
+  {
+    "text": "It is this mixture of natural and mechanical sound that makes' Ecim' so absorbing, where the feeling that one half will overcome the other keeps the excitement captured here at a fever pitch.",
+    "label": "positive"
   },
   {
     "text": "It is a new lease of life for Nigel, and he is raring to go.",
@@ -6360,15 +6372,27 @@
     "label": "negative"
   },
   {
-    "text": "Gentleman might look close to home before he makes that general assertion.",
-    "label": "other"
+    "text": "We're bored to tears down here.",
+    "label": "negative"
   },
   {
     "text": "There's a place deep down inside yourself where you are always safe.",
     "label": "positive"
   },
   {
+    "text": "In the city we were fish out of water.",
+    "label": "negative"
+  },
+  {
+    "text": "You can't go to pieces.",
+    "label": "negative"
+  },
+  {
     "text": "Power is prepared to run through a wall; Willie O'Connor is as hard as nails and Liam Simpson takes no prisoners.",
+    "label": "positive"
+  },
+  {
+    "text": "She's head over heels in love but them so am I.",
     "label": "positive"
   },
   {
@@ -6380,11 +6404,11 @@
     "label": "positive"
   },
   {
-    "text": "In another letter he describes how he impishly tried to put Schikaneder's nose out of joint by playing the glockenspiel out of time from the wings.",
-    "label": "other"
+    "text": "Her mixed feelings underwent another upheaval.",
+    "label": "negative"
   },
   {
-    "text": "He sounded pleased as punch for me.",
+    "text": "It's the end of an era but there are no hard feelings and we wish him well.",
     "label": "positive"
   },
   {
@@ -6404,19 +6428,7 @@
     "label": "positive"
   },
   {
-    "text": "I'm really on tenterhooks about the twins.",
-    "label": "negative"
-  },
-  {
     "text": "And what is even more wonderful, they all think the world of each other.",
-    "label": "positive"
-  },
-  {
-    "text": "Magda Chadwick, born in 1928, experienced this thinly veiled hostility.",
-    "label": "negative"
-  },
-  {
-    "text": "From now on there'll be no more going weak at the knees.",
     "label": "positive"
   },
   {
@@ -6428,10 +6440,6 @@
     "label": "positive"
   },
   {
-    "text": "Now then, Chris, you take it easy and have an early night.",
-    "label": "positive"
-  },
-  {
     "text": "At that moment, and perhaps for an hour afterwards, I was on Cloud Nine.",
     "label": "positive"
   },
@@ -6440,19 +6448,11 @@
     "label": "other"
   },
   {
-    "text": "I wished I could help him then, he looked so down in the mouth hunched up by the stove.",
-    "label": "negative"
-  },
-  {
     "text": "He gets up, opens the door, and his heart sinks, seeing Tommy standing there with Iain.",
     "label": "negative"
   },
   {
     "text": "They never look back",
-    "label": "positive"
-  },
-  {
-    "text": "I was over the moon.",
     "label": "positive"
   },
   {
@@ -6464,10 +6464,6 @@
     "label": "positive"
   },
   {
-    "text": "Gardening is among the activities on offer for the over 50s when the Time of your Life Expo arrives in Glasgow early next year.",
-    "label": "other"
-  },
-  {
     "text": "Coming on top of the World Cup cricket fiasco.",
     "label": "negative"
   },
@@ -6477,6 +6473,10 @@
   },
   {
     "text": "Well, what do you expect me to do? Go bananas? Cut my throat?",
+    "label": "negative"
+  },
+  {
+    "text": "But when I look at what I've written, I feel it's not all there.",
     "label": "negative"
   },
   {
@@ -6492,7 +6492,15 @@
     "label": "other"
   },
   {
+    "text": "He had to learn through trial and error.",
+    "label": "other"
+  },
+  {
     "text": "The ideas expressed may well be wide of the mark, or they may not be, but this does not really matter since the purpose of hypotheses is to stimulate more ideas, and the research to either confirm or refute them.",
+    "label": "other"
+  },
+  {
+    "text": "Here in Denmark it is not the done thing for parents to strike their children.",
     "label": "other"
   },
   {
@@ -6508,11 +6516,7 @@
     "label": "negative"
   },
   {
-    "text": "I'm trying to get through to the Kosher butcher -- it's on the blink and I've people coming for dinner Friday.",
-    "label": "negative"
-  },
-  {
-    "text": "It is not just a can of worms that the professor has been a digging.",
+    "text": "Turning out a valuable beast on the common today would be asking for trouble.",
     "label": "negative"
   },
   {
@@ -6520,15 +6524,27 @@
     "label": "negative"
   },
   {
+    "text": "So I found myself in one of those catch 22  situations and I chose the lesser one.",
+    "label": "negative"
+  },
+  {
     "text": "For some, the chill wind of competition is again blowing through their offices.",
     "label": "negative"
   },
   {
-    "text": "Come Hell or high water, the Met observations had to be made every hour, on the hour, and the show must go on.",
-    "label": "positive"
+    "text": "The great all seem to have had this cross to bear, and that is no comfort.",
+    "label": "negative"
   },
   {
-    "text": "The great all seem to have had this cross to bear, and that is no comfort.",
+    "text": "The crux of the matter is, how do we prevent a 1947 or 1990 flood occurring again?",
+    "label": "other"
+  },
+  {
+    "text": "I can capture just one of them, then perhaps we'll get to the bottom of this",
+    "label": "other"
+  },
+  {
+    "text": "Should the nobility refuse to cooperate, the monarchy would be left high and dry and the monarch himself would be unlikely to survive.",
     "label": "negative"
   },
   {
@@ -6540,6 +6556,10 @@
     "label": "positive"
   },
   {
+    "text": "It used to be murder talking about it.",
+    "label": "negative"
+  },
+  {
     "text": "There is frequently a tendency to pass the buck.",
     "label": "negative"
   },
@@ -6548,11 +6568,15 @@
     "label": "positive"
   },
   {
-    "text": "Once the firms' merger was in place, Mr Morrison took up the thorny issue of rationalising the accountancy profession.",
-    "label": "negative"
+    "text": "Drain thoroughly, lightly scratch the surface with a fork and sprinkle lightly with salt.",
+    "label": "other"
   },
   {
-    "text": "MPs put the governor of the Bank of England in a tight spot over Harrods bank.",
+    "text": "I don't think there is a major stumbling block.",
+    "label": "positive"
+  },
+  {
+    "text": "Once the firms' merger was in place, Mr Morrison took up the thorny issue of rationalising the accountancy profession.",
     "label": "negative"
   },
   {
@@ -6576,7 +6600,15 @@
     "label": "negative"
   },
   {
+    "text": "These high-handed tactics were obviously risky, but they were a calculated risk.",
+    "label": "negative"
+  },
+  {
     "text": "And so we all had a close shave once a term.",
+    "label": "negative"
+  },
+  {
+    "text": "Then it happened, that one false move that a batsman never wants to make.",
     "label": "negative"
   },
   {
@@ -6600,8 +6632,8 @@
     "label": "other"
   },
   {
-    "text": "This is partly because of the importance of the interests at stake in immigration decisions.",
-    "label": "other"
+    "text": "Again, safety in numbers saves the day for the prey species.",
+    "label": "positive"
   },
   {
     "text": "Holliman decided that they had to take cover, so they scuttled into a patch of scrub and camouflaged themselves with nets.",
@@ -6612,19 +6644,11 @@
     "label": "positive"
   },
   {
-    "text": "The blight of' 87 is not media cowardice, record companies asleep at the wheel, callous insipidness, the return of rock, incoherence, a lack of great songs, but rather, a surfeit of passion. ",
-    "label": "negative"
-  },
-  {
     "text": "The justification for doing the work might be seen to lie in the material benefits it produced.",
     "label": "positive"
   },
   {
     "text": "Something hit me on the back of the head, here, and I went out like a light.",
-    "label": "negative"
-  },
-  {
-    "text": "Of course people are talking pretty big at the moment but half of them are as ready to drop as I am.",
     "label": "negative"
   },
   {
@@ -6640,10 +6664,6 @@
     "label": "other"
   },
   {
-    "text": "Shall I put all this in the bag?",
-    "label": "other"
-  },
-  {
     "text": "A development which seems likely to bear fruit was the creation of a working party from within the panel.",
     "label": "other"
   },
@@ -6652,12 +6672,12 @@
     "label": "negative"
   },
   {
-    "text": "He said the Government was on course for elections to the new councils in 1995.",
-    "label": "positive"
+    "text": "But the ideals of the purist must always come to grief in the devastating vortex of national politics.",
+    "label": "negative"
   },
   {
-    "text": "Competition climbing is laughable in this country, and is probably a dead duck anyway.",
-    "label": "negative"
+    "text": "He said the Government was on course for elections to the new councils in 1995.",
+    "label": "positive"
   },
   {
     "text": "But it's all downhill from here.",
@@ -6674,6 +6694,10 @@
   {
     "text": "I think if Kylie Minogue has been a flash in the pan she would have lasted for a couple of singles.",
     "label": "other"
+  },
+  {
+    "text": "He would have passed it with flying colours.",
+    "label": "positive"
   },
   {
     "text": "The appeal got off to a flying start at the weekend when the group held a jumble sale and raffle.",
@@ -6696,6 +6720,10 @@
     "label": "positive"
   },
   {
+    "text": "However, funds for the day-to-day running of the Mill are at a low ebb.",
+    "label": "negative"
+  },
+  {
     "text": "Is Iran about to make a comeback?",
     "label": "other"
   },
@@ -6716,7 +6744,7 @@
     "label": "negative"
   },
   {
-    "text": "Pack it in, you lot should be music journalists.",
+    "text": "Women very quickly got left out of the picture and it was a very conservative state that took over.",
     "label": "negative"
   },
   {
@@ -6728,8 +6756,8 @@
     "label": "negative"
   },
   {
-    "text": "Danaher's is a rags to riches story.",
-    "label": "positive"
+    "text": "Blackpool are riding high in Division Four, while United have slowly sunk down the table.",
+    "label": "other"
   },
   {
     "text": "Could' super clippie' save the day?",
@@ -6780,28 +6808,16 @@
     "label": "negative"
   },
   {
-    "text": "By morning, if anyone troubled to come looking for her, they would probably find her poor, frozen body rooted to the spot by a cage of spindly icicles.",
-    "label": "negative"
-  },
-  {
     "text": "Baby kidnapper Caren McSweeney is so stunned by what she did that she has been struck dumb.",
     "label": "negative"
   },
   {
-    "text": "Team spirit reached an all time low on this one, but at least we didn't come to blows.",
-    "label": "other"
-  },
-  {
-    "text": "But if a case proves fatal, the result will not be a free for all but an even tougher enforcement mechanism to replace it accounting solutions.",
+    "text": "He is prepared to fight tooth and nail to stop anyone opening one near his house.",
     "label": "negative"
   },
   {
     "text": "Unlike Tit for Tat, Always Cooperate is not stable against invasion by nasty strategies such as Always Defect.",
     "label": "other"
-  },
-  {
-    "text": "Single travellers would be justified in being up in arms over InterCity Sleeper's latest ad suggesting that you to save money.",
-    "label": "negative"
   },
   {
     "text": "It had been fired by Protestant arsonists in the Wars of Religion.",
@@ -6824,10 +6840,6 @@
     "label": "negative"
   },
   {
-    "text": "What had started out as a dramatic sea chase and developed into a running battle had fizzled out in a disappointing anti-climax.",
-    "label": "negative"
-  },
-  {
     "text": "However, this is water under the bridge.",
     "label": "positive"
   },
@@ -6840,11 +6852,11 @@
     "label": "other"
   },
   {
-    "text": "Wouldn't it be better to let sleeping dogs lie?",
-    "label": "other"
+    "text": "Farmers and farm workers find that they have common interests as locals which can be at loggerheads with those of the newcomers.",
+    "label": "negative"
   },
   {
-    "text": "Farmers and farm workers find that they have common interests as locals which can be at loggerheads with those of the newcomers.",
+    "text": "But there was no love lost between the stars.",
     "label": "negative"
   },
   {
@@ -6852,16 +6864,12 @@
     "label": "other"
   },
   {
-    "text": "We had no right to involve Frank in any battle of wills between Mazzin and his colleagues, so we had to avoid a confrontation.",
-    "label": "other"
-  },
-  {
     "text": "The examination system has long been a serious bone of contention in this country.",
     "label": "negative"
   },
   {
-    "text": "Or he or she may call your bluff and see what happens, in which case you must fight and keep on fighting.",
-    "label": "other"
+    "text": "By this point some of my readers will be up in arms.",
+    "label": "negative"
   },
   {
     "text": "The poor woman had given way to a black mood and been swamped by her ugly past, he explained.",
@@ -6882,10 +6890,6 @@
   {
     "text": "It is not only more kind, but more intelligent, to give it a rest or let it slow down.",
     "label": "other"
-  },
-  {
-    "text": "Take him and good riddance.",
-    "label": "negative"
   },
   {
     "text": "I was obsessed with being flat-chested and unglamorous and I used to harp on about how he must be hankering for someone more glamorous.",
@@ -6924,11 +6928,19 @@
     "label": "negative"
   },
   {
+    "text": "Commecrial viewdata services aimed at domestic customers are starting up in the US later this year, but it is not clear that the public is waiting with bated breath.",
+    "label": "other"
+  },
+  {
     "text": "If you go fertilizing with unsterilized bonemeal, for instance, hold your breath; the stuff can be crawling with anthrax germs.",
     "label": "negative"
   },
   {
     "text": "On the Saturday I got the pins and needles back and was rushed to casualty.",
+    "label": "negative"
+  },
+  {
+    "text": "The young lady behind the bar was scared stiff by our presence.",
     "label": "negative"
   },
   {
@@ -6944,12 +6956,12 @@
     "label": "positive"
   },
   {
-    "text": "The council, backing the \" polluter must pay \" argument, says it is unfair for householders to bear the brunt of the cost; a tax should be levied on pesticide manufacturers, it argues, and motorists should pay for road drainage through the car licence duty.",
-    "label": "other"
-  },
-  {
     "text": "That is very close to home.",
     "label": "negative"
+  },
+  {
+    "text": "I'm sensing warp portals opening deep down in our city.",
+    "label": "other"
   },
   {
     "text": "Ultimately, the return of Madness is hardly something to get worked up about.",
@@ -6976,8 +6988,16 @@
     "label": "positive"
   },
   {
+    "text": "Rosa showed him into the living-room, where Luce was waiting with mixed feelings.",
+    "label": "other"
+  },
+  {
     "text": "Australian charged with spreading the rugby league gospel in the capital, was pleased as punch.",
     "label": "positive"
+  },
+  {
+    "text": "He really gets steamed up if they're left open,",
+    "label": "negative"
   },
   {
     "text": "Louis was reconstituting the royal family, keeping his adult sons on tenterhooks.",
@@ -6992,6 +7012,10 @@
     "label": "other"
   },
   {
+    "text": "By midnight the end-of-course party is in full swing, but most cadets, like the General, are sound asleep.",
+    "label": "positive"
+  },
+  {
     "text": "You don't have to stay in bed all the time, but take it easy and watch your diet.",
     "label": "positive"
   },
@@ -7000,19 +7024,15 @@
     "label": "positive"
   },
   {
+    "text": "Some were very angry, they thought it would last for ever, yes a bit down in the dumps, especially the younger people, some old people looked forward to it.",
+    "label": "negative"
+  },
+  {
     "text": "The National Display Team came for the afternoon to show their special item , we were all over the moon.",
     "label": "positive"
   },
   {
     "text": "He was in seventh heaven, so excited.",
-    "label": "positive"
-  },
-  {
-    "text": "Looks thrilled to bits, doesn't he?",
-    "label": "positive"
-  },
-  {
-    "text": "This book is about achieving the most from that time of your life, whenever it occurs.",
     "label": "positive"
   },
   {
@@ -7060,20 +7080,16 @@
     "label": "negative"
   },
   {
-    "text": "If anyone makes a mistake, it's the senior person who has to carry the can.",
+    "text": "In short, for many employees constructive dismissal claims give rise to a Catch 22.",
     "label": "negative"
   },
   {
-    "text": "In short, for many employees constructive dismissal claims give rise to a Catch 22.",
+    "text": "Thought it has a supportive county council and a productive work force, yet it has its cross to bear.",
     "label": "negative"
   },
   {
     "text": "The crux of the matter today is that those children were not listened to or believed when they complained to the very people in whose care we had put them for protection.",
     "label": "negative"
-  },
-  {
-    "text": "And then, voila, Inspector Rose will get to the bottom of the mystery and we can enjoy our holiday.",
-    "label": "positive"
   },
   {
     "text": "At Crowland in Lincolnshire stands a medieval bridge, stranded high and dry in the middle of the town.",
@@ -7116,11 +7132,11 @@
     "label": "other"
   },
   {
-    "text": "Moreover, death is just' the tip of the iceberg.",
-    "label": "negative"
+    "text": "The performance went off without a hitch and the Vancouver Symphony Orchestra, with Dr Otto Klemperer conducting, played brilliantly.",
+    "label": "positive"
   },
   {
-    "text": "The effect was to leave the peasant in a vicious circle of poverty.",
+    "text": "When news arrived that not only France but also the Habsburg Empire was tottering, he became yet more strongly inclined to batten down the hatches.",
     "label": "negative"
   },
   {
@@ -7132,6 +7148,10 @@
     "label": "positive"
   },
   {
+    "text": "In Whitehall there was a deep awareness of the fragility of British power: one false move and the whole house of cards could come tumbling down.",
+    "label": "negative"
+  },
+  {
     "text": "Making an advance estimate of its amount in a particular case is fraught with danger.",
     "label": "negative"
   },
@@ -7140,12 +7160,20 @@
     "label": "negative"
   },
   {
+    "text": "All his vital organs are safely out of harm 's way.",
+    "label": "positive"
+  },
+  {
+    "text": "He left them in safe hands.",
+    "label": "positive"
+  },
+  {
     "text": "She must fetch her raincoat, just to be on the safe side.",
     "label": "other"
   },
   {
-    "text": "Thirdly, there is therefore never a single hypothesis at stake.",
-    "label": "other"
+    "text": "There is safety in numbers folks.",
+    "label": "positive"
   },
   {
     "text": "Grade Two studying next to a ditch in which they can take cover if the planes should strike today.",
@@ -7157,10 +7185,6 @@
   },
   {
     "text": "His real interests, however, increasingly came to lie in science and eventually his father paid for him to attend University College London, where he studied chemistry.",
-    "label": "other"
-  },
-  {
-    "text": "He's not, he'll be out like a light.",
     "label": "other"
   },
   {
@@ -7184,16 +7208,16 @@
     "label": "other"
   },
   {
+    "text": "But as aspiring authors know, there is more to a blockbuster than a fulsome blurb.",
+    "label": "other"
+  },
+  {
     "text": "Many manufacturers have come to grief on the belief that technical solutions can be bought pre-packaged.",
     "label": "negative"
   },
   {
     "text": "First, we want promotion this season and we're on course for that.",
     "label": "positive"
-  },
-  {
-    "text": "April Harold Wilson admitted what everyone else already knew, the Bill was a dead duck.",
-    "label": "negative"
   },
   {
     "text": "Now the arguments against using lightweight man-made slates fall flat.",
@@ -7248,12 +7272,12 @@
     "label": "other"
   },
   {
-    "text": "Faced with a family mutiny, he decided to pack it in and sell up.",
-    "label": "negative"
-  },
-  {
     "text": "For our purposes, only the final group pass muster into the Soviet Empire, but the others are worth noting in passing.",
     "label": "positive"
+  },
+  {
+    "text": "There is more than a touch of rags to riches in the story of the outsize barons.",
+    "label": "other"
   },
   {
     "text": "He could not therefore help but rise to the occasion, as he had risen to it before.",
@@ -7268,12 +7292,12 @@
     "label": "other"
   },
   {
-    "text": "IBM cuts four euro plants loose to sink or swim.",
-    "label": "negative"
-  },
-  {
     "text": "A top dog always wants to be top dog.",
     "label": "other"
+  },
+  {
+    "text": "All in all, it can only mean that tea time is on the up and up.",
+    "label": "positive"
   },
   {
     "text": "The Premier League new boys finished with the wooden spoon after losing a penalty shoot out 5-4 to John Toshack's Real Sociedad.",
@@ -7320,24 +7344,12 @@
     "label": "negative"
   },
   {
-    "text": "Written in verse, the play was set in the Middle Ages and told of a soldier back from seven years in the wars who wanted to die and a beautiful witch who wanted to live.",
-    "label": "other"
-  },
-  {
     "text": "Whether this input has made a significant impact on the pattern of activity is a moot point.",
-    "label": "other"
-  },
-  {
-    "text": "Alexander found himself at odds with these famous words of Shakespeare.",
     "label": "other"
   },
   {
     "text": "My dear Dowdy, out of the question.",
     "label": "negative"
-  },
-  {
-    "text": "To some extent, that is water under the bridge.",
-    "label": "positive"
   },
   {
     "text": "Marcian and Leo found themselves at loggerheads not so much over the dogmatic formulation as over the disciplinary canons that were appended.",
@@ -7376,27 +7388,11 @@
     "label": "negative"
   },
   {
-    "text": "Because it's a beta version, I don't propose to harp on about any niggles.",
-    "label": "other"
-  },
-  {
-    "text": "A bit hot under the collar.",
-    "label": "negative"
-  },
-  {
-    "text": "Mind your own business.",
-    "label": "negative"
-  },
-  {
     "text": "Regularly, up to three times a week, they would rant and rave in the streets.",
     "label": "negative"
   },
   {
-    "text": "Just like Walter Trout, 42 year-old Dave has been making his European debut courtesy of Dutch record label Provogue, and the album' Short Fuse Blues' is receiving very favourable recognition with blues fans everywhere.",
-    "label": "positive"
-  },
-  {
-    "text": "It means thinking before you speak, trying hard not to get all steamed up and confrontational.",
+    "text": "Suppose that my private visual experience is strikingly atypical in that systematically I see green where others see red.",
     "label": "other"
   },
   {
@@ -7410,10 +7406,6 @@
   {
     "text": "I pretended not to notice it, and, as the students listened with bated breath, instructed them to turn to page thirty in Jespersen.",
     "label": "positive"
-  },
-  {
-    "text": "Don't hold your breath waiting for a reply.",
-    "label": "negative"
   },
   {
     "text": "Styczynski had x-rays after saying that he had pains in his chest and pins and needles in his arms.",
@@ -7436,6 +7428,10 @@
     "label": "negative"
   },
   {
+    "text": "But, deep down, every Russian knows that our strength is in our unity.",
+    "label": "positive"
+  },
+  {
     "text": "Other critics who could not get worked up about the play also admired the acting.",
     "label": "positive"
   },
@@ -7444,12 +7440,20 @@
     "label": "positive"
   },
   {
+    "text": "They fell head over heels in love and my real Mother returned.",
+    "label": "positive"
+  },
+  {
+    "text": "God gave them more than four centuries to show a change of heart.",
+    "label": "other"
+  },
+  {
     "text": "So let's look on the bright side, Mr. Coles.",
     "label": "positive"
   },
   {
-    "text": "Leonora digested this peace of news with mixed feelings as he set her on her feet.",
-    "label": "other"
+    "text": "There are no hard feelings between ourselves and Camra.",
+    "label": "positive"
   },
   {
     "text": "He was a strong, healthy lad and as pleased as punch to be working with Dad.",
@@ -7469,10 +7473,6 @@
   },
   {
     "text": "Soon it was dark and the Christmas evening was in full swing.",
-    "label": "positive"
-  },
-  {
-    "text": "Come on, girl, take it easy.",
     "label": "positive"
   },
   {
@@ -7504,10 +7504,6 @@
     "label": "positive"
   },
   {
-    "text": "I go bananas, I go spare, I go for you in a big way, I go for you with a knife.",
-    "label": "negative"
-  },
-  {
     "text": "Of course that's not all there is to this beautiful island.",
     "label": "positive"
   },
@@ -7520,15 +7516,11 @@
     "label": "negative"
   },
   {
-    "text": "Members wishing to express an opinion in the debate later this afternoon, any suggestion that the additional two hours provided is adequate is clearly wide of the mark?",
-    "label": "negative"
-  },
-  {
     "text": "Venus fly trap, who've just released their latest' Achilles Heel' single on Danceteria.",
     "label": "other"
   },
   {
-    "text": "It's simply asking for trouble.",
+    "text": "Careful study of this sent alarm bells ringing throughout vast areas of southern and eastern England.",
     "label": "negative"
   },
   {
@@ -7556,10 +7548,6 @@
     "label": "other"
   },
   {
-    "text": "It is not enough for the Minister to pass the buck to the chief inspector of constabulary.",
-    "label": "negative"
-  },
-  {
     "text": "I do not believe that there is a quick fix for the coal industry.",
     "label": "negative"
   },
@@ -7584,12 +7572,16 @@
     "label": "negative"
   },
   {
+    "text": "I was determined to take a calculated risk.",
+    "label": "positive"
+  },
+  {
     "text": "A close shave in the post room.",
     "label": "other"
   },
   {
-    "text": "This is another high scoring technique, though its use is fraught with danger.",
-    "label": "other"
+    "text": "One false move and you're dead.",
+    "label": "negative"
   },
   {
     "text": "When the kick is delivered, the defender ducks beneath it, well out of harm 's way.",
@@ -7604,8 +7596,16 @@
     "label": "other"
   },
   {
+    "text": "There is, we might say, a general interest at stake here.",
+    "label": "other"
+  },
+  {
     "text": "Take cover, here comes Attila.",
     "label": "negative"
+  },
+  {
+    "text": "Now watch your step, the path gets a bit steep further down.",
+    "label": "positive"
   },
   {
     "text": "You'll need to lie in or you'll be too exhausted to have any fun.",
@@ -7620,12 +7620,20 @@
     "label": "other"
   },
   {
+    "text": "There is no need to go back to square one, just a few steps backward is all that is needed.",
+    "label": "positive"
+  },
+  {
     "text": "Glenavon are on the march again with a Gold Cup quarter-final place in the bag.",
     "label": "positive"
   },
   {
     "text": "Surely some of it will bear fruit.",
     "label": "positive"
+  },
+  {
+    "text": "Virgin is teaming up with Blockbuster International to set up a chain of international mega-stores.",
+    "label": "other"
   },
   {
     "text": "It is not unknown for so-called' unspinnable' aircraft to come to grief by getting into a stable spin",
@@ -7646,10 +7654,6 @@
   {
     "text": "The competition was soon simplified with the fall from grace of William Craig.",
     "label": "negative"
-  },
-  {
-    "text": "I had a trial pouring and the teapot passed with flying colours.",
-    "label": "positive"
   },
   {
     "text": "Asitz double chair lift operates on Wednesdays and Sundays during high summer to give a flying start to some of the area's prettiest walks.",
@@ -7716,16 +7720,12 @@
     "label": "positive"
   },
   {
-    "text": "In reality, though, he is top dog already.",
-    "label": "positive"
-  },
-  {
     "text": "Stir in oodles of special effects and hand the wooden spoon to Robert.",
     "label": "negative"
   },
   {
-    "text": "Then out of the blue, the radio station sacked them.",
-    "label": "negative"
+    "text": "A bolt from the blue is how Dounreay described hearing of her thrilling news that she had been awarded the MBE in The Queen's birthday honours.",
+    "label": "positive"
   },
   {
     "text": "Virginia's jaw dropped open in surprise.",
@@ -7760,10 +7760,6 @@
     "label": "negative"
   },
   {
-    "text": "However, it is a moot point as to how representative the Church of England really are.",
-    "label": "other"
-  },
-  {
     "text": "Planning in the railways has traditionally had an important political dimension that has sometimes been at odds with its use as an internal business tool.",
     "label": "other"
   },
@@ -7784,7 +7780,11 @@
     "label": "negative"
   },
   {
-    "text": "So any docks, dandelions and creeping buttercup go straight to the tip and good riddance to them too.",
+    "text": "Can't you give it a rest?",
+    "label": "negative"
+  },
+  {
+    "text": "In the general election campaign Carter continued to harp on the need to clear up the' mess' in Washington.",
     "label": "negative"
   },
   {
@@ -7796,6 +7796,10 @@
     "label": "negative"
   },
   {
+    "text": "A farmer has every right to rant and rave about such clowns.",
+    "label": "negative"
+  },
+  {
     "text": "But you promised we'd see red grouse, wailed an insatiable lad.",
     "label": "negative"
   },
@@ -7804,15 +7808,15 @@
     "label": "negative"
   },
   {
-    "text": "A jogger out for his early morning run passed a lone car parked by the side of the road, its windows all steamed up.",
-    "label": "other"
-  },
-  {
     "text": "While it would be going too far to claim that social surveys such as these by themselves induced major political change, it would be dangerous to ignore their significant contribution.",
     "label": "other"
   },
   {
     "text": "Your letter of 27 Feb, informing me that the current account was overdrawn and charging the Club to rectify this, was the last straw.",
+    "label": "negative"
+  },
+  {
+    "text": "The adults, in the way that grown-ups have, forgot that my ears were listening and talked with bated breath of the murder that had taken place on those very sands earlier that year.",
     "label": "negative"
   },
   {
@@ -7836,6 +7840,10 @@
     "label": "negative"
   },
   {
+    "text": "I was taken aback, but deep down I wasn't totally surprised.",
+    "label": "other"
+  },
+  {
     "text": "Diana was blamed for her husband's change of heart.",
     "label": "negative"
   },
@@ -7852,10 +7860,6 @@
     "label": "negative"
   },
   {
-    "text": "I shied at such a thinly veiled challenge, but succumbed to her persuasion, which had become more vociferous as the water diminished.",
-    "label": "other"
-  },
-  {
     "text": "It's a challenge all the more remarkable for the fact that not so long ago jetting off on holiday made her weak at the knees.",
     "label": "other"
   },
@@ -7866,10 +7870,6 @@
   {
     "text": "No, I told you I was going to take it easy for a while.",
     "label": "other"
-  },
-  {
-    "text": "Everyone's so down in the dumps and poor.",
-    "label": "negative"
   },
   {
     "text": "She was over the moon with it.",
@@ -7888,20 +7888,12 @@
     "label": "negative"
   },
   {
-    "text": "Many centuries of trial and error would elapse before Ireland's dark secret would be revealed.",
-    "label": "other"
-  },
-  {
     "text": "Although these ideas are often met, there seems to be many instances where comments are wide of the mark.",
     "label": "other"
   },
   {
     "text": "Is it the done thing to have question?",
     "label": "negative"
-  },
-  {
-    "text": "If no further contact by then, gatecrash the party.",
-    "label": "other"
   },
   {
     "text": "It showed up the Achilles heel of the government.",
@@ -7920,10 +7912,6 @@
     "label": "other"
   },
   {
-    "text": "After a few falls we all managed to get to the bottom of the slope in a snow plough position.",
-    "label": "positive"
-  },
-  {
     "text": "I can't just leave him high and dry either.",
     "label": "positive"
   },
@@ -7936,7 +7924,15 @@
     "label": "other"
   },
   {
+    "text": "They needed the scrupulous professional integrity which nearly proved such a stumbling block to them in this case.",
+    "label": "negative"
+  },
+  {
     "text": "They guess at only the tip of the iceberg of what is going on in these firms.",
+    "label": "negative"
+  },
+  {
+    "text": "How can this vicious circle be broken?",
     "label": "negative"
   },
   {
@@ -7945,10 +7941,6 @@
   },
   {
     "text": "Liberal Democrats pledged the support of 17 of their 20 MPs, ministers took a calculated risk and won a symbolic victory by 17 votes.",
-    "label": "positive"
-  },
-  {
-    "text": "It was a close shave.",
     "label": "positive"
   },
   {
@@ -7965,6 +7957,10 @@
   },
   {
     "text": "And the involuntary malice within the desperate attempts to remain on the safe side of the frontier of madness.",
+    "label": "negative"
+  },
+  {
+    "text": "The reputation of Hawaii was at stake.",
     "label": "negative"
   },
   {
@@ -7988,8 +7984,16 @@
     "label": "other"
   },
   {
+    "text": "Give up or go back to square one.",
+    "label": "negative"
+  },
+  {
     "text": "I looked in the bag, it was full of fish.",
     "label": "other"
+  },
+  {
+    "text": "This observation was to bear fruit in later years.",
+    "label": "positive"
   },
   {
     "text": "It may not be as big a blockbuster as Jurassic Park but it certainly won't create anywhere near as much hype.",
@@ -8000,11 +8004,15 @@
     "label": "positive"
   },
   {
-    "text": "It was bad enough having to admit that the APT train project was a dead duck.",
+    "text": "With the smallest fall from grace, it is quickly turned into badness.",
     "label": "negative"
   },
   {
     "text": "April 1992 saw the car completed and it passed its MOT with flying colours.",
+    "label": "positive"
+  },
+  {
+    "text": "The women's confidence increased by leaps and bounds.",
     "label": "positive"
   },
   {
@@ -8016,7 +8024,19 @@
     "label": "other"
   },
   {
+    "text": "There was a moment of truth.",
+    "label": "negative"
+  },
+  {
     "text": "Both residential preferences and government policy had dropped out of the picture.",
+    "label": "negative"
+  },
+  {
+    "text": "Oh, pack it in, this is serious.",
+    "label": "negative"
+  },
+  {
+    "text": "Sometimes the rags to riches progress of a dish is reversed.",
     "label": "negative"
   },
   {
@@ -8028,14 +8048,6 @@
     "label": "negative"
   },
   {
-    "text": "A case of sink or swim.",
-    "label": "negative"
-  },
-  {
-    "text": "Ann thinks he wants to be top dog in Pinner.",
-    "label": "other"
-  },
-  {
     "text": "So it was the dreaded wooden spoon for the Irish.",
     "label": "negative"
   },
@@ -8044,15 +8056,7 @@
     "label": "positive"
   },
   {
-    "text": "But before I had finished this wearisome task, the cheque arrived out of the blue.",
-    "label": "positive"
-  },
-  {
     "text": "An American is standing in an Oxford quadrangle, jaw dropped.",
-    "label": "negative"
-  },
-  {
-    "text": "Suddenly, lo and behold, what should they see but the tiger and the jackal coming toward them with their tails tied together.",
     "label": "negative"
   },
   {
@@ -8073,10 +8077,6 @@
   },
   {
     "text": "But in the next move tit for tat retaliates.",
-    "label": "negative"
-  },
-  {
-    "text": "By this point some of my readers will be up in arms.",
     "label": "negative"
   },
   {
