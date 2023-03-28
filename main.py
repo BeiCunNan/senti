@@ -18,6 +18,7 @@ class Instructor:
         self.logger = logger
         self.index = index
         self.max_lengths = args.max_lengths
+        self.query_lengths = args.query_lengths
 
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
@@ -57,7 +58,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.cls_model)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths,self.query_lengths, self.cls_model, self.query_model)
         else:
             raise ValueError('unknown method')
 
