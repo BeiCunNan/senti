@@ -13,7 +13,7 @@ class MyDataset(Dataset):
         split_token = ' [SEP] '
         # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
         QUERY = 'what class in  { ' + ' , '.join(label_list) + ' } does this sentence have ?'
-        # print(len((QUERY).split(' ')))
+        print(len((QUERY).split(' ')))
         # print(QUERY)
         dataset = list()
         for data in raw_data:

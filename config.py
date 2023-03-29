@@ -11,9 +11,9 @@ import torch
 
 def get_config():
     parser = argparse.ArgumentParser()
-    num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2, 'pc': 2, 'mr': 2, 'trec': 6, 'mpqa': 2,'ie':3}
-    max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'pc': 2, 'mr': 53, 'trec': 33, 'mpqa': 34,'ie':16}
-    query_lengths = {'sst2': 14, 'sst5': 20, 'cr': 12, 'subj': 11, 'pc': 12, 'mr': 12, 'trec': 15, 'mpqa': 13,'ie':16}
+    num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2, 'pc': 2, 'mr': 2, 'trec': 6, 'mpqa': 2, 'ie': 3}
+    max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'pc': 2, 'mr': 53, 'trec': 33, 'mpqa': 34, 'ie': 16}
+    query_lengths = {'sst2': 14, 'sst5': 20, 'cr': 14, 'subj': 14, 'pc': 14, 'mr': 14, 'trec': 22, 'mpqa': 13, 'ie': 16}
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
@@ -29,7 +29,7 @@ def get_config():
     '''Optimization'''
     parser.add_argument('--train_batch_size', type=int, default=10)
     parser.add_argument('--test_batch_size', type=int, default=64)
-    parser.add_argument('--num_epoch', type=int, default=10)
+    parser.add_argument('--num_epoch', type=int, default=100)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)
     parser.add_argument('--eps', type=float, default=1e-8)

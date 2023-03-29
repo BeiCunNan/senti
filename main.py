@@ -58,7 +58,7 @@ class Instructor:
         elif args.method_name == 'self_attention':
             self.model = Self_Attention(self.base_model, args.num_classes)
         elif args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths,self.query_lengths, self.cls_model)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.cls_model)
         else:
             raise ValueError('unknown method')
 
