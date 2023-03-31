@@ -173,7 +173,7 @@ if __name__ == '__main__':
         # CV or No_CV
         if (args.dataset in ['mr', 'cr', 'subj', 'mpqa']):
             k_fold_accs = []
-            for index_fold in range(5):
+            for index_fold in range(10):
                 ins = Instructor(args, logger, i)
                 acc = ins.run(index_fold)
                 k_fold_accs.append(acc)

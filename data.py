@@ -64,6 +64,14 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         train_data = json.load(open(os.path.join(data_dir, 'SST5_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST5_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'terrible': 0, 'bad': 1, 'okay': 2, 'good': 3, 'perfect': 4}
+    elif dataset == 'trec':
+        train_data = json.load(open(os.path.join(data_dir, 'TREC_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'TREC_Test.json'), 'r', encoding='utf-8'))
+        label_dict = {'description': 0, 'entity': 1, 'abbreviation': 2, 'human': 3, 'location': 4, 'numeric': 5}
+    elif dataset == 'ie':
+        train_data = json.load(open(os.path.join(data_dir, 'IE_Train.json'), 'r', encoding='utf-8'))
+        test_data = json.load(open(os.path.join(data_dir, 'IE_Test.json'), 'r', encoding='utf-8'))
+        label_dict = {'positive': 0, 'negative': 1, 'other': 2}
     elif dataset == 'cr':
         data = json.load(open(os.path.join(data_dir, 'CR_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
@@ -82,10 +90,6 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         # train_data = json.load(open(os.path.join(data_dir, 'SUBJ_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'SUBJ_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'subjective': 0, 'objective': 1}
-    elif dataset == 'pc':
-        train_data = json.load(open(os.path.join(data_dir, 'PC_Train.json'), 'r', encoding='utf-8'))
-        test_data = json.load(open(os.path.join(data_dir, 'PC_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'positive': 0, 'negative': 1}
     elif dataset == 'mr':
         data = json.load(open(os.path.join(data_dir, 'MR_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
@@ -94,10 +98,6 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         # train_data = json.load(open(os.path.join(data_dir, 'MR_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MR_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'great': 0, 'terrible': 1}
-    elif dataset == 'trec':
-        train_data = json.load(open(os.path.join(data_dir, 'TREC_Train.json'), 'r', encoding='utf-8'))
-        test_data = json.load(open(os.path.join(data_dir, 'TREC_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'description': 0, 'entity': 1, 'abbreviation': 2, 'human': 3, 'location': 4, 'numeric': 5}
     elif dataset == 'mpqa':
         data = json.load(open(os.path.join(data_dir, 'MPQA_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
@@ -106,10 +106,6 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         # train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'good': 0, 'bad': 1}
-    elif dataset == 'ie':
-        train_data = json.load(open(os.path.join(data_dir, 'IE_Train.json'), 'r', encoding='utf-8'))
-        test_data = json.load(open(os.path.join(data_dir, 'IE_Test.json'), 'r', encoding='utf-8'))
-        label_dict = {'positive': 0, 'negative': 1, 'other': 2}
     else:
         raise ValueError('unknown dataset')
 
