@@ -17,9 +17,9 @@ def get_config():
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='sst2', choices=num_classes.keys())
-    parser.add_argument('--max_lengths', type=str, default='sst2', choices=max_lengths.keys())
-    parser.add_argument('--query_lengths', type=str, default='sst2', choices=max_lengths.keys())
+    parser.add_argument('--dataset', type=str, default='subj', choices=num_classes.keys())
+    parser.add_argument('--max_lengths', type=str, default='subj', choices=max_lengths.keys())
+    parser.add_argument('--query_lengths', type=str, default='subj', choices=max_lengths.keys())
     parser.add_argument('--model_name', type=str, default='bert',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',
@@ -29,7 +29,7 @@ def get_config():
     '''Optimization'''
     parser.add_argument('--train_batch_size', type=int, default=10)
     parser.add_argument('--test_batch_size', type=int, default=64)
-    parser.add_argument('--num_epoch', type=int, default=100)
+    parser.add_argument('--num_epoch', type=int, default=2)
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)
     parser.add_argument('--eps', type=float, default=1e-8)

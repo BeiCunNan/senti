@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 import torch
+from numpy import mean
 from tqdm import tqdm
 from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
 
 from config import get_config
 from data import load_data
-from loss import CELoss, SELoss
+from loss import CELoss
 from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
     Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
     A
@@ -25,7 +26,6 @@ class Instructor:
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
             self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
-            self.query_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
@@ -112,7 +112,7 @@ class Instructor:
 
         return test_loss / n_test, n_correct / n_test
 
-    def run(self):
+    def run(self, index_fold):
         train_dataloader, test_dataloader = load_data(dataset=self.args.dataset,
                                                       data_dir=self.args.data_dir,
                                                       tokenizer=self.tokenizer,
@@ -120,14 +120,11 @@ class Instructor:
                                                       test_batch_size=self.args.test_batch_size,
                                                       model_name=self.args.model_name,
                                                       method_name=self.args.method_name,
-                                                      workers=0)
+                                                      workers=0,
+                                                      index_fold=index_fold)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
         # Define the criterion
-        if self.args.method_name in ['cls_explain', 'sanl']:
-            criterion = SELoss()
-        else:
-            criterion = CELoss()
-            # raise ValueError('unknown criterion')
+        criterion = CELoss()
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay, eps=self.args.eps)
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
@@ -140,8 +137,8 @@ class Instructor:
 
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
-            # Temp
-            if (epoch == 100):
+            # Early stopping
+            if (epoch == 50):
                 break
 
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
@@ -149,16 +146,12 @@ class Instructor:
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
                 best_acc, best_loss = test_acc, test_loss
-                # Save model
-                # torch.save(self.model.state_dict(), './model.pkl')
             self.logger.info(
                 '{}/{} - {:.2f}%'.format(epoch + 1, self.args.num_epoch, 100 * (epoch + 1) / self.args.num_epoch))
             self.logger.info('[train] loss: {:.4f}, acc: {:.2f}'.format(train_loss, train_acc * 100))
             self.logger.info('[test] loss: {:.4f}, acc: {:.2f}'.format(test_loss, test_acc * 100))
         self.logger.info('best loss: {:.4f}, best acc: {:.2f}'.format(best_loss, best_acc * 100))
         self.logger.info('log saved: {}'.format(self.args.log_name))
-        # new_model=Self_Attention_New(self.base_model, args.num_classes)
-        # new_model.load_state_dict(torch.load('./model.pkl'))
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
@@ -170,16 +163,25 @@ class Instructor:
 
 if __name__ == '__main__':
     accs = []
+
     for i in range(30):
         logging.set_verbosity_error()
 
-        # 预设参数获取
+        # Get the hyperparameters
         args, logger = get_config()
 
-        # 将参数输入到模型中
-        ins = Instructor(args, logger, i)
-
-        # 模型训练评估
-        temp = ins.run()
-        accs.append(temp)
-        print(accs)
+        # CV or No_CV
+        if (args.dataset in ['mr', 'cr', 'subj', 'mpqa']):
+            k_fold_accs = []
+            for index_fold in range(5):
+                ins = Instructor(args, logger, i)
+                acc = ins.run(index_fold)
+                k_fold_accs.append(acc)
+            print('k_fold_accs:', k_fold_accs)
+            accs.append(mean(k_fold_accs))
+            print('total_accs', accs)
+        else:
+            ins = Instructor(args, logger, i)
+            acc = ins.run(0)
+            accs.append(acc)
+            print(accs)
