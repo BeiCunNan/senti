@@ -73,7 +73,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         test_data = json.load(open(os.path.join(data_dir, 'IE_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'positive': 0, 'negative': 1, 'other': 2}
     elif dataset == 'cr':
-        data = json.load(open(os.path.join(data_dir, 'CR_CV.json'), 'r', encoding='utf-8'))
+        data = json.load(open(os.path.join(data_dir, 'CR_CV.json.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
         test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len - 1]
         train_data = data[:oneFold_len * index_fold - 1] + data[oneFold_len * index_fold + oneFold_len:]

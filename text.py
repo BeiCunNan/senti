@@ -1,8 +1,13 @@
-from numpy import mean
+import json
+import random
 
-l = '[SEP] please choose a correct sentiment category from { very negative, negative, neutral, positive, very positive }'
-l = l.split(' ')
-print(len(l))
+# 读取原始数据
+with open('data/MR_CV.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
 
-l = [93.1, 55.3, 98.0, 78.4, 94.4, 87.5, 97.60, 89.60]
-print(mean(l))
+# 打乱数据
+random.shuffle(data)
+
+# 将打乱后的数据输出到文件中
+with open('data/MR_CV.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
