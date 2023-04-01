@@ -73,18 +73,18 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
         test_data = json.load(open(os.path.join(data_dir, 'IE_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'positive': 0, 'negative': 1, 'other': 2}
     elif dataset == 'cr':
-        data = json.load(open(os.path.join(data_dir, 'CR_CV.json.json'), 'r', encoding='utf-8'))
+        data = json.load(open(os.path.join(data_dir, 'CR_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len - 1]
-        train_data = data[:oneFold_len * index_fold - 1] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len]
+        train_data = data[:oneFold_len * index_fold] + data[oneFold_len * index_fold + oneFold_len:]
         # train_data = json.load(open(os.path.join(data_dir, 'CR_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'CR_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'positive': 0, 'negative': 1}
     elif dataset == 'subj':
         data = json.load(open(os.path.join(data_dir, 'SUBJ_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len - 1]
-        train_data = data[:oneFold_len * index_fold - 1] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
+        train_data = data[:oneFold_len * index_fold] + data[oneFold_len * index_fold + oneFold_len:]
         # print(oneFold_len * index_fold, oneFold_len * index_fold + oneFold_len - 1)
         # print(0, oneFold_len * index_fold - 1, oneFold_len * index_fold + oneFold_len)
         # train_data = json.load(open(os.path.join(data_dir, 'SUBJ_Train.json'), 'r', encoding='utf-8'))
@@ -93,16 +93,16 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'mr':
         data = json.load(open(os.path.join(data_dir, 'MR_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len - 1]
-        train_data = data[:oneFold_len * index_fold - 1] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
+        train_data = data[:oneFold_len * index_fold ] + data[oneFold_len * index_fold + oneFold_len:]
         # train_data = json.load(open(os.path.join(data_dir, 'MR_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MR_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'great': 0, 'terrible': 1}
     elif dataset == 'mpqa':
         data = json.load(open(os.path.join(data_dir, 'MPQA_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len - 1]
-        train_data = data[:oneFold_len * index_fold - 1] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
+        train_data = data[:oneFold_len * index_fold ] + data[oneFold_len * index_fold + oneFold_len:]
         # train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'good': 0, 'bad': 1}
