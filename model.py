@@ -123,21 +123,8 @@ class A(nn.Module):
         aattention_N = nn.Softmax(dim=-1)((torch.bmm(aQ_N, aK_N.permute(0, 2, 1))) * self.af_norm_fact)
         aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
-        # Similiar to the Bert module
-        aTSA += tokens_padding
-        aFSA += tokens_padding
-        a_norm_TSA = nn.LayerNorm([aTSA.shape[1], aTSA.shape[2]], eps=1e-8).cuda()
-        a_norm_FSA = nn.LayerNorm([aFSA.shape[1], aFSA.shape[2]], eps=1e-8).cuda()
-        aTSA = a_norm_TSA(aTSA)
-        aFSA = a_norm_FSA(aFSA)
-        a_TFSA = torch.cat((aTSA, aFSA), 2)
-        a_TFSA_FF = self.aFF(a_TFSA)
-        a_TFSA_add = a_TFSA + a_TFSA_FF
-        a_norm_TFSA = nn.LayerNorm([a_TFSA_add.shape[1], a_TFSA_add.shape[2]], eps=1e-8).cuda()
-        aTFSA = a_norm_TFSA(a_TFSA_add)
-
         # Combine T and F Method 2
-        a_TFSA = self.A_Att_Pooling(aTFSA)
+        a_TFSA = self.A_Att_Pooling(torch.cat(aTSA, aFSA), 2)
 
         # TSA && FSA
         bK = self.bkey_layer(cls_padding)
@@ -152,21 +139,8 @@ class A(nn.Module):
         battention_N = nn.Softmax(dim=-1)((torch.bmm(bQ_N, bK_N.permute(0, 2, 1))) * self.bf_norm_fact)
         bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
 
-        # Similiar to the Bert module
-        bTSA += cls_padding
-        bFSA += cls_padding
-        b_norm_TSA = nn.LayerNorm([bTSA.shape[1], bTSA.shape[2]], eps=1e-8).cuda()
-        b_norm_FSA = nn.LayerNorm([bFSA.shape[1], bFSA.shape[2]], eps=1e-8).cuda()
-        bTSA = b_norm_TSA(bTSA)
-        bFSA = b_norm_FSA(bFSA)
-        b_TFSA = torch.cat((bTSA, bFSA), 2)
-        b_TFSA_FF = self.bFF(b_TFSA)
-        b_TFSA_add = b_TFSA + b_TFSA_FF
-        b_norm_TFSA = nn.LayerNorm([b_TFSA_add.shape[1], b_TFSA_add.shape[2]], eps=1e-8).cuda()
-        bTFSA = b_norm_TFSA(b_TFSA_add)
-
         # Combine T and F Method 2
-        b_TFSA = self.B_Att_Pooling(bTFSA)
+        b_TFSA = self.B_Att_Pooling(torch.cat(bTSA, bFSA), 2)
 
         output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
 
