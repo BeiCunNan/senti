@@ -26,6 +26,7 @@ class AttentionPooling_a(nn.Module):
 
 
 class AttentionPooling_b(nn.Module):
+
     def __init__(self, input_size):
         super(AttentionPooling_b, self).__init__()
 
