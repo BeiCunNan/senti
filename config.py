@@ -13,13 +13,13 @@ def get_config():
     parser = argparse.ArgumentParser()
     num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2, 'pc': 2, 'mr': 2, 'trec': 6, 'mpqa': 2, 'ie': 3}
     max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'pc': 2, 'mr': 53, 'trec': 33, 'mpqa': 34, 'ie': 16}
-    query_lengths = {'sst2': 12, 'sst5': 18, 'cr': 12, 'subj': 12, 'pc': 12, 'mr': 12, 'trec': 20, 'mpqa': 12, 'ie': 14}
+    query_lengths = {'sst2': 14, 'sst5': 20, 'cr': 14, 'subj': 14, 'pc': 14, 'mr': 14, 'trec': 22, 'mpqa': 14, 'ie': 16}
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='trec', choices=num_classes.keys())
-    parser.add_argument('--max_lengths', type=str, default='trec', choices=max_lengths.keys())
-    parser.add_argument('--query_lengths', type=str, default='trec', choices=max_lengths.keys())
+    parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
+    parser.add_argument('--max_lengths', type=str, default='sst5', choices=max_lengths.keys())
+    parser.add_argument('--query_lengths', type=str, default='sst5', choices=max_lengths.keys())
     parser.add_argument('--model_name', type=str, default='bert',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',

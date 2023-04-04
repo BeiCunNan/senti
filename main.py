@@ -7,9 +7,7 @@ from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_
 from config import get_config
 from data import load_data
 from loss import CELoss
-from model import Transformer_CLS, Transformer_Extend_LSTM, Transformer_Extend_BILSTM, \
-    Transformer_Text_Last_Hidden, Transformer_Text_Hiddens, Transformer_CNN_RNN, ExplainableModel, Self_Attention, \
-    A
+from model import A
 
 
 class Instructor:
@@ -41,23 +39,7 @@ class Instructor:
         else:
             raise ValueError('unknown model')
 
-        if args.method_name == 'cls':
-            self.model = Transformer_CLS(self.base_model, args.num_classes)
-        elif args.method_name == 'cls_extend_lstm':
-            self.model = Transformer_Extend_LSTM(self.base_model, args.num_classes)
-        elif args.method_name == 'cls_extend_bilstm':
-            self.model = Transformer_Extend_BILSTM(self.base_model, args.num_classes)
-        elif args.method_name == 'text_last_hidden':
-            self.model = Transformer_Text_Last_Hidden(self.base_model, args.num_classes)
-        elif args.method_name == 'text_hiddens':
-            self.model = Transformer_Text_Hiddens(self.base_model, args.num_classes)
-        elif args.method_name == 'cnn+rnn':
-            self.model = Transformer_CNN_RNN(self.base_model, args.num_classes)
-        elif args.method_name == 'cls_explain':
-            self.model = ExplainableModel(self.base_model, args.num_classes)
-        elif args.method_name == 'self_attention':
-            self.model = Self_Attention(self.base_model, args.num_classes)
-        elif args.method_name == 'san':
+        if args.method_name == 'san':
             self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.cls_model)
         else:
             raise ValueError('unknown method')

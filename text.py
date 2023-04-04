@@ -8,11 +8,7 @@
 # # 将打乱后的数据输出到文件中
 # with open('data/MR_CV.json', 'w', encoding='utf-8') as f:
 #     json.dump(data, f, ensure_ascii=False, indent=2)
+from numpy import mean
 
-
-import pickle
-
-with open(r'C:\Users\大白菜\Desktop\smallset\SST-2\trainset.pkl', 'rb') as f:
-    trainset = pickle.load(f)
-    for i in trainset:
-        print(i)
+l = [93.3, 55.5, 98.2, 77.8, 92.8, 88.4, 97.2, 92.1]
+print(mean(l))
