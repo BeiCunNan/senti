@@ -12,9 +12,11 @@ class MyDataset(Dataset):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
         # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
-        QUERY = 'what class in  { ' + ' , '.join(label_list) + ' } does this sentence have ?'
-        # print(len((QUERY).split(' ')))
-        # print(QUERY)
+        # QUERY = 'what class in  { ' + ' , '.join(label_list) + ' } does this sentence have ?'
+        QUERY = 'what class does this sentence belong to , ' +' or '.join(label_list)+' ?'
+        print(QUERY)
+        print(len(QUERY.split(' ')))
+
         dataset = list()
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
@@ -83,7 +85,7 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'subj':
         data = json.load(open(os.path.join(data_dir, 'SUBJ_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len]
         train_data = data[:oneFold_len * index_fold] + data[oneFold_len * index_fold + oneFold_len:]
         # print(oneFold_len * index_fold, oneFold_len * index_fold + oneFold_len - 1)
         # print(0, oneFold_len * index_fold - 1, oneFold_len * index_fold + oneFold_len)
@@ -93,16 +95,16 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     elif dataset == 'mr':
         data = json.load(open(os.path.join(data_dir, 'MR_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
-        train_data = data[:oneFold_len * index_fold ] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len]
+        train_data = data[:oneFold_len * index_fold] + data[oneFold_len * index_fold + oneFold_len:]
         # train_data = json.load(open(os.path.join(data_dir, 'MR_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MR_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'great': 0, 'terrible': 1}
     elif dataset == 'mpqa':
         data = json.load(open(os.path.join(data_dir, 'MPQA_CV.json'), 'r', encoding='utf-8'))
         oneFold_len = int(len(data) * 0.1)
-        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len ]
-        train_data = data[:oneFold_len * index_fold ] + data[oneFold_len * index_fold + oneFold_len:]
+        test_data = data[oneFold_len * index_fold:oneFold_len * index_fold + oneFold_len]
+        train_data = data[:oneFold_len * index_fold] + data[oneFold_len * index_fold + oneFold_len:]
         # train_data = json.load(open(os.path.join(data_dir, 'MPQA_Train.json'), 'r', encoding='utf-8'))
         # test_data = json.load(open(os.path.join(data_dir, 'MPQA_Test.json'), 'r', encoding='utf-8'))
         label_dict = {'good': 0, 'bad': 1}

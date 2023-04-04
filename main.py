@@ -164,7 +164,7 @@ class Instructor:
 if __name__ == '__main__':
     accs = []
 
-    for i in range(30):
+    for i in range(40):
         logging.set_verbosity_error()
 
         # Get the hyperparameters

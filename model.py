@@ -125,7 +125,7 @@ class A(nn.Module):
         aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
         # Combine T and F Method 2
-        a_TFSA = self.A_Att_Pooling(torch.cat(aTSA, aFSA), 2)
+        a_TFSA = self.A_Att_Pooling(torch.cat((aTSA, aFSA), 2))
 
         # TSA && FSA
         bK = self.bkey_layer(cls_padding)
@@ -141,7 +141,7 @@ class A(nn.Module):
         bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
 
         # Combine T and F Method 2
-        b_TFSA = self.B_Att_Pooling(torch.cat(bTSA, bFSA), 2)
+        b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
 
         output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
 
