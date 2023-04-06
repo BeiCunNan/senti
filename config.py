@@ -17,9 +17,9 @@ def get_config():
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
-    parser.add_argument('--dataset', type=str, default='sst5', choices=num_classes.keys())
-    parser.add_argument('--max_lengths', type=str, default='sst5', choices=max_lengths.keys())
-    parser.add_argument('--query_lengths', type=str, default='sst5', choices=max_lengths.keys())
+    parser.add_argument('--dataset', type=str, default='subj', choices=num_classes.keys())
+    parser.add_argument('--max_lengths', type=str, default='subj', choices=max_lengths.keys())
+    parser.add_argument('--query_lengths', type=str, default='subj', choices=max_lengths.keys())
     parser.add_argument('--model_name', type=str, default='bert',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',
