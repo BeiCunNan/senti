@@ -112,38 +112,38 @@ class A(nn.Module):
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
-        aK = self.akey_layer(tokens_padding)
-        aQ = self.aquery_layer(tokens_padding)
-        aV = self.avalue_layer(tokens_padding)
-        aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
-        aTSA = torch.bmm(aattention, aV)
+        # aK = self.akey_layer(tokens_padding)
+        # aQ = self.aquery_layer(tokens_padding)
+        # aV = self.avalue_layer(tokens_padding)
+        # aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
+        # aTSA = torch.bmm(aattention, aV)
 
-        # aK_N = self.af_key_layer(tokens_padding.permute(0, 2, 1))
-        # aQ_N = self.af_query_layer(tokens_padding.permute(0, 2, 1))
-        # aV_N = self.af_value_layer(tokens_padding.permute(0, 2, 1))
-        # aattention_N = nn.Softmax(dim=-1)((torch.bmm(aQ_N, aK_N.permute(0, 2, 1))) * self.af_norm_fact)
-        # aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
+        aK_N = self.af_key_layer(tokens_padding.permute(0, 2, 1))
+        aQ_N = self.af_query_layer(tokens_padding.permute(0, 2, 1))
+        aV_N = self.af_value_layer(tokens_padding.permute(0, 2, 1))
+        aattention_N = nn.Softmax(dim=-1)((torch.bmm(aQ_N, aK_N.permute(0, 2, 1))) * self.af_norm_fact)
+        aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
         # Combine T and F Method 2
         # a_TFSA = self.A_Att_Pooling(torch.cat((aTSA, aFSA), 2))
-        a_TFSA = self.A_Att_Pooling(aTSA)
+        a_TFSA = self.A_Att_Pooling(aFSA)
 
         # TSA && FSA
-        bK = self.bkey_layer(cls_padding)
-        bQ = self.bquery_layer(cls_padding)
-        bV = self.bvalue_layer(cls_padding)
-        battention = nn.Softmax(dim=-1)((torch.bmm(bQ, bK.permute(0, 2, 1))) * self.b_norm_fact)
-        bTSA = torch.bmm(battention, bV)
-        #
-        # bK_N = self.bf_key_layer(cls_padding.permute(0, 2, 1))
-        # bQ_N = self.bf_query_layer(cls_padding.permute(0, 2, 1))
-        # bV_N = self.bf_value_layer(cls_padding.permute(0, 2, 1))
-        # battention_N = nn.Softmax(dim=-1)((torch.bmm(bQ_N, bK_N.permute(0, 2, 1))) * self.bf_norm_fact)
-        # bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
+        # bK = self.bkey_layer(cls_padding)
+        # bQ = self.bquery_layer(cls_padding)
+        # bV = self.bvalue_layer(cls_padding)
+        # battention = nn.Softmax(dim=-1)((torch.bmm(bQ, bK.permute(0, 2, 1))) * self.b_norm_fact)
+        # bTSA = torch.bmm(battention, bV)
+
+        bK_N = self.bf_key_layer(cls_padding.permute(0, 2, 1))
+        bQ_N = self.bf_query_layer(cls_padding.permute(0, 2, 1))
+        bV_N = self.bf_value_layer(cls_padding.permute(0, 2, 1))
+        battention_N = nn.Softmax(dim=-1)((torch.bmm(bQ_N, bK_N.permute(0, 2, 1))) * self.bf_norm_fact)
+        bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
 
         # Combine T and F Method 2
         # b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
-        b_TFSA = self.B_Att_Pooling(bTSA)
+        b_TFSA = self.B_Att_Pooling(bFSA)
 
         output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
 
