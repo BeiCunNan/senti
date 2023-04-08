@@ -10,5 +10,5 @@
 #     json.dump(data, f, ensure_ascii=False, indent=2)
 from numpy import mean
 
-l = [92.8, 54.7, 97.6, 75.6, 92.3, 87.8, 97.1, 91.6]
+l = [92.6,	54.6,	97.6,	75.3,	92.3,	87.9,	97.1,	91.7]
 print(mean(l))
