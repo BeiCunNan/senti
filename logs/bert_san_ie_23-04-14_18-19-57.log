@@ -1,0 +1,21 @@
+> creating model bert
+> cuda memory allocated: 1022228480
+> training arguments:
+>>> data_dir: data
+>>> dataset: ie
+>>> max_lengths: 16
+>>> query_lengths: 16
+>>> model_name: bert
+>>> method_name: san
+>>> train_batch_size: 10
+>>> test_batch_size: 64
+>>> num_epoch: 20
+>>> lr: 1e-05
+>>> decay: 0.01
+>>> eps: 1e-08
+>>> device: cuda
+>>> backend: False
+>>> workers: 0
+>>> timestamp: 1681467597502
+>>> num_classes: 3
+>>> log_name: bert_san_ie_23-04-14_18-19-57.log
