@@ -140,8 +140,10 @@ class A(nn.Module):
         aTSA_W = self.atW(aTSA)
         aFSA_W = self.afW(aFSA)
         a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aFSA_W)
-        a_TFSA_S=nn.Softmax(dim=-1)(a_TFSA_W)
-        a_TFSA = self.aftW(torch.reshape(a_TFSA_S, [a_TFSA_S.shape[0], 10000]))
+        # Layer Normalization
+        a_norm = nn.LayerNorm([a_TFSA_W.shape[1], a_TFSA_W.shape[2]], eps=1e-8).cuda()
+        a_TFSA_L=a_norm(a_TFSA_W)
+        a_TFSA = self.aftW(torch.reshape(a_TFSA_L, [a_TFSA_L.shape[0], 10000]))
 
         # Combine T and F Method 2
         # a_TFSA = self.A_Att_Pooling(torch.cat((aTSA, aFSA), 2))
@@ -163,8 +165,10 @@ class A(nn.Module):
         bTSA_W = self.btW(bTSA)
         bFSA_W = self.bfW(bFSA)
         b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bFSA_W)
-        b_TFSA_S=nn.Softmax(dim=-1)(b_TFSA_W)
-        b_TFSA = self.bftW(torch.reshape(b_TFSA_S, [b_TFSA_S.shape[0], 10000]))
+        # Layer Normalization
+        b_norm = nn.LayerNorm([b_TFSA_W.shape[1], b_TFSA_W.shape[2]], eps=1e-8).cuda()
+        b_TFSA_L=b_norm(b_TFSA_W)
+        b_TFSA = self.bftW(torch.reshape(b_TFSA_L, [b_TFSA_L.shape[0], 10000]))
 
         # Combine T and F Method 2
         # b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
