@@ -27,7 +27,7 @@ def get_config():
                                  'text_hiddens', 'cnn+rnn', 'cls_explain', 'self_attention', 'san'])
 
     '''Optimization'''
-    parser.add_argument('--train_batch_size', type=int, default=10)
+    parser.add_argument('--train_batch_size', type=int, default=8)
     parser.add_argument('--test_batch_size', type=int, default=64)
     parser.add_argument('--num_epoch', type=int, default=20)
     parser.add_argument('--lr', type=float, default=1e-5)

@@ -78,10 +78,10 @@ class A(nn.Module):
         self.bvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.b_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.bf_key_layer = nn.Linear(self.max_lengths , self.max_lengths )
-        self.bf_query_layer = nn.Linear(self.max_lengths , self.max_lengths )
-        self.bf_value_layer = nn.Linear(self.max_lengths , self.max_lengths )
-        self.bf_norm_fact = 1 / math.sqrt(self.max_lengths )
+        self.bf_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.bf_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.bf_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
+        self.bf_norm_fact = 1 / math.sqrt(self.max_lengths)
 
         # self.fnn = nn.Sequential(
         #     nn.Dropout(0.5),
@@ -107,8 +107,14 @@ class A(nn.Module):
         self.afW = nn.Linear(self.base_model.config.hidden_size, 100)
         self.btW = nn.Linear(self.base_model.config.hidden_size, 100)
         self.bfW = nn.Linear(self.base_model.config.hidden_size, 100)
-        self.aftW = nn.Linear(10000, 1000)
-        self.bftW = nn.Linear(10000, 1000)
+        self.aftW = nn.Sequential(
+            # nn.GELU(),
+            nn.Linear(10000, 1000)
+        )
+        self.bftW = nn.Sequential(
+            # nn.GELU(),
+            nn.Linear(10000, 1000)
+        )
 
         self.A_Att_Pooling = AttentionPooling_a(self.base_model.config.hidden_size * 1)
         self.B_Att_Pooling = AttentionPooling_b(self.base_model.config.hidden_size * 1)
@@ -145,8 +151,7 @@ class A(nn.Module):
         aTSA_W = self.atW(aTSA)
         aFSA_W = self.afW(aFSA)
         a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aFSA_W)
-        a_TFSA_S = nn.Softmax(dim=-1)(a_TFSA_W)
-        a_TFSA = self.aftW(torch.reshape(a_TFSA_S, [a_TFSA_S.shape[0], 10000]))
+        a_TFSA = self.aftW(torch.reshape(a_TFSA_W, [a_TFSA_W.shape[0], 10000]))
 
         # Combine T and F Method 2
         # a_TFSA = self.A_Att_Pooling(torch.cat((aTSA, aFSA), 2))
@@ -168,8 +173,7 @@ class A(nn.Module):
         bTSA_W = self.btW(bTSA)
         bFSA_W = self.bfW(bFSA)
         b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bFSA_W)
-        b_TFSA_S = nn.Softmax(dim=-1)(b_TFSA_W)
-        b_TFSA = self.bftW(torch.reshape(b_TFSA_S, [b_TFSA_S.shape[0], 10000]))
+        b_TFSA = self.bftW(torch.reshape(b_TFSA_W, [b_TFSA_W.shape[0], 10000]))
 
         # Combine T and F Method 2
         # b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
