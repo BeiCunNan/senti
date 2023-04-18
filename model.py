@@ -64,9 +64,12 @@ class A(nn.Module):
         self.avalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.a_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.af_key_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
-        self.af_query_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
-        self.af_value_layer = nn.Linear(self.max_lengths + self.query_lengths, self.max_lengths + self.query_lengths)
+        self.af_key_layer = nn.Linear(self.max_lengths + self.query_lengths,
+                                      self.max_lengths + self.query_lengths)
+        self.af_query_layer = nn.Linear(self.max_lengths + self.query_lengths,
+                                        self.max_lengths + self.query_lengths)
+        self.af_value_layer = nn.Linear(self.max_lengths + self.query_lengths,
+                                        self.max_lengths + self.query_lengths)
         self.af_norm_fact = 1 / math.sqrt(self.max_lengths + self.query_lengths)
 
         # Model b
@@ -75,10 +78,10 @@ class A(nn.Module):
         self.bvalue_layer = nn.Linear(self.base_model.config.hidden_size, self.base_model.config.hidden_size)
         self.b_norm_fact = 1 / math.sqrt(self.base_model.config.hidden_size)
 
-        self.bf_key_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.bf_query_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.bf_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
-        self.bf_norm_fact = 1 / math.sqrt(self.max_lengths)
+        self.bf_key_layer = nn.Linear(self.max_lengths , self.max_lengths )
+        self.bf_query_layer = nn.Linear(self.max_lengths , self.max_lengths )
+        self.bf_value_layer = nn.Linear(self.max_lengths , self.max_lengths )
+        self.bf_norm_fact = 1 / math.sqrt(self.max_lengths )
 
         # self.fnn = nn.Sequential(
         #     nn.Dropout(0.5),
@@ -117,10 +120,12 @@ class A(nn.Module):
         CLS = tokens[:, 0, :]
         cls_CLS = cls_tokens[:, 0, :]
 
-        tokens_padding = F.pad(tokens.permute(0, 2, 1), (0, self.max_lengths + self.query_lengths - tokens.shape[1]),
+        tokens_padding = F.pad(tokens[:, 1:, :].permute(0, 2, 1),
+                               (0, self.max_lengths + self.query_lengths - tokens[:, 1:, :].shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
-        cls_padding = F.pad(cls_tokens.permute(0, 2, 1), (0, self.max_lengths - cls_tokens.shape[1]),
+        cls_padding = F.pad(cls_tokens[:, 1:, :].permute(0, 2, 1),
+                            (0, self.max_lengths - cls_tokens[:, 1:, :].shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
