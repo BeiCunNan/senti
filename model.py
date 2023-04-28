@@ -90,7 +90,7 @@ class A(nn.Module):
         # )
         self.fnn = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear((1000 + self.base_model.config.hidden_size) * 1, self.base_model.config.hidden_size),
+            nn.Linear((1000 + self.base_model.config.hidden_size) * 2, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
@@ -120,27 +120,27 @@ class A(nn.Module):
         self.B_Att_Pooling = AttentionPooling_b(self.base_model.config.hidden_size * 1)
 
     def forward(self, inputs, inputs_cls):
-        # tokens = self.base_model(**inputs).last_hidden_state
+        tokens = self.base_model(**inputs).last_hidden_state
         cls_tokens = self.cls_model(**inputs_cls).last_hidden_state
 
-        # CLS = tokens[:, 0, :]
+        CLS = tokens[:, 0, :]
         cls_CLS = cls_tokens[:, 0, :]
 
-        # tokens_padding = F.pad(tokens[:, 1:, :].permute(0, 2, 1),
-        #                        (0, self.max_lengths + self.query_lengths - tokens[:, 1:, :].shape[1]),
-        #                        mode='constant',
-        #                        value=0).permute(0, 2, 1)
+        tokens_padding = F.pad(tokens[:, 1:, :].permute(0, 2, 1),
+                               (0, self.max_lengths + self.query_lengths - tokens[:, 1:, :].shape[1]),
+                               mode='constant',
+                               value=0).permute(0, 2, 1)
         cls_padding = F.pad(cls_tokens[:, 1:, :].permute(0, 2, 1),
                             (0, self.max_lengths - cls_tokens[:, 1:, :].shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
-        # aK = self.akey_layer(tokens_padding)
-        # aQ = self.aquery_layer(tokens_padding)
-        # aV = self.avalue_layer(tokens_padding)
-        # aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
-        # aTSA = torch.bmm(aattention, aV)
-        #
+        aK = self.akey_layer(tokens_padding)
+        aQ = self.aquery_layer(tokens_padding)
+        aV = self.avalue_layer(tokens_padding)
+        aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
+        aTSA = torch.bmm(aattention, aV)
+
         # aK_N = self.af_key_layer(tokens_padding.permute(0, 2, 1))
         # aQ_N = self.af_query_layer(tokens_padding.permute(0, 2, 1))
         # aV_N = self.af_value_layer(tokens_padding.permute(0, 2, 1))
@@ -148,10 +148,11 @@ class A(nn.Module):
         # aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
         # Weaver
-        # aTSA_W = self.atW(aTSA)
+        aTSA_W = self.atW(aTSA)
         # aFSA_W = self.afW(aFSA)
-        # a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aFSA_W)
-        # a_TFSA = self.aftW(torch.reshape(a_TFSA_W, [a_TFSA_W.shape[0], 10000]))
+        # a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aSA_W)
+        a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aTSA_W)
+        a_TFSA = self.aftW(torch.reshape(a_TFSA_W, [a_TFSA_W.shape[0], 10000]))
 
         # Combine T and F Method 2
         # a_TFSA = self.A_Att_Pooling(torch.cat((aTSA, aFSA), 2))
@@ -163,23 +164,23 @@ class A(nn.Module):
         battention = nn.Softmax(dim=-1)((torch.bmm(bQ, bK.permute(0, 2, 1))) * self.b_norm_fact)
         bTSA = torch.bmm(battention, bV)
 
-        bK_N = self.bf_key_layer(cls_padding.permute(0, 2, 1))
-        bQ_N = self.bf_query_layer(cls_padding.permute(0, 2, 1))
-        bV_N = self.bf_value_layer(cls_padding.permute(0, 2, 1))
-        battention_N = nn.Softmax(dim=-1)((torch.bmm(bQ_N, bK_N.permute(0, 2, 1))) * self.bf_norm_fact)
-        bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
+        # bK_N = self.bf_key_layer(cls_padding.permute(0, 2, 1))
+        # bQ_N = self.bf_query_layer(cls_padding.permute(0, 2, 1))
+        # bV_N = self.bf_value_layer(cls_padding.permute(0, 2, 1))
+        # battention_N = nn.Softmax(dim=-1)((torch.bmm(bQ_N, bK_N.permute(0, 2, 1))) * self.bf_norm_fact)
+        # bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
 
         # Weaver
         bTSA_W = self.btW(bTSA)
-        bFSA_W = self.bfW(bFSA)
-        b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bFSA_W)
+        # bFSA_W = self.bfW(bFSA)
+        # b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bFSA_W)
+        b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bTSA_W)
         b_TFSA = self.bftW(torch.reshape(b_TFSA_W, [b_TFSA_W.shape[0], 10000]))
 
         # Combine T and F Method 2
         # b_TFSA = self.B_Att_Pooling(torch.cat((bTSA, bFSA), 2))
 
-        # output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
-        output_ALL = torch.cat((cls_CLS, b_TFSA), 1)
+        output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
 
         predicts = self.fnn(output_ALL)
 
