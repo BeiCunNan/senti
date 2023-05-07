@@ -83,16 +83,17 @@ class A(nn.Module):
         self.bf_value_layer = nn.Linear(self.max_lengths, self.max_lengths)
         self.bf_norm_fact = 1 / math.sqrt(self.max_lengths)
 
-        # self.fnn = nn.Sequential(
-        #     nn.Dropout(0.5),
-        #     nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size),
-        #     nn.Linear(self.base_model.config.hidden_size, num_classes)
-        # )
         self.fnn = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear((1000 + self.base_model.config.hidden_size) * 2, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
+
+        # self.fnn = nn.Sequential(
+        #     nn.Dropout(0.5),
+        #     nn.Linear((1000 + self.base_model.config.hidden_size) * 2, self.base_model.config.hidden_size),
+        #     nn.Linear(self.base_model.config.hidden_size, num_classes)
+        # )
 
         self.aFF = nn.Sequential(
             nn.Linear(self.base_model.config.hidden_size * 2, self.base_model.config.hidden_size * 2),
@@ -135,11 +136,11 @@ class A(nn.Module):
                             mode='constant',
                             value=0).permute(0, 2, 1)
         # TSA && FSA
-        # aK = self.akey_layer(tokens_padding)
-        # aQ = self.aquery_layer(tokens_padding)
-        # aV = self.avalue_layer(tokens_padding)
-        # aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
-        # aTSA = torch.bmm(aattention, aV)
+        aK = self.akey_layer(tokens_padding)
+        aQ = self.aquery_layer(tokens_padding)
+        aV = self.avalue_layer(tokens_padding)
+        aattention = nn.Softmax(dim=-1)((torch.bmm(aQ, aK.permute(0, 2, 1))) * self.a_norm_fact)
+        aTSA = torch.bmm(aattention, aV)
 
         aK_N = self.af_key_layer(tokens_padding.permute(0, 2, 1))
         aQ_N = self.af_query_layer(tokens_padding.permute(0, 2, 1))
@@ -148,17 +149,17 @@ class A(nn.Module):
         aFSA = torch.bmm(aattention_N, aV_N).permute(0, 2, 1)
 
         # Weaver
-        #aTSA_W = self.atW(aTSA)
+        aTSA_W = self.atW(aTSA)
         aFSA_W = self.afW(aFSA)
-        a_TFSA_W = torch.bmm(aFSA_W.permute(0, 2, 1), aFSA_W)
+        a_TFSA_W = torch.bmm(aTSA_W.permute(0, 2, 1), aFSA_W)
         a_TFSA = self.aftW(torch.reshape(a_TFSA_W, [a_TFSA_W.shape[0], 10000]))
 
         # TSA && FSA
-        # bK = self.bkey_layer(cls_padding)
-        # bQ = self.bquery_layer(cls_padding)
-        # bV = self.bvalue_layer(cls_padding)
-        # battention = nn.Softmax(dim=-1)((torch.bmm(bQ, bK.permute(0, 2, 1))) * self.b_norm_fact)
-        # bTSA = torch.bmm(battention, bV)
+        bK = self.bkey_layer(cls_padding)
+        bQ = self.bquery_layer(cls_padding)
+        bV = self.bvalue_layer(cls_padding)
+        battention = nn.Softmax(dim=-1)((torch.bmm(bQ, bK.permute(0, 2, 1))) * self.b_norm_fact)
+        bTSA = torch.bmm(battention, bV)
 
         bK_N = self.bf_key_layer(cls_padding.permute(0, 2, 1))
         bQ_N = self.bf_query_layer(cls_padding.permute(0, 2, 1))
@@ -167,12 +168,13 @@ class A(nn.Module):
         bFSA = torch.bmm(battention_N, bV_N).permute(0, 2, 1)
 
         # Weaver
-        #bTSA_W = self.btW(bTSA)
+        bTSA_W = self.btW(bTSA)
         bFSA_W = self.bfW(bFSA)
-        b_TFSA_W = torch.bmm(bFSA_W.permute(0, 2, 1), bFSA_W)
+        b_TFSA_W = torch.bmm(bTSA_W.permute(0, 2, 1), bFSA_W)
         b_TFSA = self.bftW(torch.reshape(b_TFSA_W, [b_TFSA_W.shape[0], 10000]))
 
-        output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
+        # output_ALL = torch.cat((CLS, cls_CLS, a_TFSA, b_TFSA), 1)
+        output_ALL = torch.cat((CLS, cls_CLS), 1)
 
         predicts = self.fnn(output_ALL)
 
