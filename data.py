@@ -16,14 +16,17 @@ class MyDataset(Dataset):
         # QUERY = 'what class does this sentence belong to , ' +' or '.join(label_list)+' ?'
         # print(QUERY)
         # print(len(QUERY.split(' ')))
+        # SST2 SST5
+        PROMPT = 'the movie was [MASK] .'
 
         dataset = list()
         for data in raw_data:
             tokens = (QUERY + split_token + data['text'].lower()).split(' ')
             cls_sens = data['text'].lower().split(' ')
+            prompt_sens = (PROMPT + split_token + data['text'].lower()).split(' ')
 
             label_ids = label_dict[data['label']]
-            dataset.append((tokens, label_ids, cls_sens))
+            dataset.append((tokens, label_ids, cls_sens, prompt_sens))
         self._dataset = dataset
 
     def __getitem__(self, index):
@@ -35,7 +38,7 @@ class MyDataset(Dataset):
 
 # Make tokens for every batch
 def my_collate(batch, tokenizer, num_classes, method_name):
-    tokens, label_ids, cls_sens = map(list, zip(*batch))
+    tokens, label_ids, cls_sens, prompt_sens = map(list, zip(*batch))
 
     text_ids = tokenizer(tokens,
                          padding=True,
@@ -51,8 +54,15 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                         is_split_into_words=True,
                         add_special_tokens=True,
                         return_tensors='pt')
+    prompt_ids = tokenizer(prompt_sens,
+                           padding=True,
+                           max_length=512,
+                           truncation=True,
+                           is_split_into_words=True,
+                           add_special_tokens=True,
+                           return_tensors='pt')
 
-    return text_ids, torch.tensor(label_ids), cls_ids
+    return text_ids, torch.tensor(label_ids), cls_ids, prompt_ids
 
 
 # Load dataset

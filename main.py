@@ -18,12 +18,14 @@ class Instructor:
         self.index = index
         self.max_lengths = args.max_lengths
         self.query_lengths = args.query_lengths
+        self.prompt_lengths = args.prompt_lengths
 
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
             self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
@@ -40,7 +42,8 @@ class Instructor:
             raise ValueError('unknown model')
 
         if args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.cls_model)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.cls_model,
+                           self.prompt_model, self.prompt_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -58,12 +61,13 @@ class Instructor:
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
-        for inputs, targets, inputs_cls in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+        for inputs, targets, inputs_cls, inputs_prompt in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
+            inputs_prompt = {k: v.to(self.args.device) for k, v in inputs_prompt.items()}
             targets = targets.to(self.args.device)
 
-            predicts = self.model(inputs, inputs_cls)
+            predicts = self.model(inputs, inputs_cls, inputs_prompt)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -81,12 +85,13 @@ class Instructor:
         self.model.eval()
 
         with torch.no_grad():
-            for inputs, targets, inputs_cls in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+            for inputs, targets, inputs_cls, inputs_prompt in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
+                inputs_prompt = {k: v.to(self.args.device) for k, v in inputs_prompt.items()}
                 targets = targets.to(self.args.device)
 
-                predicts = self.model(inputs, inputs_cls)
+                predicts = self.model(inputs, inputs_cls, inputs_prompt)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
