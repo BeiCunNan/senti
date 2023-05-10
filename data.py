@@ -17,7 +17,7 @@ class MyDataset(Dataset):
         # print(QUERY)
         # print(len(QUERY.split(' ')))
         # SST2 SST5
-        PROMPT = 'the movie was [MASK] .'
+        PROMPT = 'this text is [MASK] .'
 
         dataset = list()
         for data in raw_data:
