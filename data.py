@@ -16,7 +16,7 @@ class MyDataset(Dataset):
         # QUERY = 'what class does this sentence belong to , ' +' or '.join(label_list)+' ?'
         # print(QUERY)
         # print(len(QUERY.split(' ')))
-        # SST2 SST5
+
         PROMPT = 'this text is [MASK] .'
 
         dataset = list()
