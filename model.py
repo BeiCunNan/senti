@@ -89,27 +89,27 @@ class A(nn.Module):
             nn.Linear(10000, 1000)
         )
 
-    def forward(self, inputs, inputs_cls, inputs_prompt, mask_ids):
-        tokens = self.base_model(**inputs).last_hidden_state
-        cls_tokens = self.cls_model(**inputs_cls).last_hidden_state
-        prompt_tokens = self.prompt_model(**inputs_prompt).last_hidden_state
+    def forward(self, mrc_inputs, text_inputs, mask_inputs, mask_index):
+        mrc_tokens = self.base_model(**mrc_inputs).last_hidden_state
+        text_tokens = self.cls_model(**text_inputs).last_hidden_state
+        mask_tokens = self.prompt_model(**mask_inputs).last_hidden_state
 
-        CLS = tokens[:, 0, :]
-        cls_CLS = cls_tokens[:, 0, :]
-        MASK = prompt_tokens[0, mask_ids[0, 1], :].reshape((1, 768))
-        for i in range(1, mask_ids.shape[0]):
-            MASK = torch.cat((MASK, prompt_tokens[i, mask_ids[i, 1], :].reshape((1, 768))), 0)
+        mrc_CLS = mrc_tokens[:, 0, :]
+        text_CLS = text_tokens[:, 0, :]
+        MASK = mask_tokens[0, mask_index[0, 1], :].reshape((1, 768))
+        for i in range(1, mask_index.shape[0]):
+            MASK = torch.cat((MASK, mask_tokens[i, mask_index[i, 1], :].reshape((1, 768))), 0)
 
-        tokens_padding = F.pad(tokens[:, 1:, :].permute(0, 2, 1),
-                               (0, self.max_lengths + self.query_lengths - tokens[:, 1:, :].shape[1]),
+        tokens_padding = F.pad(mrc_tokens[:, 1:, :].permute(0, 2, 1),
+                               (0, self.max_lengths + self.query_lengths - mrc_tokens[:, 1:, :].shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
-        cls_padding = F.pad(cls_tokens[:, 1:, :].permute(0, 2, 1),
-                            (0, self.max_lengths - cls_tokens[:, 1:, :].shape[1]),
+        cls_padding = F.pad(text_tokens[:, 1:, :].permute(0, 2, 1),
+                            (0, self.max_lengths - text_tokens[:, 1:, :].shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
-        prompt_padding = F.pad(prompt_tokens[:, 1:, :].permute(0, 2, 1),
-                               (0, self.max_lengths + self.prompt_lengths - prompt_tokens[:, 1:, :].shape[1]),
+        prompt_padding = F.pad(mask_tokens[:, 1:, :].permute(0, 2, 1),
+                               (0, self.max_lengths + self.prompt_lengths - mask_tokens[:, 1:, :].shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
         # Model a
@@ -172,7 +172,7 @@ class A(nn.Module):
         c_TFSA_W = torch.bmm(cTSA_W.permute(0, 2, 1), cFSA_W)
         c_TFSA = self.cftW(torch.reshape(c_TFSA_W, [c_TFSA_W.shape[0], 10000]))
 
-        output_ALL = torch.cat((CLS, cls_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
+        output_ALL = torch.cat((mrc_CLS, text_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
 
         predicts = self.fnn(output_ALL)
 

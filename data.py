@@ -18,11 +18,11 @@ class MyDataset(Dataset):
 
         dataset = list()
         for data in raw_data:
-            tokens = (data['text'].lower() + split_token + QUERY).split(' ')
-            cls_sens = data['text'].lower().split(' ')
-            prompt_sens = (data['text'].lower() + split_token + PROMPT).split(' ')
+            tokens = data['text'].lower().split(' ')
+            mrc_tokens = (data['text'].lower() + split_token + QUERY).split(' ')
+            mask_tokens = (data['text'].lower() + split_token + PROMPT).split(' ')
             label_ids = label_dict[data['label']]
-            dataset.append((tokens, label_ids, cls_sens, prompt_sens))
+            dataset.append((mrc_tokens, label_ids, tokens, mask_tokens))
 
         self._dataset = dataset
 
@@ -35,8 +35,15 @@ class MyDataset(Dataset):
 
 # Make tokens for every batch
 def my_collate(batch, tokenizer, num_classes, method_name):
-    tokens, label_ids, cls_sens, prompt_sens = map(list, zip(*batch))
+    mrc_tokens, label_ids, tokens, mask_tokens = map(list, zip(*batch))
 
+    mrc_ids = tokenizer(mrc_tokens,
+                        padding=True,
+                        max_length=512,
+                        truncation=True,
+                        is_split_into_words=True,
+                        add_special_tokens=True,
+                        return_tensors='pt')
     text_ids = tokenizer(tokens,
                          padding=True,
                          max_length=512,
@@ -44,25 +51,19 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                          is_split_into_words=True,
                          add_special_tokens=True,
                          return_tensors='pt')
-    cls_ids = tokenizer(cls_sens,
-                        padding=True,
-                        max_length=512,
-                        truncation=True,
-                        is_split_into_words=True,
-                        add_special_tokens=True,
-                        return_tensors='pt')
-    prompt_ids = tokenizer(prompt_sens,
-                           padding=True,
-                           max_length=512,
-                           truncation=True,
-                           is_split_into_words=True,
-                           add_special_tokens=True,
-                           return_tensors='pt')
-    mask_ids = torch.nonzero(prompt_ids['input_ids'] == 103, as_tuple=False)
+    mask_ids = tokenizer(mask_tokens,
+                         padding=True,
+                         max_length=512,
+                         truncation=True,
+                         is_split_into_words=True,
+                         add_special_tokens=True,
+                         return_tensors='pt')
+    mask_index = torch.nonzero(mask_ids['input_ids'] == 103, as_tuple=False)
+
     # 得到的是torch.tensor([[ 0, 27],[ 1, 19]。。。
     # m = prompt_ids['input_ids'].size()
     # n = mask_ids.size()
-    return text_ids, torch.tensor(label_ids), cls_ids, prompt_ids, torch.tensor(mask_ids)
+    return mrc_ids, torch.tensor(label_ids), text_ids, mask_ids, torch.tensor(mask_index)
 
 
 # Load dataset
