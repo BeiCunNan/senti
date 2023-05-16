@@ -1,48 +1,8 @@
 import math
 
 import torch
-from torch import nn
 import torch.nn.functional as F
-
-class AttentionPooling_a(nn.Module):
-    def __init__(self, input_size):
-        super(AttentionPooling_a, self).__init__()
-
-        self.fc = nn.Linear(input_size, 1)
-        self.softmax = nn.Softmax(dim=1)
-
-    def forward(self, inputs):
-        # inputs: [batch_size, seq_len, input_size]
-
-        # 计算注意力权重
-        attention_weights = self.fc(inputs)
-        attention_weights = self.softmax(attention_weights)
-
-        # 对每个时间步的输出加权求和
-        pooled_output = torch.sum(attention_weights * inputs, dim=1)
-
-        return pooled_output
-
-
-class AttentionPooling_b(nn.Module):
-
-    def __init__(self, input_size):
-        super(AttentionPooling_b, self).__init__()
-
-        self.fc = nn.Linear(input_size, 1)
-        self.softmax = nn.Softmax(dim=1)
-
-    def forward(self, inputs):
-        # inputs: [batch_size, seq_len, input_size]
-
-        # 计算注意力权重
-        attention_weights = self.fc(inputs)
-        attention_weights = self.softmax(attention_weights)
-
-        # 对每个时间步的输出加权求和
-        pooled_output = torch.sum(attention_weights * inputs, dim=1)
-
-        return pooled_output
+from torch import nn
 
 
 class A(nn.Module):
@@ -106,7 +66,7 @@ class A(nn.Module):
 
         self.fnn = nn.Sequential(
             nn.Dropout(0.5),
-            # nn.Linear((1000 + self.base_model.config.hidden_size) * 3, self.base_model.config.hidden_size),
+            nn.Linear((1000 + self.base_model.config.hidden_size) * 3, self.base_model.config.hidden_size),
             nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
@@ -129,17 +89,16 @@ class A(nn.Module):
             nn.Linear(10000, 1000)
         )
 
-        self.A_Att_Pooling = AttentionPooling_a(self.base_model.config.hidden_size * 1)
-        self.B_Att_Pooling = AttentionPooling_b(self.base_model.config.hidden_size * 1)
-
-    def forward(self, inputs, inputs_cls, inputs_prompt):
+    def forward(self, inputs, inputs_cls, inputs_prompt, mask_ids):
         tokens = self.base_model(**inputs).last_hidden_state
         cls_tokens = self.cls_model(**inputs_cls).last_hidden_state
         prompt_tokens = self.prompt_model(**inputs_prompt).last_hidden_state
 
         CLS = tokens[:, 0, :]
         cls_CLS = cls_tokens[:, 0, :]
-        MASK = prompt_tokens[:, 4, :]
+        MASK = prompt_tokens[0, mask_ids[0, 1], :].reshape((1, 768))
+        for i in range(1, mask_ids.shape[0]):
+            MASK = torch.cat((MASK, prompt_tokens[i, mask_ids[i, 1], :].reshape((1, 768))), 0)
 
         tokens_padding = F.pad(tokens[:, 1:, :].permute(0, 2, 1),
                                (0, self.max_lengths + self.query_lengths - tokens[:, 1:, :].shape[1]),
@@ -149,12 +108,10 @@ class A(nn.Module):
                             (0, self.max_lengths - cls_tokens[:, 1:, :].shape[1]),
                             mode='constant',
                             value=0).permute(0, 2, 1)
-
-        prompt_padding = F.pad(torch.cat((prompt_tokens[:, :3, :], prompt_tokens[:, 4:, :]), dim=1).permute(0, 2, 1),
+        prompt_padding = F.pad(prompt_tokens[:, 1:, :].permute(0, 2, 1),
                                (0, self.max_lengths + self.prompt_lengths - prompt_tokens[:, 1:, :].shape[1]),
                                mode='constant',
                                value=0).permute(0, 2, 1)
-
         # Model a
         # TSA && FSA
         aK = self.akey_layer(tokens_padding)
@@ -217,6 +174,6 @@ class A(nn.Module):
 
         output_ALL = torch.cat((CLS, cls_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
 
-        predicts = self.fnn(MASK)
+        predicts = self.fnn(output_ALL)
 
         return predicts

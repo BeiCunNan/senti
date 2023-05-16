@@ -12,21 +12,18 @@ class MyDataset(Dataset):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
         # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
-        QUERY = 'what class in  { ' + ' , '.join(label_list) + ' } does this sentence have ?'
+        QUERY = 'what class in { ' + ' , '.join(label_list) + ' } does this sentence have ?'
         # QUERY = 'what class does this sentence belong to , ' +' or '.join(label_list)+' ?'
-        # print(QUERY)
-        # print(len(QUERY.split(' ')))
-
         PROMPT = 'this text is [MASK] .'
 
         dataset = list()
         for data in raw_data:
-            tokens = (QUERY + split_token + data['text'].lower()).split(' ')
+            tokens = (data['text'].lower() + split_token + QUERY).split(' ')
             cls_sens = data['text'].lower().split(' ')
-            prompt_sens = (PROMPT + split_token + data['text'].lower()).split(' ')
-
+            prompt_sens = (data['text'].lower() + split_token + PROMPT).split(' ')
             label_ids = label_dict[data['label']]
             dataset.append((tokens, label_ids, cls_sens, prompt_sens))
+
         self._dataset = dataset
 
     def __getitem__(self, index):
@@ -61,8 +58,11 @@ def my_collate(batch, tokenizer, num_classes, method_name):
                            is_split_into_words=True,
                            add_special_tokens=True,
                            return_tensors='pt')
-
-    return text_ids, torch.tensor(label_ids), cls_ids, prompt_ids
+    mask_ids = torch.nonzero(prompt_ids['input_ids'] == 103, as_tuple=False)
+    # 得到的是torch.tensor([[ 0, 27],[ 1, 19]。。。
+    # m = prompt_ids['input_ids'].size()
+    # n = mask_ids.size()
+    return text_ids, torch.tensor(label_ids), cls_ids, prompt_ids, torch.tensor(mask_ids)
 
 
 # Load dataset

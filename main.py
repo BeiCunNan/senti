@@ -61,13 +61,14 @@ class Instructor:
         train_loss, n_correct, n_train = 0, 0, 0
 
         self.model.train()
-        for inputs, targets, inputs_cls, inputs_prompt in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+        for inputs, targets, inputs_cls, inputs_prompt, mask_ids in tqdm(dataloader, disable=self.args.backend,
+                                                                         ascii=' >='):
             inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
             inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
             inputs_prompt = {k: v.to(self.args.device) for k, v in inputs_prompt.items()}
             targets = targets.to(self.args.device)
 
-            predicts = self.model(inputs, inputs_cls, inputs_prompt)
+            predicts = self.model(inputs, inputs_cls, inputs_prompt, mask_ids)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -85,13 +86,14 @@ class Instructor:
         self.model.eval()
 
         with torch.no_grad():
-            for inputs, targets, inputs_cls, inputs_prompt in tqdm(dataloader, disable=self.args.backend, ascii=' >='):
+            for inputs, targets, inputs_cls, inputs_prompt, mask_ids in tqdm(dataloader, disable=self.args.backend,
+                                                                             ascii=' >='):
                 inputs = {k: v.to(self.args.device) for k, v in inputs.items()}
                 inputs_cls = {k: v.to(self.args.device) for k, v in inputs_cls.items()}
                 inputs_prompt = {k: v.to(self.args.device) for k, v in inputs_prompt.items()}
                 targets = targets.to(self.args.device)
 
-                predicts = self.model(inputs, inputs_cls, inputs_prompt)
+                predicts = self.model(inputs, inputs_cls, inputs_prompt, mask_ids)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
