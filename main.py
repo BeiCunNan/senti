@@ -19,13 +19,14 @@ class Instructor:
         self.max_lengths = args.max_lengths
         self.query_lengths = args.query_lengths
         self.prompt_lengths = args.prompt_lengths
+        self.subject = args.subject
 
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
-            self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
-            self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
+            # self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
+            # self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
@@ -42,8 +43,8 @@ class Instructor:
             raise ValueError('unknown model')
 
         if args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.cls_model,
-                           self.prompt_model, self.prompt_lengths)
+            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.base_model,
+                           self.base_model, self.prompt_lengths)
         else:
             raise ValueError('unknown method')
 
@@ -110,7 +111,8 @@ class Instructor:
                                                       model_name=self.args.model_name,
                                                       method_name=self.args.method_name,
                                                       workers=0,
-                                                      index_fold=index_fold)
+                                                      index_fold=index_fold,
+                                                      subject=self.subject)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
         # Define the criterion
         criterion = CELoss()
@@ -129,7 +131,6 @@ class Instructor:
             # Early stopping
             if (epoch == 50):
                 break
-
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
             l_epo.append(epoch), l_acc.append(test_acc)

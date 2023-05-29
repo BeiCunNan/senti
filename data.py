@@ -8,13 +8,13 @@ from torch.utils.data import Dataset, DataLoader
 
 # Make MyDataset
 class MyDataset(Dataset):
-    def __init__(self, raw_data, label_dict, tokenizer, model_name):
+    def __init__(self, raw_data, label_dict, tokenizer, model_name,subject):
         label_list = list(label_dict.keys())
         split_token = ' [SEP] '
         # QUERY = 'please choose a correct sentiment class from { ' + ', '.join(label_list) + ' }'
         QUERY = 'what class in { ' + ' , '.join(label_list) + ' } does this sentence have ?'
         # QUERY = 'what class does this sentence belong to , ' +' or '.join(label_list)+' ?'
-        PROMPT = 'this text is [MASK] .'
+        PROMPT = 'this ' +subject+ ' is [MASK] .'
 
         dataset = list()
         for data in raw_data:
@@ -63,12 +63,12 @@ def my_collate(batch, tokenizer, num_classes, method_name):
     # 得到的是torch.tensor([[ 0, 27],[ 1, 19]。。。
     # m = prompt_ids['input_ids'].size()
     # n = mask_ids.size()
-    return mrc_ids, torch.tensor(label_ids), text_ids, mask_ids, torch.tensor(mask_index)
+    return mrc_ids, torch.tensor(label_ids), text_ids, mask_ids, mask_index
 
 
 # Load dataset
 def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, model_name, method_name, workers,
-              index_fold):
+              index_fold,subject):
     if dataset == 'sst2':
         train_data = json.load(open(os.path.join(data_dir, 'SST2_Train.json'), 'r', encoding='utf-8'))
         test_data = json.load(open(os.path.join(data_dir, 'SST2_Test.json'), 'r', encoding='utf-8'))
@@ -122,8 +122,8 @@ def load_data(dataset, data_dir, tokenizer, train_batch_size, test_batch_size, m
     else:
         raise ValueError('unknown dataset')
 
-    trainset = MyDataset(train_data, label_dict, tokenizer, model_name)
-    testset = MyDataset(test_data, label_dict, tokenizer, model_name)
+    trainset = MyDataset(train_data, label_dict, tokenizer, model_name,subject)
+    testset = MyDataset(test_data, label_dict, tokenizer, model_name,subject)
 
     collate_fn = partial(my_collate, tokenizer=tokenizer, num_classes=len(label_dict), method_name=method_name)
     train_dataloader = DataLoader(trainset, train_batch_size, shuffle=True, num_workers=workers, collate_fn=collate_fn,

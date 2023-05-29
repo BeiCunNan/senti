@@ -5,7 +5,6 @@ import random
 import sys
 import time
 from datetime import datetime
-
 import torch
 
 
@@ -14,12 +13,15 @@ def get_config():
     num_classes = {'sst2': 2, 'sst5': 5, 'cr': 2, 'subj': 2, 'mr': 2, 'trec': 6, 'mpqa': 2, 'ie': 3}
     max_lengths = {'sst2': 53, 'sst5': 53, 'cr': 100, 'subj': 108, 'mr': 53, 'trec': 33, 'mpqa': 34, 'ie': 75}
     query_lengths = {'sst2': 14, 'sst5': 20, 'cr': 14, 'subj': 14, 'mr': 14, 'trec': 22, 'mpqa': 14, 'ie': 16}
+    subject = {'sst2': 'movie', 'sst5': 'movie', 'cr': 'product', 'subj': 'text', 'mr': 'movie', 'trec': 'question',
+               'mpqa': 'opinion', 'ie': 'idiom'}
 
     '''Base'''
     parser.add_argument('--data_dir', type=str, default='data')
     parser.add_argument('--dataset', type=str, default='ie', choices=num_classes.keys())
     parser.add_argument('--max_lengths', type=str, default='ie', choices=max_lengths.keys())
     parser.add_argument('--query_lengths', type=str, default='ie', choices=query_lengths.keys())
+    parser.add_argument('--subject', type=str, default='ie', choices=subject.keys())
     parser.add_argument('--model_name', type=str, default='bert',
                         choices=['bert', 'roberta', 'roberta-large', 'wsp-base', 'wsp-large'])
     parser.add_argument('--method_name', type=str, default='san',
@@ -33,7 +35,7 @@ def get_config():
     parser.add_argument('--lr', type=float, default=1e-5)
     parser.add_argument('--decay', type=float, default=0.01)
     parser.add_argument('--eps', type=float, default=1e-8)
-    parser.add_argument('--prompt_lengths',type=int,default=5)
+    parser.add_argument('--prompt_lengths', type=int, default=5)
 
     '''Environment'''
     parser.add_argument('--device', type=str, default='cuda')
