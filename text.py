@@ -11,9 +11,11 @@
 
 from numpy import mean
 
-l = [88.5,	92.9,	98.0	,97.4,	92.2,	94.0,	56.1	,78.0]
+l = [87.8,	92.4	,97.0,	97.6,	91.6,	93.8,	55.2	,75.3]
 print(mean(l))
-print(-9 % 12)
+
+
+
 # import csv
 # import json
 #

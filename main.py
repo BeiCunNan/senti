@@ -1,13 +1,12 @@
-import matplotlib.pyplot as plt
 import torch
-from numpy import mean
 from tqdm import tqdm
-from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
-
-from config import get_config
-from data import load_data
+from numpy import mean
 from loss import CELoss
-from model import A
+from model import MP_TFWA
+from data import load_data
+from config import get_config
+import matplotlib.pyplot as plt
+from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
 
 
 class Instructor:
@@ -16,38 +15,28 @@ class Instructor:
         self.args = args
         self.logger = logger
         self.index = index
+        self.subject = args.subject
         self.max_lengths = args.max_lengths
         self.query_lengths = args.query_lengths
         self.prompt_lengths = args.prompt_lengths
-        self.subject = args.subject
 
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
             self.base_model = AutoModel.from_pretrained('bert-base-uncased')
-            # self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
-            # self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
-        elif args.model_name == 'roberta-large':
-            self.tokenizer = AutoTokenizer.from_pretrained('roberta-large', add_prefix_space=True)
-            self.base_model = AutoModel.from_pretrained('roberta-large')
-        elif args.model_name == 'wsp-large':
-            self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            self.base_model = AutoModel.from_pretrained("shuaifan/SentiWSP")
-        elif args.model_name == 'wsp-base':
-            self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            self.base_model = AutoModel.from_pretrained("shuaifan/SentiWSP-base")
         else:
             raise ValueError('unknown model')
-
-        if args.method_name == 'san':
-            self.model = A(self.base_model, args.num_classes, args.max_lengths, self.query_lengths, self.base_model,
-                           self.base_model, self.prompt_lengths)
+        if args.method_name == 'MP-TFWA':
+            self.model = MP_TFWA(self.base_model, self.cls_model,
+                                 self.prompt_model, args.num_classes, args.max_lengths, self.query_lengths,
+                                 self.prompt_lengths)
         else:
             raise ValueError('unknown method')
-
         self.model.to(args.device)
         if args.device.type == 'cuda':
             self.logger.info('> cuda memory allocated: {}'.format(torch.cuda.memory_allocated(args.device.index)))
@@ -69,7 +58,7 @@ class Instructor:
             mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
             targets = targets.to(self.args.device)
 
-            predicts = self.model(mrc_inputs, text_inputs, mask_inputs, mask_index)
+            predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS,cTSA,cFSA,pl_tokens,MASK = self.model(mrc_inputs, text_inputs, mask_inputs, mask_index)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -94,7 +83,10 @@ class Instructor:
                 mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
                 targets = targets.to(self.args.device)
 
-                predicts = self.model(mrc_inputs, text_inputs, mask_inputs, mask_index)
+                predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS,cTSA,cFSA,pl_tokens,MASK= self.model(mrc_inputs,
+                                                                                                             text_inputs,
+                                                                                                             mask_inputs,
+                                                                                                             mask_index)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
@@ -108,22 +100,19 @@ class Instructor:
                                                       tokenizer=self.tokenizer,
                                                       train_batch_size=self.args.train_batch_size,
                                                       test_batch_size=self.args.test_batch_size,
-                                                      model_name=self.args.model_name,
-                                                      method_name=self.args.method_name,
                                                       workers=0,
                                                       index_fold=index_fold,
                                                       subject=self.subject)
         _params = filter(lambda p: p.requires_grad, self.model.parameters())
-        # Define the criterion
+        # Criterion
         criterion = CELoss()
         optimizer = torch.optim.AdamW(_params, lr=self.args.lr, weight_decay=self.args.decay, eps=self.args.eps)
         # Warm up
         total_steps = len(train_dataloader) * self.args.num_epoch
         warmup_steps = 0.6 * len(train_dataloader)
         scheduler = get_linear_schedule_with_warmup(optimizer,
-                                                    num_warmup_steps=warmup_steps,  # Default value in run_glue.py
+                                                    num_warmup_steps=warmup_steps,
                                                     num_training_steps=total_steps)
-
         best_loss, best_acc = 0, 0
 
         l_acc, l_epo = [], []
@@ -148,19 +137,21 @@ class Instructor:
         plt.savefig(str(self.index) + 'image.png')
         # plt.show()
 
+        # Save model
+        torch.save(self.model, './save/model.pkl')
+        torch.save(self.base_model, './save/bert.pkl')
+
         return best_acc
 
 
 if __name__ == '__main__':
     accs = []
-
     for i in range(40):
         logging.set_verbosity_error()
-
         # Get the hyperparameters
         args, logger = get_config()
 
-        # CV or No_CV
+        # 10-fold validation
         if (args.dataset in ['mr', 'cr', 'subj', 'mpqa']):
             k_fold_accs = []
             for index_fold in range(10):
