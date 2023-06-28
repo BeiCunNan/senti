@@ -58,9 +58,8 @@ class MP_TFWA(nn.Module):
 
         self.fnn = nn.Sequential(
             nn.Dropout(0.5),
-            nn.Linear((1000 + self.base_model.config.hidden_size) * 1, self.base_model.config.hidden_size),
-            nn.Linear(self.base_model.config.hidden_size, num_classes),
-            nn.Softmax(dim=1)
+            nn.Linear((1000 + self.base_model.config.hidden_size) * 3, self.base_model.config.hidden_size),
+            nn.Linear(self.base_model.config.hidden_size, num_classes)
         )
 
         self.atW = nn.Linear(self.base_model.config.hidden_size, 100)
@@ -160,8 +159,8 @@ class MP_TFWA(nn.Module):
         c_TFSA_W = torch.bmm(cTSA_W.permute(0, 2, 1), cFSA_W)
         c_TFSA = self.cftW(torch.reshape(c_TFSA_W, [c_TFSA_W.shape[0], 10000]))
 
-        # output_ALL = torch.cat((mrc_CLS, context_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
-        output_ALL = torch.cat(( context_CLS ,b_TFSA), 1)
+        output_ALL = torch.cat((mrc_CLS, context_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
+        #output_ALL = torch.cat(( context_CLS ,b_TFSA), 1)
 
         predicts = self.fnn(output_ALL)
 

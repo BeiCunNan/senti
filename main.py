@@ -7,6 +7,7 @@ from data import load_data
 from config import get_config
 import matplotlib.pyplot as plt
 from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
+from caseStudy import draw
 
 
 class Instructor:
@@ -23,17 +24,17 @@ class Instructor:
         self.logger.info('> creating model {}'.format(args.model_name))
         if args.model_name == 'bert':
             self.tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-            self.base_model = AutoModel.from_pretrained('bert-base-uncased')
-            self.cls_model = AutoModel.from_pretrained('bert-base-uncased')
-            self.prompt_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.mrc_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.context_model = AutoModel.from_pretrained('bert-base-uncased')
+            self.pl_model = AutoModel.from_pretrained('bert-base-uncased')
         elif args.model_name == 'roberta':
             self.tokenizer = AutoTokenizer.from_pretrained('roberta-base', add_prefix_space=True)
             self.base_model = AutoModel.from_pretrained('roberta-base')
         else:
             raise ValueError('unknown model')
         if args.method_name == 'MP-TFWA':
-            self.model = MP_TFWA(self.base_model, self.cls_model,
-                                 self.prompt_model, args.num_classes, args.max_lengths, self.query_lengths,
+            self.model = MP_TFWA(self.mrc_model, self.context_model,
+                                 self.pl_model, args.num_classes, args.max_lengths, self.query_lengths,
                                  self.prompt_lengths)
         else:
             raise ValueError('unknown method')
@@ -118,13 +119,15 @@ class Instructor:
         l_acc, l_epo = [], []
         for epoch in range(self.args.num_epoch):
             # Early stopping
-            if (epoch == 50):
+            if (epoch == 100):
                 break
             train_loss, train_acc = self._train(train_dataloader, criterion, optimizer, scheduler)
             test_loss, test_acc = self._test(test_dataloader, criterion)
             l_epo.append(epoch), l_acc.append(test_acc)
             if test_acc > best_acc or (test_acc == best_acc and test_loss < best_loss):
                 best_acc, best_loss = test_acc, test_loss
+                # Save model
+                torch.save(self.model, r'./save/model.pkl')
             self.logger.info(
                 '{}/{} - {:.2f}%'.format(epoch + 1, self.args.num_epoch, 100 * (epoch + 1) / self.args.num_epoch))
             self.logger.info('[train] loss: {:.4f}, acc: {:.2f}'.format(train_loss, train_acc * 100))
@@ -134,12 +137,11 @@ class Instructor:
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
-        plt.savefig(str(self.index) + 'image.png')
+        #plt.savefig('./pic'+str(self.index) + 'image.png')
+
         # plt.show()
 
-        # Save model
-        torch.save(self.model, './save/model.pkl')
-        torch.save(self.base_model, './save/bert.pkl')
+
 
         return best_acc
 
@@ -166,3 +168,6 @@ if __name__ == '__main__':
             acc = ins.run(0)
             accs.append(acc)
             print(accs)
+
+        # Get the case Study image
+        draw(i)

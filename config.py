@@ -27,7 +27,7 @@ def get_config():
                         choices=['MP-TFWA'])
 
     '''Optimization'''
-    parser.add_argument('--train_batch_size', type=int, default=10)
+    parser.add_argument('--train_batch_size', type=int, default=1)
     parser.add_argument('--test_batch_size', type=int, default=64)
     parser.add_argument('--num_epoch', type=int, default=2)
     parser.add_argument('--lr', type=float, default=1e-5)
@@ -44,6 +44,7 @@ def get_config():
     args.num_classes = num_classes[args.dataset]
     args.max_lengths = max_lengths[args.max_lengths]
     args.query_lengths = query_lengths[args.query_lengths]
+    args.subject=subject[args.subject]
     args.device = torch.device(args.device)
 
     '''logger'''
