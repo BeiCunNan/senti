@@ -60,7 +60,7 @@ class Instructor:
             mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
             targets = targets.to(self.args.device)
 
-            predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK = self.model(
+            predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK, aattention, aattention_N, battention, battention_N, cattention, cattention_N = self.model(
                 mrc_inputs, text_inputs, mask_inputs, mask_index)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
@@ -86,7 +86,7 @@ class Instructor:
                 mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
                 targets = targets.to(self.args.device)
 
-                predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK = self.model(
+                predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK, aattention, aattention_N, battention, battention_N, cattention, cattention_N = self.model(
                     mrc_inputs,
                     text_inputs,
                     mask_inputs,

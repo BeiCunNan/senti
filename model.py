@@ -162,8 +162,7 @@ class MP_TFWA(nn.Module):
         c_TFSA = self.cftW(torch.reshape(c_TFSA_W, [c_TFSA_W.shape[0], 10000]))
 
         output_ALL = torch.cat((mrc_CLS, context_CLS, MASK, a_TFSA, b_TFSA, c_TFSA), 1)
-        # output_ALL = torch.cat(( context_CLS ,b_TFSA), 1)
 
         predicts = self.fnn(output_ALL)
 
-        return predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, context_CLS, cTSA, cFSA, pl_tokens, MASK
+        return predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, context_CLS, cTSA, cFSA, pl_tokens, MASK, aattention, aattention_N, battention, battention_N, cattention, cattention_N

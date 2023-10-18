@@ -60,7 +60,7 @@ def calculate_attention_weight():
         text_inputs = {k: v.to('cuda') for k, v in text_inputs.items()}
         mask_inputs = {k: v.to('cuda') for k, v in mask_inputs.items()}
         targets = targets.to('cuda')
-        predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK = model(
+        predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK, aattention, aattention_N, battention, battention_N, cattention, cattention_N = model(
             mrc_inputs, text_inputs, mask_inputs, mask_index)
         print(predicts)
 
