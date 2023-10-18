@@ -1,11 +1,13 @@
+import argparse
+import logging
 import os
+import random
 import sys
 import time
-import torch
-import random
-import logging
-import argparse
 from datetime import datetime
+
+import torch
+
 
 def get_config():
     parser = argparse.ArgumentParser()
@@ -44,7 +46,7 @@ def get_config():
     args.num_classes = num_classes[args.dataset]
     args.max_lengths = max_lengths[args.max_lengths]
     args.query_lengths = query_lengths[args.query_lengths]
-    args.subject=subject[args.subject]
+    args.subject = subject[args.subject]
     args.device = torch.device(args.device)
 
     '''logger'''

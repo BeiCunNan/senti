@@ -1,13 +1,14 @@
+import matplotlib.pyplot as plt
 import torch
-from tqdm import tqdm
 from numpy import mean
+from tqdm import tqdm
+from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
+
+from caseStudy import draw
+from config import get_config
+from data import load_data
 from loss import CELoss
 from model import MP_TFWA
-from data import load_data
-from config import get_config
-import matplotlib.pyplot as plt
-from transformers import logging, AutoTokenizer, AutoModel, get_linear_schedule_with_warmup
-from caseStudy import draw
 
 
 class Instructor:
@@ -59,7 +60,8 @@ class Instructor:
             mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
             targets = targets.to(self.args.device)
 
-            predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS,cTSA,cFSA,pl_tokens,MASK = self.model(mrc_inputs, text_inputs, mask_inputs, mask_index)
+            predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK = self.model(
+                mrc_inputs, text_inputs, mask_inputs, mask_index)
             loss = criterion(predicts, targets)
             optimizer.zero_grad()
             loss.backward()
@@ -84,10 +86,11 @@ class Instructor:
                 mask_inputs = {k: v.to(self.args.device) for k, v in mask_inputs.items()}
                 targets = targets.to(self.args.device)
 
-                predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS,cTSA,cFSA,pl_tokens,MASK= self.model(mrc_inputs,
-                                                                                                             text_inputs,
-                                                                                                             mask_inputs,
-                                                                                                             mask_index)
+                predicts, aTSA, aFSA, mrc_tokens, mrc_CLS, bTSA, bFSA, context_tokens, text_CLS, cTSA, cFSA, pl_tokens, MASK = self.model(
+                    mrc_inputs,
+                    text_inputs,
+                    mask_inputs,
+                    mask_index)
                 loss = criterion(predicts, targets)
                 test_loss += loss.item() * targets.size(0)
                 n_correct += (torch.argmax(predicts, dim=1) == targets).sum().item()
@@ -137,11 +140,9 @@ class Instructor:
         plt.plot(l_epo, l_acc)
         plt.ylabel('accuracy')
         plt.xlabel('epoch')
-        #plt.savefig('./pic'+str(self.index) + 'image.png')
+        # plt.savefig('./pic'+str(self.index) + 'image.png')
 
         # plt.show()
-
-
 
         return best_acc
 
